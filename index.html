@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Frühstücksbox – fünf Levels</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#f3f6fb;color:#203349;font-family:system-ui,sans-serif;padding:20px}
+main{max-width:1100px;margin:auto}
+h1{font-size:1.8rem;margin-bottom:8px}
+h2{font-size:1.2rem;margin-top:0}
+p{line-height:1.5}
+.panel{background:white;border:1px solid #dce4ed;border-radius:16px;padding:20px;margin:16px 0}
+.muted{color:#5a6d80;font-size:.92rem}
+.controls{display:flex;flex-wrap:wrap;gap:14px;align-items:center}
+button,input{font:inherit}
+button{cursor:pointer;border:1px solid #aebfd0;background:white;color:#203349;border-radius:10px;padding:10px 14px}
+button:hover{background:#edf5ff}
+button:focus-visible,input:focus-visible{outline:3px solid #2266cc;outline-offset:3px}
+input[type=date]{padding:9px;border:1px solid #aebfd0;border-radius:9px}
+.levels{display:grid;grid-template-columns:repeat(auto-fit,minmax(175px,1fr));gap:9px}
+.levels button{text-align:left;font-size:.92rem}
+.levels button.active{background:#e9f2ff;border-color:#266ac0;box-shadow:inset 0 0 0 1px #266ac0}
+.levels strong{display:block;margin-bottom:5px}
+.task{padding:14px;background:#eef5ff;border-radius:10px;line-height:1.5;margin-top:14px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(225px,1fr));gap:10px}
+.product{display:flex;gap:10px;align-items:flex-start;border:1px solid #d7e1eb;border-radius:12px;padding:13px;cursor:pointer}
+.product:has(input:checked){background:#edf6ff;border-color:#4f8bc6}
+.product input{margin-top:7px;width:20px;height:20px;accent-color:#2266bb;flex-shrink:0}
+.name{font-weight:700;display:block}
+.emoji{font-size:1.7rem}
+.details{font-size:.86rem;color:#52677c;line-height:1.6;display:block;margin-top:5px}
+.stars{display:block;color:#895400;font-size:.85rem;margin-top:4px}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(155px,1fr));gap:10px}
+.stat{background:#f2f6fa;border-radius:10px;padding:13px}
+.stat span{display:block;font-size:.86rem;color:#55697d}
+.stat strong{display:block;font-size:1.3rem;margin-top:5px}
+.expiry{background:#fff2c9;padding:12px;border-radius:10px;line-height:1.5}
+.status{font-weight:650}
+.good{color:#176747}
+.warning{color:#925000}
+.answer{margin-top:14px;padding:14px;border:1px solid #cbdced;border-radius:10px;line-height:1.6}
+.answer[hidden]{display:none}
+.actions{display:flex;gap:10px;flex-wrap:wrap}
+@media(max-width:550px){body{padding:10px}.panel{padding:14px}h1{font-size:1.45rem}}
+</style>
+</head>
+<body>
+<main>
+<h1>🥪 Frühstücksbox – fünf Levels</h1>
+<p>Wähle deine Frühstücksprodukte aus. <strong>Jedes Produkt darf nur einmal in die Box.</strong></p>
+
+<section class="panel">
+<h2>Dein Level</h2>
+<div class="levels" id="levels"></div>
+<div class="task" id="task"></div>
+<p class="muted">Level 1: mindestens 500 kcal. Für die Vergleichsaufgaben in Level 2–5 gilt weiterhin der Zielbereich von 500–550 kcal.</p>
+</section>
+
+<section class="panel controls">
+<label for="date">Kaufdatum:</label>
+<input type="date" id="date">
+<button type="button" id="reset">Auswahl leeren</button>
+</section>
+
+<section class="panel">
+<h2>Produkte auswählen</h2>
+<div class="grid" id="products"></div>
+<p class="muted">Die Produktmotive werden hier als Emojis dargestellt. Werte und Haltbarkeit sind Angaben für diese Rechenaufgabe, keine tatsächlichen Verzehrfristen.</p>
+</section>
+
+<section class="panel" aria-live="polite">
+<h2>Deine Frühstücksbox</h2>
+<div class="stats">
+<div class="stat"><span>Kalorien</span><strong id="kcal">0 kcal</strong></div>
+<div class="stat"><span>Gesamtpreis</span><strong id="price">0,00 €</strong></div>
+<div class="stat"><span>Gesundheitssterne</span><strong id="stars">0 ★</strong></div>
+<div class="stat"><span>Anzahl Produkte</span><strong id="count">0</strong></div>
+</div>
+<p class="expiry" id="expiry"></p>
+<p class="status" id="status"></p>
+</section>
+
+<section class="panel">
+<h2>Musterlösung zum gewählten Level</h2>
+<div class="actions">
+<button type="button" id="reveal">Musterlösung anzeigen</button>
+<button type="button" id="apply" hidden>Musterlösung in die Box legen</button>
+</div>
+<div class="answer" id="answer" hidden></div>
+<p class="muted">Es kann mehrere gleich gute Lösungen geben. Die Musterlösungen werden aus allen möglichen Produktauswahlen berechnet. Bei Level 1 gibt es keine richtige oder falsche Geschmacksentscheidung.</p>
+</section>
+</main>
+
+<script>
+"use strict";
+
+const products=[
+  {name:"Schokoriegel",icon:"🍫",kcal:110,cents:40,stars:1,days:180},
+  {name:"Nutellabrot",icon:"🍞",kcal:270,cents:45,stars:2,days:2},
+  {name:"Schokocroissant",icon:"🥐",kcal:290,cents:70,stars:2,days:21},
+  {name:"Weißbrot mit Salami",icon:"🥪",kcal:300,cents:70,stars:2,days:1},
+  {name:"Cheestrings",icon:"🧀",kcal:60,cents:30,stars:2,days:28},
+  {name:"Joghurt",icon:"🥣",kcal:90,cents:35,stars:3,days:14},
+  {name:"Banane",icon:"🍌",kcal:100,cents:40,stars:3,days:5},
+  {name:"Vollkornbrot mit Käse",icon:"🍞",kcal:250,cents:60,stars:3,days:4},
+  {name:"Apfel",icon:"🍎",kcal:80,cents:40,stars:4,days:14},
+  {name:"Gemüse-Sticks",icon:"🥕",kcal:40,cents:60,stars:5,days:3},
+  {name:"Erdbeeren",icon:"🍓",kcal:32,cents:70,stars:4,days:2},
+  {name:"Vollkornsandwich mit Hähnchen",icon:"🥪",kcal:320,cents:160,stars:5,days:1}
+];
+
+const levelData=[
+  ["Das leckerste Frühstück","Stelle dein persönlich leckerstes Frühstück mit mindestens 500 kcal zusammen. Begründe deine Auswahl. Es gibt keine feste Musterlösung."],
+  ["So wenig Produkte wie möglich","Erreiche 500–550 kcal mit möglichst wenigen Produkten."],
+  ["So günstig wie möglich","Erreiche 500–550 kcal und gib dabei möglichst wenig Geld aus."],
+  ["So viele Gesundheitssterne wie möglich","Erreiche 500–550 kcal und sammle eine möglichst hohe Summe an Gesundheitssternen."],
+  ["So lange haltbar wie möglich","Erreiche 500–550 kcal. Das zuerst ablaufende Produkt soll möglichst lange haltbar sein."]
+];
+
+const $=id=>document.getElementById(id);
+const money=cents=>(cents/100).toLocaleString("de-DE",{style:"currency",currency:"EUR"});
+let selected=new Set();
+let level=0;
+
+function totals(ids){
+  const result={kcal:0,cents:0,stars:0,count:0,days:Infinity,ids:[...ids]};
+  for(const id of ids){
+    const p=products[id];
+    result.kcal+=p.kcal;
+    result.cents+=p.cents;
+    result.stars+=p.stars;
+    result.count++;
+    result.days=Math.min(result.days,p.days);
+  }
+  return result;
+}
+
+const candidates=[];
+for(let mask=1;mask<(1<<products.length);mask++){
+  const ids=[];
+  for(let i=0;i<products.length;i++){
+    if(mask&(1<<i))ids.push(i);
+  }
+  const result=totals(ids);
+  if(result.kcal>=500&&result.kcal<=550)candidates.push(result);
+}
+
+function objective(result,currentLevel){
+  if(currentLevel===1)return -result.count;
+  if(currentLevel===2)return -result.cents;
+  if(currentLevel===3)return result.stars;
+  return result.days;
+}
+
+function bestSolution(){
+  if(level===0)return null;
+  return candidates.reduce((best,result)=>{
+    if(!best)return result;
+    const a=objective(result,level);
+    const b=objective(best,level);
+    if(a!==b)return a>b?result:best;
+    if(result.cents!==best.cents)return result.cents<best.cents?result:best;
+    return result.kcal<best.kcal?result:best;
+  },null);
+}
+
+function expiryDate(days){
+  const value=$("date").value;
+  if(!value)return "Bitte Kaufdatum auswählen";
+  const date=new Date(value+"T12:00:00");
+  date.setDate(date.getDate()+days);
+  return date.toLocaleDateString("de-DE");
+}
+
+function renderSummary(){
+  const result=totals(selected);
+  $("kcal").textContent=result.kcal+" kcal";
+  $("price").textContent=money(result.cents);
+  $("stars").textContent=result.stars+" ★";
+  $("count").textContent=result.count;
+
+  if(result.count){
+    const firstProducts=result.ids
+      .filter(i=>products[i].days===result.days)
+      .map(i=>products[i].name)
+      .join(", ");
+    $("expiry").textContent="Zuerst ablaufend: "+firstProducts+
+      " – nach "+result.days+" "+(result.days===1?"Tag":"Tagen")+
+      "; Datum: "+expiryDate(result.days)+".";
+  }else{
+    $("expiry").textContent="Noch keine Produkte ausgewählt.";
+  }
+
+  const valid=result.kcal>=500&&(level===0||result.kcal<=550);
+  $("status").className="status "+(valid?"good":"warning");
+  $("status").textContent=valid
+    ?"✓ Kalorienziel erreicht."
+    :(level===0?"Ziel: mindestens 500 kcal.":"Ziel: 500–550 kcal.");
+
+  document.querySelectorAll(".product input").forEach((input,i)=>{
+    input.checked=selected.has(i);
+  });
+}
+
+function renderLevel(){
+  document.querySelectorAll("[data-level]").forEach(button=>{
+    const active=Number(button.dataset.level)===level;
+    button.classList.toggle("active",active);
+    button.setAttribute("aria-pressed",String(active));
+  });
+  $("task").textContent=levelData[level][1];
+  $("answer").hidden=true;
+  $("apply").hidden=true;
+  $("reveal").textContent=level===0?"Hinweis zu Level 1":"Musterlösung anzeigen";
+  renderSummary();
+}
+
+for(let i=0;i<levelData.length;i++){
+  const button=document.createElement("button");
+  button.type="button";
+  button.dataset.level=i;
+  const heading=document.createElement("strong");
+  heading.textContent="Level "+(i+1);
+  button.append(heading,document.createTextNode(levelData[i][0]));
+  button.addEventListener("click",()=>{
+    level=i;
+    renderLevel();
+  });
+  $("levels").appendChild(button);
+}
+
+products.forEach((product,i)=>{
+  const label=document.createElement("label");
+  label.className="product";
+  label.innerHTML=
+    '<input type="checkbox"><span>'+
+    '<span class="name"><span class="emoji" aria-hidden="true">'+product.icon+
+    '</span> '+product.name+'</span>'+
+    '<span class="details">'+product.kcal+' kcal · '+money(product.cents)+
+    '<br>Haltbarkeit: '+product.days+' Tage</span>'+
+    '<span class="stars">Gesundheitssterne: '+
+    "★".repeat(product.stars)+"☆".repeat(5-product.stars)+
+    '</span></span>';
+
+  label.querySelector("input").addEventListener("change",event=>{
+    if(event.target.checked)selected.add(i);
+    else selected.delete(i);
+    renderSummary();
+  });
+  $("products").appendChild(label);
+});
+
+$("reveal").addEventListener("click",()=>{
+  $("answer").hidden=false;
+
+  if(level===0){
+    $("answer").textContent=
+      "Geschmack ist persönlich! Wähle dein Lieblingsfrühstück mit mindestens 500 kcal und erkläre, warum es dir schmeckt. Eine objektive Musterlösung gibt es hier nicht.";
+    $("apply").hidden=true;
+    return;
+  }
+
+  const result=bestSolution();
+  if(!result){
+    $("answer").textContent="Keine passende Lösung gefunden.";
+    $("apply").hidden=true;
+    return;
+  }
+
+  $("answer").replaceChildren();
+  const names=document.createElement("strong");
+  names.textContent=result.ids.map(i=>products[i].name).join(" + ");
+  const details=document.createElement("div");
+  details.textContent=result.kcal+" kcal · "+money(result.cents)+
+    " · "+result.stars+" Gesundheitssterne · "+result.count+
+    " Produkte · zuerst ablaufend nach "+result.days+" Tagen.";
+  $("answer").append(names,details);
+  $("apply").hidden=false;
+});
+
+$("apply").addEventListener("click",()=>{
+  const result=bestSolution();
+  if(!result)return;
+  selected=new Set(result.ids);
+  renderSummary();
+});
+
+$("reset").addEventListener("click",()=>{
+  selected.clear();
+  renderSummary();
+});
+
+const today=new Date();
+$("date").value=today.getFullYear()+"-"+
+  String(today.getMonth()+1).padStart(2,"0")+"-"+
+  String(today.getDate()).padStart(2,"0");
+$("date").addEventListener("change",renderSummary);
+
+renderLevel();
+</script>
+</body>
+</html>
