@@ -25,20 +25,20 @@ button:disabled{opacity:.6;cursor:wait}
 .progress .current{background:#e9f2ff;border-color:#266ac0;font-weight:700}
 .progress .done{background:#e6f5ec;border-color:#9bc9aa;color:#176747}
 .task{padding:15px;background:#ffe4e4;border:2px solid #c83232;border-radius:12px;color:#781c1c;font-weight:700;font-size:1.05rem;line-height:1.5}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:9px}
-.product{display:flex;gap:9px;align-items:flex-start;border:1px solid #d7e1eb;border-radius:12px;padding:11px;cursor:pointer}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:9px}
+.product{display:flex;gap:9px;align-items:flex-start;min-width:0;border:1px solid #d7e1eb;border-radius:12px;padding:11px;cursor:pointer}
 .product:has(input:checked){background:#edf6ff;border-color:#4f8bc6}
 .product:has(input:disabled){opacity:.55;cursor:not-allowed}
 .product input{margin-top:5px;width:19px;height:19px;accent-color:#2266bb;flex-shrink:0}
-.product-info{min-width:0}
-.product-name{font-size:.85rem;line-height:1.35;margin:2px 0 5px;font-weight:700}
-.details{font-size:.82rem;color:#52677c;line-height:1.5}
+.product-info{display:block;flex:1;min-width:0}
+.product-name{display:block;font-size:.85rem;line-height:1.35;margin:2px 0 5px;font-weight:700;overflow-wrap:anywhere}
+.details{display:block;font-size:.82rem;color:#52677c;line-height:1.5;overflow-wrap:anywhere}
 .stars{display:block;color:#895400;font-size:.8rem;margin-top:4px}
 .emoji{font-size:1.25rem;margin-right:4px}
 .stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
 .stat{background:#f2f6fa;border-radius:9px;padding:8px 10px;min-width:0}
 .stat>span{display:block;font-size:.76rem;color:#55697d}
-.stat strong{display:block;margin-top:3px}
+.stat strong{display:block;margin-top:3px;overflow-wrap:anywhere}
 .calorie-meter{position:relative;overflow:hidden;min-height:32px;margin-top:5px;border-radius:8px;background:#dfe6ed}
 .calorie-fill{position:absolute;inset:0 auto 0 0;width:0%;border-radius:inherit;transition:width 250ms}
 .calorie-meter strong{position:relative;z-index:1;display:block;padding:6px 8px}
@@ -55,13 +55,13 @@ button:disabled{opacity:.6;cursor:wait}
 .level-menu summary{cursor:pointer;padding:13px 15px;background:#edf3f8;font-weight:700}
 .level-menu[open] summary{border-bottom:1px solid #dce4ed}
 .level-menu-content{padding:12px}
-.level-menu-content .table-wrap{margin-top:8px}
 #finalHeading{color:#c62828}
 #actionBar{position:fixed;z-index:20;bottom:0;left:0;right:0;background:#fffffffa;border-top:1px solid #d5e0ea;padding:9px 14px}
 .action-inner{max-width:960px;margin:auto;display:flex;justify-content:flex-end;gap:9px}
-#hintFloat{position:fixed;z-index:40;right:16px;bottom:78px;width:54px;height:54px;padding:0;border:2px solid #d89d00;border-radius:50%;background:#fff3bd;box-shadow:0 3px 12px #20334945;font-size:28px;line-height:1}
-#hintFloat:hover{background:#ffe68a;transform:scale(1.04)}
-#hintPopup{position:fixed;z-index:39;right:16px;bottom:142px;width:min(320px,calc(100vw - 32px));padding:14px 16px;border:1px solid #d7c47c;border-radius:12px;background:#fffdf2;box-shadow:0 5px 18px #20334935;line-height:1.5}
+#hintFloat{position:fixed;z-index:40;left:50%;bottom:78px;transform:translateX(-50%);display:flex;align-items:center;justify-content:center;gap:8px;min-height:54px;padding:0 18px;border:2px solid #d89d00;border-radius:999px;background:#fff3bd;box-shadow:0 3px 12px #20334945;font:inherit;font-weight:700}
+#hintFloat span:first-child{font-size:27px}
+#hintFloat:hover{background:#ffe68a;transform:translateX(-50%) scale(1.04)}
+#hintPopup{position:fixed;z-index:39;left:50%;bottom:142px;transform:translateX(-50%);width:min(320px,calc(100vw - 32px));padding:14px 16px;border:1px solid #d7c47c;border-radius:12px;background:#fffdf2;box-shadow:0 5px 18px #20334935;line-height:1.5}
 [hidden]{display:none!important}
 @media(max-width:550px){
  body{padding-left:10px;padding-right:10px;padding-bottom:88px}
@@ -71,8 +71,8 @@ button:disabled{opacity:.6;cursor:wait}
  .action-inner button{padding:8px 6px;font-size:.85rem}
  .data-table{font-size:.8rem}
  .data-table th,.data-table td{padding:7px 6px}
- #hintFloat{right:13px;bottom:82px}
- #hintPopup{right:13px;bottom:145px}
+ #hintFloat{left:50%;bottom:82px}
+ #hintPopup{left:50%;bottom:145px}
 }
 </style>
 </head>
@@ -105,7 +105,7 @@ button:disabled{opacity:.6;cursor:wait}
           <span>Kalorien</span>
           <div class="calorie-meter" id="calorieMeter" role="progressbar" aria-valuemin="0" aria-valuemax="650" aria-valuenow="0">
             <div class="calorie-fill" id="calorieFill"></div>
-            <strong id="calories">0 kcal</strong>
+            <strong id="calories">0 Kalorien</strong>
           </div>
         </div>
         <div class="stat"><span>Preis</span><strong id="price"></strong></div>
@@ -120,7 +120,10 @@ button:disabled{opacity:.6;cursor:wait}
     </section>
   </div>
 
-  <button id="hintFloat" type="button" aria-label="Tipp anzeigen" aria-expanded="false" hidden>💡</button>
+  <button id="hintFloat" type="button" aria-label="Tipps anzeigen" aria-expanded="false" hidden>
+    <span aria-hidden="true">💡</span>
+    <span>Tipps</span>
+  </button>
   <div id="hintPopup" role="status" aria-live="polite" hidden></div>
 
   <section class="panel" id="nameGate" hidden>
@@ -174,11 +177,11 @@ const MIN=500,MAX=650;
 const $=id=>document.getElementById(id);
 
 const levels=[
- {title:"Level 1: Das leckerste Frühstück",task:"Stelle dein persönlich leckerstes Frühstück mit 500 bis 650 kcal zusammen.",factor:"deinen persönlichen Geschmack"},
- {title:"Level 2: So günstig wie möglich",task:"Erreiche 500 bis 650 kcal und gib dabei so wenig Geld wie möglich aus.",factor:"den Gesamtpreis"},
- {title:"Level 3: Möglichst viele Gesundheitssterne",task:"Erreiche 500 bis 650 kcal und sammle möglichst viele Gesundheitssterne.",factor:"die Gesundheitssterne"},
- {title:"Level 4: So lange haltbar wie möglich",task:"Erreiche 500 bis 650 kcal. Wähle Produkte, die möglichst lange haltbar sind.",factor:"die Haltbarkeit"},
- {title:"Bonuslevel: Gesund, lange haltbar und günstig",task:"Stelle ein Frühstück mit 500 bis 650 kcal zusammen, das gesund, lange haltbar und günstig ist.",factor:"den Ausgleich zwischen Preis, Gesundheitssternen und Haltbarkeit"}
+ {title:"Level 1: Das leckerste Frühstück",task:"Stelle dein persönlich leckerstes Frühstück mit 500 bis 650 Kalorien zusammen.",factor:"deinen persönlichen Geschmack"},
+ {title:"Level 2: So günstig wie möglich",task:"Erreiche 500 bis 650 Kalorien und gib dabei so wenig Geld wie möglich aus.",factor:"den Gesamtpreis"},
+ {title:"Level 3: Möglichst viele Gesundheitssterne",task:"Erreiche 500 bis 650 Kalorien und sammle möglichst viele Gesundheitssterne.",factor:"die Gesundheitssterne"},
+ {title:"Level 4: So lange haltbar wie möglich",task:"Erreiche 500 bis 650 Kalorien. Wähle Produkte, die möglichst lange haltbar sind.",factor:"die Haltbarkeit"},
+ {title:"Bonuslevel: Gesund, lange haltbar und günstig",task:"Stelle ein Frühstück mit 500 bis 650 Kalorien zusammen, das gesund, lange haltbar und günstig ist.",factor:"den Ausgleich zwischen Preis, Gesundheitssternen und Haltbarkeit"}
 ];
 
 const products=[
@@ -268,13 +271,14 @@ function renderProducts(){
 
   const info=document.createElement("span");
   info.className="product-info";
+
   const name=document.createElement("span");
   name.className="product-name";
   name.textContent=p.name;
 
   const details=document.createElement("span");
   details.className="details";
-  details.textContent=p.kcal+" kcal · "+money(p.cents)+" · Haltbarkeit: "+p.days+" Tage";
+  details.textContent=p.kcal+" Kalorien · "+money(p.cents)+" · Haltbarkeit: "+p.days+" Tage";
 
   const stars=document.createElement("span");
   stars.className="stars";
@@ -291,7 +295,7 @@ function renderProducts(){
 
 function renderSummary(){
  const result=total([...selected]);
- $("calories").textContent=result.kcal+" kcal";
+ $("calories").textContent=result.kcal+" Kalorien";
  $("calorieFill").style.width=Math.min(100,result.kcal/MAX*100)+"%";
  $("calorieFill").style.backgroundColor=result.kcal>=MIN?"#79bd83":"#f2bd57";
  $("calorieMeter").setAttribute("aria-valuenow",result.kcal);
@@ -301,13 +305,13 @@ function renderSummary(){
 
  const goal=$("goal");
  if(result.kcal>=MIN&&result.kcal<=MAX){
-  goal.textContent="✓ Kalorienziel erreicht – zwischen 500 und 650 kcal.";
+  goal.textContent="✓ Kalorienziel erreicht – zwischen 500 und 650 Kalorien.";
   goal.classList.add("reached");
  }else if(result.kcal<MIN){
-  goal.textContent="Noch "+(MIN-result.kcal)+" kcal bis zum Mindestziel von 500 kcal.";
+  goal.textContent="Noch "+(MIN-result.kcal)+" Kalorien bis zum Mindestziel von 500 Kalorien.";
   goal.classList.remove("reached");
  }else{
-  goal.textContent="Zu viele Kalorien: höchstens 650 kcal erlaubt.";
+  goal.textContent="Zu viele Kalorien: höchstens 650 Kalorien erlaubt.";
   goal.classList.remove("reached");
  }
 }
@@ -378,7 +382,7 @@ function appendResultRow(tbody,label,ids,playerName=""){
  row.append(
   makeCell(label+(playerName?" — "+playerName:""),"products-cell"),
   makeCell(productNames,"products-cell"),
-  makeCell(result.kcal+" kcal"),
+  makeCell(result.kcal+" Kalorien"),
   makeCell(money(result.cents)),
   makeCell(result.stars+" ★"),
   makeCell(result.days+" Tage")
@@ -453,7 +457,7 @@ function renderOwnSummary(){
   row.append(
    makeCell(levels[entry.level].title),
    makeCell(productNames,"products-cell"),
-   makeCell(result.kcal+" kcal"),
+   makeCell(result.kcal+" Kalorien"),
    makeCell(money(result.cents)),
    makeCell(result.stars+" ★"),
    makeCell(result.days+" Tage")
