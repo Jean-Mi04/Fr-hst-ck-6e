@@ -17,7 +17,7 @@ p{line-height:1.5}
 .panel{background:#fff;border:1px solid #dce4ed;border-radius:15px;padding:16px;margin:13px 0}
 button{font:inherit;cursor:pointer;border:1px solid #aebfd0;background:#fff;color:#203349;border-radius:10px;padding:9px 13px}
 button:hover{background:#edf5ff}
-button:focus-visible,input:focus-visible{outline:3px solid #2266cc;outline-offset:3px}
+button:focus-visible,input:focus-visible,summary:focus-visible{outline:3px solid #2266cc;outline-offset:3px}
 button:disabled{opacity:.6;cursor:wait}
 .primary{background:#2469b2;color:#fff;border-color:#2469b2}
 .progress{display:flex;flex-wrap:wrap;gap:7px;margin:8px 0}
@@ -44,7 +44,6 @@ button:disabled{opacity:.6;cursor:wait}
 .calorie-meter strong{position:relative;z-index:1;display:block;padding:6px 8px}
 .goal{background:#fff2c9;border-radius:9px;padding:8px 11px;margin:9px 0;font-size:.87rem;font-weight:700}
 .goal.reached{background:#e6f5ec;color:#176747}
-.tip{margin-top:10px;padding:12px;border:1px solid #cbdced;border-radius:10px;background:#f7fbff}
 #game>.panel:first-child{position:sticky;top:66px;z-index:10;box-shadow:0 5px 14px #2033491a}
 .table-wrap{overflow-x:auto;border-radius:10px}
 .data-table{width:100%;min-width:650px;border-collapse:collapse;font-size:.88rem;background:#fff}
@@ -52,15 +51,17 @@ button:disabled{opacity:.6;cursor:wait}
 .data-table thead th{background:#edf3f8;font-weight:700;white-space:nowrap}
 .data-table tbody tr:nth-child(even){background:#f8fafc}
 .products-cell{min-width:190px;overflow-wrap:anywhere}
-.row-products{color:#52677c;font-size:.8rem;line-height:1.4}
-.level-result{border-top:1px solid #dce4ed;padding:16px 0}
-.level-task-title{margin:3px 0 11px;color:#415a72;font-weight:700}
-.leaderboard-panel{margin-top:18px}
-.leaderboard-form{display:flex;gap:8px;margin-top:6px}
-.leaderboard-form input{font:inherit;min-width:0;flex:1;border:1px solid #aebfd0;border-radius:10px;padding:9px 10px}
-.group-title{margin:15px 0 7px;font-weight:700;color:#284b6b}
+.level-menu{margin:12px 0;border:1px solid #dce4ed;border-radius:12px;background:#fff;overflow:hidden}
+.level-menu summary{cursor:pointer;padding:13px 15px;background:#edf3f8;font-weight:700}
+.level-menu[open] summary{border-bottom:1px solid #dce4ed}
+.level-menu-content{padding:12px}
+.level-menu-content .table-wrap{margin-top:8px}
+#finalHeading{color:#c62828}
 #actionBar{position:fixed;z-index:20;bottom:0;left:0;right:0;background:#fffffffa;border-top:1px solid #d5e0ea;padding:9px 14px}
 .action-inner{max-width:960px;margin:auto;display:flex;justify-content:flex-end;gap:9px}
+#hintFloat{position:fixed;z-index:40;right:16px;bottom:78px;width:54px;height:54px;padding:0;border:2px solid #d89d00;border-radius:50%;background:#fff3bd;box-shadow:0 3px 12px #20334945;font-size:28px;line-height:1}
+#hintFloat:hover{background:#ffe68a;transform:scale(1.04)}
+#hintPopup{position:fixed;z-index:39;right:16px;bottom:142px;width:min(320px,calc(100vw - 32px));padding:14px 16px;border:1px solid #d7c47c;border-radius:12px;background:#fffdf2;box-shadow:0 5px 18px #20334935;line-height:1.5}
 [hidden]{display:none!important}
 @media(max-width:550px){
  body{padding-left:10px;padding-right:10px;padding-bottom:88px}
@@ -68,9 +69,10 @@ button:disabled{opacity:.6;cursor:wait}
  .stats{grid-template-columns:repeat(2,minmax(0,1fr))}
  .action-inner{display:grid;grid-template-columns:1fr 1.5fr}
  .action-inner button{padding:8px 6px;font-size:.85rem}
- .leaderboard-form{flex-direction:column}
  .data-table{font-size:.8rem}
  .data-table th,.data-table td{padding:7px 6px}
+ #hintFloat{right:13px;bottom:82px}
+ #hintPopup{right:13px;bottom:145px}
 }
 </style>
 </head>
@@ -116,27 +118,24 @@ button:disabled{opacity:.6;cursor:wait}
       <h2>Produkte auswählen</h2>
       <div class="grid" id="products"></div>
     </section>
-
-    <section class="panel">
-      <h2>Tipp</h2>
-      <button id="tipButton" type="button">Tipp anzeigen</button>
-      <div class="tip" id="tip" hidden></div>
-    </section>
   </div>
+
+  <button id="hintFloat" type="button" aria-label="Tipp anzeigen" aria-expanded="false" hidden>💡</button>
+  <div id="hintPopup" role="status" aria-live="polite" hidden></div>
 
   <section class="panel" id="nameGate" hidden>
     <h2>Fast geschafft! Wie heißt du?</h2>
     <p>Gib zuerst deinen Namen ein. Danach werden deine Ergebnisse gespeichert und die Bestenliste angezeigt.</p>
     <label for="playerName">Dein Name (max. 24 Zeichen):</label>
-    <div class="leaderboard-form">
-      <input id="playerName" type="text" maxlength="24" autocomplete="nickname" placeholder="Name eingeben">
+    <div style="display:flex;gap:8px;margin-top:8px">
+      <input id="playerName" type="text" maxlength="24" autocomplete="nickname" placeholder="Name eingeben" style="font:inherit;min-width:0;flex:1;border:1px solid #aebfd0;border-radius:10px;padding:9px 10px">
       <button class="primary" id="submitScore" type="button">Name speichern und weiter</button>
     </div>
     <p id="scoreStatus" role="status" aria-live="polite"></p>
   </section>
 
   <section class="panel" id="finalScreen" hidden>
-    <h2>Deine Ergebnisse.</h2>
+    <h2 id="finalHeading">Deine Ergebnisse.</h2>
     <p>Übertrage sie in die Tabelle von Aufgabe 2 auf deinem Arbeitsblatt.</p>
 
     <section class="panel">
@@ -155,7 +154,6 @@ button:disabled{opacity:.6;cursor:wait}
     </section>
 
     <h2>Bestenliste</h2>
-    <p>Bei gleicher Ähnlichkeit entscheidet die schnellere Zeit in diesem Level.</p>
     <div id="levelResults"></div>
   </section>
 </main>
@@ -242,6 +240,8 @@ function renderStart(){
  $("startScreen").hidden=false;
  $("game").hidden=true;
  $("actionBar").hidden=true;
+ $("hintFloat").hidden=true;
+ $("hintPopup").hidden=true;
  $("nameGate").hidden=true;
  $("finalScreen").hidden=true;
 }
@@ -254,6 +254,7 @@ function renderProducts(){
  products.forEach((p,index)=>{
   const label=document.createElement("label");
   label.className="product";
+
   const input=document.createElement("input");
   input.type="checkbox";
   input.checked=selected.has(index);
@@ -270,12 +271,15 @@ function renderProducts(){
   const name=document.createElement("span");
   name.className="product-name";
   name.textContent=p.name;
+
   const details=document.createElement("span");
   details.className="details";
   details.textContent=p.kcal+" kcal · "+money(p.cents)+" · Haltbarkeit: "+p.days+" Tage";
+
   const stars=document.createElement("span");
   stars.className="stars";
   stars.textContent="Sterne: "+"★".repeat(p.stars)+"☆".repeat(5-p.stars);
+
   info.append(name,details,stars);
   const icon=document.createElement("span");
   icon.className="emoji";
@@ -310,8 +314,9 @@ function renderSummary(){
 
 function renderGame(){
  $("gameHeading").textContent=levels[level].title;
- $("tip").hidden=true;
- $("tipButton").textContent="Tipp anzeigen";
+ $("hintPopup").hidden=true;
+ $("hintFloat").hidden=false;
+ $("hintFloat").setAttribute("aria-expanded","false");
  $("nextButton").textContent=level===4?"Bonus abschließen":"Level abschließen und weiter";
  progress("progress");
  renderProducts();
@@ -321,6 +326,7 @@ function renderGame(){
 function bestFor(levelIndex){
  if(Object.prototype.hasOwnProperty.call(solutionCache,levelIndex))return solutionCache[levelIndex];
  const valid=[];
+
  for(let mask=1;mask<(1<<products.length);mask++){
   const ids=[];
   for(let i=0;i<products.length;i++)if(mask&(1<<i))ids.push(i);
@@ -337,6 +343,7 @@ function bestFor(levelIndex){
    x.stars*1000-Math.abs(x.kcal-550)>best.stars*1000-Math.abs(best.kcal-550)?x:best
   );
  }
+
  const score=x=>{
   if(levelIndex===1)return -x.cents;
   if(levelIndex===3)return x.days;
@@ -367,6 +374,7 @@ function appendResultRow(tbody,label,ids,playerName=""){
  const result=total(safeIds);
  const row=document.createElement("tr");
  const productNames=safeIds.map(id=>products[id].name).join(", ")||"Keine Produkte ausgewählt.";
+
  row.append(
   makeCell(label+(playerName?" — "+playerName:""),"products-cell"),
   makeCell(productNames,"products-cell"),
@@ -390,18 +398,16 @@ function tableHeader(){
  return thead;
 }
 
-function createLevelTable(entry){
- const section=document.createElement("section");
- section.className="level-result";
+function createLevelMenu(entry){
+ const details=document.createElement("details");
+ details.className="level-menu";
 
- const heading=document.createElement("h3");
- heading.textContent=levels[entry.level].title;
- const task=document.createElement("p");
- task.className="level-task-title";
- task.textContent="Aufgabe: "+levels[entry.level].task;
+ const summary=document.createElement("summary");
+ summary.textContent=levels[entry.level].title;
 
- const wrap=document.createElement("div");
- wrap.className="table-wrap";
+ const content=document.createElement("div");
+ content.className="level-menu-content";
+
  const table=document.createElement("table");
  table.className="data-table";
  table.appendChild(tableHeader());
@@ -410,6 +416,7 @@ function createLevelTable(entry){
  const solution=bestFor(entry.level);
  if(solution)appendResultRow(body,"Lösung",solution.ids);
  appendResultRow(body,"Du",entry.result.ids);
+ table.appendChild(body);
 
  const topTitle=document.createElement("p");
  topTitle.className="group-title";
@@ -422,19 +429,27 @@ function createLevelTable(entry){
  topBody.id="top-"+entry.level;
  topTable.appendChild(topBody);
 
- table.appendChild(body);
- wrap.append(table,topTitle,topTable);
- section.append(heading,task,wrap);
- return section;
+ const tableWrap=document.createElement("div");
+ tableWrap.className="table-wrap";
+ tableWrap.appendChild(table);
+
+ const topWrap=document.createElement("div");
+ topWrap.className="table-wrap";
+ topWrap.appendChild(topTable);
+
+ content.append(tableWrap,topTitle,topWrap);
+ details.append(summary,content);
+ return details;
 }
 
 function renderOwnSummary(){
  const body=$("summaryBody");
  body.replaceChildren();
+
  completed.forEach(entry=>{
   const result=entry.result;
   const row=document.createElement("tr");
-  const productNames=result.ids.map(id=>products[id].name).join(", ");
+  const productNames=result.ids.map(id=>products[id].name).join(", ")||"Keine Produkte ausgewählt.";
   row.append(
    makeCell(levels[entry.level].title),
    makeCell(productNames,"products-cell"),
@@ -461,6 +476,7 @@ async function loadLeaderboard(){
    const tbody=$("top-"+entry.level);
    if(!tbody)return;
    tbody.replaceChildren();
+
    const solution=bestFor(entry.level);
    const matching=rows.map(row=>{
     if(!Array.isArray(row.selections))return null;
@@ -476,14 +492,20 @@ async function loadLeaderboard(){
 
    const shown=entry.level===0?matching:matching.slice(0,5);
    if(!shown.length){
-    const row=document.createElement("tr");
-    row.appendChild(makeCell("Noch keine Ergebnisse."));
-    tbody.appendChild(row);
+    const emptyRow=document.createElement("tr");
+    const cell=makeCell("Noch keine Ergebnisse.");
+    cell.colSpan=6;
+    emptyRow.appendChild(cell);
+    tbody.appendChild(emptyRow);
     return;
    }
+
    shown.forEach(({row,selection},index)=>{
-    const label=entry.level===0?(row.player||"Spieler"):"#"+(index+1);
-    appendResultRow(tbody,label,selection.ids,entry.level===0?"":(row.player||""));
+    if(entry.level===0){
+     appendResultRow(tbody,row.player||"Spieler",selection.ids);
+    }else{
+     appendResultRow(tbody,"#"+(index+1),selection.ids,row.player||"");
+    }
    });
   });
  }catch(error){
@@ -493,9 +515,14 @@ async function loadLeaderboard(){
 
 function renderFinal(){
  $("finalScreen").hidden=false;
+ $("finalHeading").textContent="Deine Ergebnisse.";
  const box=$("levelResults");
  box.replaceChildren();
- completed.forEach(entry=>box.appendChild(createLevelTable(entry)));
+
+ completed.forEach(entry=>{
+  box.appendChild(createLevelMenu(entry));
+ });
+
  renderOwnSummary();
  loadLeaderboard();
 }
@@ -512,6 +539,7 @@ async function submitResults(){
  const button=$("submitScore");
  button.disabled=true;
  $("scoreStatus").textContent="Ergebnisse werden gespeichert …";
+
  const selections=completed.map(entry=>({
   level:entry.level,
   ids:entry.result.ids,
@@ -530,6 +558,7 @@ async function submitResults(){
    body:JSON.stringify({player:name.slice(0,24),selections})
   });
   if(!response.ok)throw new Error("Save failed");
+
   submitted=true;
   $("nameGate").hidden=true;
   renderFinal();
@@ -544,13 +573,16 @@ function finishLevel(){
  if(result.kcal<MIN||result.kcal>MAX)return;
 
  completed.push({
-  level,result,
+  level,
+  result,
   durationMs:Math.max(0,Math.round(performance.now()-levelStartedAt))
  });
 
  if(level===4){
   $("game").hidden=true;
   $("actionBar").hidden=true;
+  $("hintFloat").hidden=true;
+  $("hintPopup").hidden=true;
   $("startScreen").hidden=true;
   $("nameGate").hidden=false;
   $("playerName").focus();
@@ -570,16 +602,16 @@ $("startButton").addEventListener("click",()=>{
  renderGame();
 });
 
-$("tipButton").addEventListener("click",()=>{
- const tip=$("tip");
- if(!tip.hidden){
-  tip.hidden=true;
-  $("tipButton").textContent="Tipp anzeigen";
- }else{
-  tip.textContent="Achte auf diesen Faktor: "+levels[level].factor+".";
-  tip.hidden=false;
-  $("tipButton").textContent="Tipp ausblenden";
+$("hintFloat").addEventListener("click",()=>{
+ const popup=$("hintPopup");
+ if(!popup.hidden){
+  popup.hidden=true;
+  $("hintFloat").setAttribute("aria-expanded","false");
+  return;
  }
+ popup.textContent="Tipp: Achte auf "+levels[level].factor+".";
+ popup.hidden=false;
+ $("hintFloat").setAttribute("aria-expanded","true");
 });
 
 $("clearButton").addEventListener("click",()=>{
