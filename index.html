@@ -1,156 +1,171 @@
-Die Sprachauswahl sitzt jetzt als kleine Buttons oben neben dem 6E-Logo. Der aktive Button ist hervorgehoben; die Sprachauswahl unter der Überschrift entfällt.
+Du hast recht – hier ist die reparierte Version: Bestenliste und Namenseingabe sind wieder enthalten, „Neu starten“ ist entfernt. Die Levelbox ist auf iPads kompakter; die Produkte werden nicht mehr zusätzlich als Text über der Produktliste aufgeführt.
 <!DOCTYPE html>
 <html lang="de">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Frühstücksbox – Levels</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Frühstücksbox – Levels und Bonuslevel</title>
 <style>
 *{box-sizing:border-box}
-body{margin:0;padding:0 14px 88px;background:#f3f6fb;color:#203349;font-family:system-ui,sans-serif}
+body{margin:0;padding:0 14px 82px;background:#f3f6fb;color:#203349;font-family:system-ui,sans-serif}
 main{max-width:960px;margin:auto}
 .site-logo{position:sticky;top:0;z-index:30;height:66px;padding:5px 0;background:#f3f6fb;display:flex;align-items:center;gap:9px}
 .site-logo svg{display:block;flex:0 0 auto;width:82px;height:50px}
-.language-buttons{display:flex;align-items:center;gap:4px}
-.language-buttons button{min-width:34px;padding:5px 7px;border:1px solid #aebfd0;border-radius:7px;background:#fff;color:#203349;font-size:.75rem;font-weight:700;line-height:1.2}
+.language-buttons{display:flex;align-items:center;gap:4px;flex-wrap:wrap}
+.language-buttons button{min-height:29px;padding:4px 8px;border:1px solid #aebfd0;border-radius:7px;background:#fff;color:#203349;font-size:.72rem;font-weight:700;line-height:1.15}
 .language-buttons button.active{background:#2469b2;border-color:#2469b2;color:#fff}
-h1{font-size:1.4rem;margin:8px 0}
+h1{font-size:1.35rem;margin:8px 0}
 h2{font-size:1.1rem}
-h3{font-size:1rem;margin:8px 0}
-p{line-height:1.5}
+h3{font-size:1rem}
 .panel{background:#fff;border:1px solid #dce4ed;border-radius:15px;padding:16px;margin:13px 0}
 button,input{font:inherit}
 button{cursor:pointer;border:1px solid #aebfd0;background:#fff;color:#203349;border-radius:10px;padding:9px 13px}
 button:hover{background:#edf5ff}
-button:focus-visible,input:focus-visible,summary:focus-visible{outline:3px solid #2266cc;outline-offset:3px}
-button:disabled{opacity:.6;cursor:wait}
+button:focus-visible,input:focus-visible{outline:3px solid #2266cc;outline-offset:3px}
+button:disabled{opacity:.55;cursor:not-allowed}
 .primary{background:#2469b2;color:#fff;border-color:#2469b2}
 .progress{display:flex;flex-wrap:wrap;gap:7px;margin:8px 0}
 .progress span{border:1px solid #d5e0ea;border-radius:999px;padding:5px 10px;font-size:.83rem}
 .progress .current{background:#e9f2ff;border-color:#266ac0;font-weight:700}
 .progress .done{background:#e6f5ec;border-color:#9bc9aa;color:#176747}
-.task{padding:15px;background:#ffe4e4;border:2px solid #c83232;border-radius:12px;color:#781c1c;font-weight:700;font-size:1.05rem;line-height:1.5}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:9px}
-.product{display:flex;gap:9px;align-items:flex-start;min-width:0;border:1px solid #d7e1eb;border-radius:12px;padding:11px;cursor:pointer}
+.task{padding:14px;background:#ffe4e4;border:2px solid #c83232;border-radius:12px;color:#781c1c;font-weight:700;line-height:1.5}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:9px}
+.product{display:flex;gap:8px;align-items:flex-start;min-width:0;border:1px solid #d7e1eb;border-radius:12px;padding:10px;cursor:pointer}
 .product:has(input:checked){background:#edf6ff;border-color:#4f8bc6}
 .product:has(input:disabled){opacity:.55;cursor:not-allowed}
-.product input{margin-top:5px;width:19px;height:19px;accent-color:#2266bb;flex-shrink:0}
+.product input{margin:4px 0 0;width:18px;height:18px;accent-color:#2266bb;flex-shrink:0}
 .product-info{display:block;flex:1;min-width:0}
 .product-name,.details{display:block;overflow-wrap:anywhere}
 .product-name{font-size:.88rem;line-height:1.35;margin:2px 0 5px;font-weight:700}
-.details{font-size:.82rem;color:#52677c;line-height:1.5}
+.details{font-size:.82rem;color:#52677c;line-height:1.45}
 .stars{display:block;color:#895400;font-size:.8rem;margin-top:4px}
-.emoji{font-size:1.25rem;margin-right:4px}
-.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
-.stat{background:#f2f6fa;border-radius:9px;padding:8px 10px;min-width:0}
-.stat>span{display:block;font-size:.76rem;color:#55697d}
-.stat strong{display:block;margin-top:3px;overflow-wrap:anywhere}
-.calorie-meter{position:relative;overflow:hidden;min-height:32px;margin-top:5px;border-radius:8px;background:#dfe6ed}
-.calorie-fill{position:absolute;inset:0 auto 0 0;width:0%;border-radius:inherit;transition:width 250ms}
-.calorie-meter strong{position:relative;z-index:1;display:block;padding:6px 8px}
-.goal{background:#fff2c9;border-radius:9px;padding:8px 11px;margin:9px 0;font-size:.87rem;font-weight:700}
+.emoji{font-size:1.2rem}
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px}
+.stat{background:#f2f6fa;border-radius:8px;padding:7px 8px;min-width:0}
+.stat>span{display:block;font-size:.72rem;color:#55697d}
+.stat strong{display:block;margin-top:2px;font-size:.88rem;overflow-wrap:anywhere}
+.calorie-meter{position:relative;overflow:hidden;min-height:27px;margin-top:4px;border-radius:7px;background:#dfe6ed}
+.calorie-fill{position:absolute;inset:0 auto 0 0;width:0;border-radius:inherit;transition:width 200ms}
+.calorie-meter strong{position:relative;z-index:1;display:block;padding:4px 6px}
+.goal{background:#fff2c9;border-radius:9px;padding:8px 10px;margin:9px 0;font-size:.84rem;font-weight:700}
 .goal.reached{background:#e6f5ec;color:#176747}
 #game>.panel:first-child{position:sticky;top:66px;z-index:10;box-shadow:0 5px 14px #2033491a}
+#actionBar{position:fixed;z-index:20;bottom:0;left:0;right:0;background:#fffffffa;border-top:1px solid #d5e0ea;padding:8px 14px}
+.action-inner{max-width:960px;margin:auto;display:flex;justify-content:flex-end;gap:8px}
+#hintFloat{position:fixed;z-index:40;left:50%;bottom:72px;transform:translateX(-50%);display:flex;align-items:center;justify-content:center;gap:5px;min-height:40px;padding:0 12px;border:2px solid #d89d00;border-radius:999px;background:#fff3bd;box-shadow:0 3px 12px #20334945;font:inherit;font-size:.88rem;font-weight:700}
+#hintFloat span:first-child{font-size:20px}
+#hintFloat:hover{background:#ffe68a;transform:translateX(-50%) scale(1.03)}
+#hintPopup{position:fixed;z-index:39;left:50%;bottom:120px;transform:translateX(-50%);width:min(320px,calc(100vw - 32px));padding:12px 14px;border:1px solid #d7c47c;border-radius:12px;background:#fffdf2;box-shadow:0 5px 18px #20334935;line-height:1.5}
 .table-wrap{overflow-x:auto;border-radius:10px}
-.data-table{width:100%;min-width:650px;border-collapse:collapse;font-size:.88rem;background:#fff}
-.data-table th,.data-table td{padding:9px 10px;border:1px solid #dce4ed;text-align:left;vertical-align:top}
-.data-table thead th{background:#edf3f8;font-weight:700;white-space:nowrap}
+.data-table{width:100%;min-width:620px;border-collapse:collapse;font-size:.86rem;background:#fff}
+.data-table th,.data-table td{padding:8px;border:1px solid #dce4ed;text-align:left;vertical-align:top}
+.data-table th{background:#edf3f8}
 .data-table tbody tr:nth-child(even){background:#f8fafc}
-.products-cell{min-width:190px;overflow-wrap:anywhere}
-.level-menu{margin:12px 0;border:1px solid #dce4ed;border-radius:12px;background:#fff;overflow:hidden}
-.level-menu summary{cursor:pointer;padding:13px 15px;background:#edf3f8;font-weight:700}
-.level-menu[open] summary{border-bottom:1px solid #dce4ed}
+.products-cell{min-width:170px;overflow-wrap:anywhere}
+.level-menu{margin:10px 0;border:1px solid #dce4ed;border-radius:12px;background:#fff;overflow:hidden}
+.level-menu summary{cursor:pointer;padding:12px 14px;background:#edf3f8;font-weight:700}
 .level-menu-content{padding:12px}
-#actionBar{position:fixed;z-index:20;bottom:0;left:0;right:0;background:#fffffffa;border-top:1px solid #d5e0ea;padding:9px 14px}
-.action-inner{max-width:960px;margin:auto;display:flex;justify-content:flex-end;gap:9px}
-#hintFloat{position:fixed;z-index:40;left:50%;bottom:78px;transform:translateX(-50%);display:flex;align-items:center;justify-content:center;gap:8px;min-height:54px;padding:0 18px;border:2px solid #d89d00;border-radius:999px;background:#fff3bd;box-shadow:0 3px 12px #20334945;font:inherit;font-weight:700}
-#hintFloat span:first-child{font-size:27px}
-#hintFloat:hover{background:#ffe68a;transform:translateX(-50%) scale(1.04)}
-#hintPopup{position:fixed;z-index:39;left:50%;bottom:142px;transform:translateX(-50%);width:min(320px,calc(100vw - 32px));padding:14px 16px;border:1px solid #d7c47c;border-radius:12px;background:#fffdf2;box-shadow:0 5px 18px #20334935;line-height:1.5}
 [hidden]{display:none!important}
 [dir="rtl"] .progress{flex-direction:row-reverse}
-@media(max-width:550px){
- body{padding-left:10px;padding-right:10px;padding-bottom:88px}
+@media(min-width:700px) and (max-width:1180px){
+ #game>.panel:first-child{padding:7px 11px;margin:5px 0;border-radius:11px}
+ #game>.panel:first-child .progress{gap:4px;margin:0 0 3px}
+ #game>.panel:first-child .progress span{padding:2px 7px;font-size:.7rem}
+ #gameHeading{font-size:.92rem;margin:3px 0}
+ #goal{margin:4px 0;padding:4px 8px;font-size:.72rem;line-height:1.25}
+ .stats{gap:4px}
+ .stat{padding:3px 6px;border-radius:6px}
+ .stat>span{font-size:.64rem}
+ .stat strong{margin-top:0;font-size:.76rem;line-height:1.2}
+ .calorie-meter{min-height:21px;margin-top:2px}
+ .calorie-meter strong{padding:2px 5px}
+}
+@media(max-width:699px){
+ body{padding-left:10px;padding-right:10px}
  .panel{padding:13px}
- .stats{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .stats{gap:5px}
+ .stat{padding:6px}
+ .stat>span{font-size:.68rem}
+ .stat strong{font-size:.8rem}
  .action-inner{display:grid;grid-template-columns:1fr 1.5fr}
  .action-inner button{padding:8px 6px;font-size:.85rem}
- .data-table{font-size:.8rem}
- .data-table th,.data-table td{padding:7px 6px}
- #hintFloat{bottom:82px}
- #hintPopup{bottom:145px}
+ #hintFloat{bottom:76px}
+ #hintPopup{bottom:122px}
 }
 </style>
 </head>
 <body>
 <main>
-  <header class="site-logo" aria-label="6E und Sprachauswahl">
-    <svg viewBox="0 0 300 180" role="img" aria-label="6E">
-      <rect x="4" y="4" width="292" height="172" fill="#fff000" stroke="#111" stroke-width="8"/>
-      <text x="18" y="151" font-family="Arial Black,Arial,sans-serif" font-size="158" font-weight="900" fill="#1765ad">6</text>
-      <path d="M165 28h112v34h-77v15h77v34h-77v15h77v34H165z" fill="#1765ad"/>
-    </svg>
-    <div class="language-buttons" role="group" aria-label="Sprache auswählen">
-      <button type="button" data-language="de" aria-label="Deutsch" title="Deutsch">DE</button>
-      <button type="button" data-language="en" aria-label="English" title="English">EN</button>
-      <button type="button" data-language="ru" aria-label="Русский" title="Русский">RU</button>
-      <button type="button" data-language="ar" aria-label="العربية" title="العربية">AR</button>
-    </div>
-  </header>
-
-  <h1 id="pageTitle"></h1>
-
-  <section class="panel" id="startScreen">
-    <div class="progress" id="startProgress"></div>
-    <h2 id="levelTitle"></h2>
-    <p class="task" id="task"></p>
-    <button class="primary" id="startButton" type="button"></button>
-  </section>
-
-  <div id="game" hidden>
-    <section class="panel">
-      <div class="progress" id="progress"></div>
-      <h2 id="gameHeading"></h2>
-      <div class="goal" id="goal"></div>
-      <div class="stats">
-        <div class="stat"><span id="calorieLabel"></span><div class="calorie-meter" id="calorieMeter" role="progressbar" aria-valuemin="0" aria-valuemax="650" aria-valuenow="0"><div class="calorie-fill" id="calorieFill"></div><strong id="calories"></strong></div></div>
-        <div class="stat"><span id="priceLabel"></span><strong id="price"></strong></div>
-        <div class="stat"><span id="starsLabel"></span><strong id="stars"></strong></div>
-        <div class="stat"><span id="countLabel"></span><strong id="count"></strong></div>
-      </div>
-    </section>
-    <section class="panel">
-      <h2 id="productsHeading"></h2>
-      <div class="grid" id="products"></div>
-    </section>
+<header class="site-logo" aria-label="6E und Sprachauswahl">
+  <svg viewBox="0 0 300 180" role="img" aria-label="6E">
+    <rect x="4" y="4" width="292" height="172" fill="#fff000" stroke="#111" stroke-width="8"/>
+    <text x="18" y="151" font-family="Arial Black,Arial,sans-serif" font-size="158" font-weight="900" fill="#1765ad">6</text>
+    <path d="M165 28h112v34h-77v15h77v34h-77v15h77v34H165z" fill="#1765ad"/>
+  </svg>
+  <div class="language-buttons" role="group" aria-label="Sprache auswählen">
+    <button type="button" data-language="de" aria-label="Deutsch" title="Deutsch">Deutsch</button>
+    <button type="button" data-language="en" aria-label="English" title="English">English</button>
+    <button type="button" data-language="ru" aria-label="Русский" title="Русский">Русский</button>
+    <button type="button" data-language="ar" aria-label="العربية" title="العربية">العربية</button>
   </div>
+</header>
 
-  <button id="hintFloat" type="button" aria-label="Tipps anzeigen" aria-expanded="false" hidden>
-    <span aria-hidden="true">💡</span><span id="hintLabel">Tipps</span>
-  </button>
-  <div id="hintPopup" role="status" aria-live="polite" hidden></div>
+<h1 id="pageTitle"></h1>
 
-  <section class="panel" id="nameGate" hidden>
-    <h2 id="nameHeading"></h2>
-    <p id="nameInstructions"></p>
-    <label for="playerName" id="nameLabel"></label>
-    <div style="display:flex;gap:8px;margin-top:8px">
-      <input id="playerName" type="text" maxlength="24" autocomplete="nickname" style="min-width:0;flex:1;border:1px solid #aebfd0;border-radius:10px;padding:9px 10px">
-      <button class="primary" id="submitScore" type="button"></button>
+<section class="panel" id="startScreen">
+  <div class="progress" id="startProgress"></div>
+  <h2 id="levelTitle"></h2>
+  <p class="task" id="task"></p>
+  <button class="primary" id="startButton" type="button"></button>
+</section>
+
+<div id="game" hidden>
+  <section class="panel">
+    <div class="progress" id="progress"></div>
+    <h2 id="gameHeading"></h2>
+    <div class="goal" id="goal"></div>
+    <div class="stats">
+      <div class="stat">
+        <span id="calorieLabel"></span>
+        <div class="calorie-meter" id="calorieMeter" role="progressbar" aria-valuemin="0" aria-valuemax="650" aria-valuenow="0">
+          <div class="calorie-fill" id="calorieFill"></div><strong id="calories"></strong>
+        </div>
+      </div>
+      <div class="stat"><span id="priceLabel"></span><strong id="price"></strong></div>
+      <div class="stat"><span id="starsLabel"></span><strong id="stars"></strong></div>
+      <div class="stat"><span id="shelfLabel"></span><strong id="shelfLife"></strong></div>
     </div>
-    <p id="scoreStatus" role="status" aria-live="polite"></p>
   </section>
+  <section class="panel">
+    <h2 id="productsHeading"></h2>
+    <div class="grid" id="products"></div>
+  </section>
+</div>
 
-  <section class="panel" id="finalScreen" hidden>
-    <h2 id="finalHeading"></h2>
-    <p id="finalInstructions"></p>
-    <section class="panel">
-      <h3 id="summaryHeading"></h3>
-      <div class="table-wrap"><table class="data-table"><thead><tr id="summaryHead"></tr></thead><tbody id="summaryBody"></tbody></table></div>
-    </section>
-    <h2 id="leaderboardHeading"></h2>
-    <div id="levelResults"></div>
-  </section>
+<button id="hintFloat" type="button" aria-label="Tipps anzeigen" aria-expanded="false" hidden>
+  <span aria-hidden="true">💡</span><span id="hintLabel">Tipps</span>
+</button>
+<div id="hintPopup" role="status" aria-live="polite" hidden></div>
+
+<section class="panel" id="nameGate" hidden>
+  <h2 id="nameHeading"></h2>
+  <p id="nameInstructions"></p>
+  <label for="playerName" id="nameLabel"></label>
+  <div style="display:flex;gap:8px;margin-top:8px">
+    <input id="playerName" type="text" maxlength="24" autocomplete="nickname" style="min-width:0;flex:1;border:1px solid #aebfd0;border-radius:10px;padding:9px">
+    <button class="primary" id="submitScore" type="button"></button>
+  </div>
+  <p id="scoreStatus" role="status" aria-live="polite"></p>
+</section>
+
+<section class="panel" id="finalScreen" hidden>
+  <h2 id="finalHeading"></h2>
+  <p id="finalInstructions"></p>
+  <h3 id="summaryHeading"></h3>
+  <div class="table-wrap"><table class="data-table"><thead><tr id="summaryHead"></tr></thead><tbody id="summaryBody"></tbody></table></div>
+  <h2 id="leaderboardHeading"></h2>
+  <div id="levelResults"></div>
+</section>
 </main>
 
 <div id="actionBar" hidden>
@@ -162,44 +177,35 @@ button:disabled{opacity:.6;cursor:wait}
 
 <script>
 "use strict";
-
 const SUPABASE_URL="https://jglhmumkjkrynciqkhxc.supabase.co";
 const SUPABASE_KEY="sb_publishable_nbtW5O1UNe6ADiNCXXP5tg_BiZPO4aw";
 const MIN=500,MAX=650,$=id=>document.getElementById(id);
-let currentLanguage="de",level=0,selected=new Set(),completed=[],submitted=false,levelStartedAt=0;
+let lang="de",level=0,selected=new Set(),completed=[],submitted=false;
 const solutionCache={};
 
 const translations={
-de:{
-page:"🥪 Frühstücksbox – Levels und Bonuslevel",language:"Sprache auswählen",start:"Start",products:"Produkte auswählen",calories:"Kalorien",price:"Preis",stars:"Sterne",count:"Anzahl Produkte",clear:"Auswahl leeren",next:"Level abschließen und weiter",bonus:"Bonus abschließen",hint:"Tipps",hintAria:"Tipps anzeigen",tip:"Tipp: Achte auf ",nameHeading:"Fast geschafft! Wie heißt du?",nameInstructions:"Gib zuerst deinen Namen ein. Danach werden deine Ergebnisse gespeichert und die Bestenliste angezeigt.",nameLabel:"Dein Name (max. 24 Zeichen):",namePlaceholder:"Name eingeben",save:"Name speichern und weiter",final:"Deine Ergebnisse.",finalInstructions:"Übertrage sie in die Tabelle von Aufgabe 2 auf deinem Arbeitsblatt.",summary:"Deine Ergebnisse in allen Levels",leaderboard:"Bestenliste",levelCol:"Level / Aufgabe",productCol:"Produkte",calorieCol:"Kalorien",priceCol:"Preis",starsCol:"Sterne",shelfCol:"Haltbarkeit",solution:"Lösung",you:"Du",top:"Top 5",allPlayers:"Alle Spieler",empty:"Noch keine Ergebnisse.",noProducts:"Keine Produkte ausgewählt.",goal:"✓ Kalorienziel erreicht – zwischen 500 und 650 Kalorien.",short:"Noch ",until:" Kalorien bis zum Mindestziel von 500 Kalorien.",tooMany:"Zu viele Kalorien: höchstens 650 Kalorien erlaubt.",days:"Tage",shelf:"Haltbarkeit:",health:"Sterne:",loadError:"Die Bestenliste konnte nicht geladen werden. Prüfe die Verbindung.",saveError:"Speichern fehlgeschlagen. Prüfe die Verbindung.",saving:"Ergebnisse werden gespeichert …",enterName:"Bitte gib deinen Namen ein.",
-levels:[
+de:{page:"🥪 Frühstücksbox – Levels und Bonuslevel",productsTitle:"Produkte auswählen",calories:"Kalorien",price:"Preis",stars:"Sterne",shelf:"Haltbarkeit",start:"Start",clear:"Auswahl leeren",next:"Level abschließen und weiter",bonus:"Bonus abschließen",tips:"Tipps",tip:"Tipp: Achte auf ",nameHeading:"Fast geschafft! Wie heißt du?",nameInstructions:"Gib zuerst deinen Namen ein. Danach werden deine Ergebnisse gespeichert und die Bestenliste angezeigt.",nameLabel:"Dein Name (max. 24 Zeichen):",namePlaceholder:"Name eingeben",save:"Name speichern und weiter",final:"Deine Ergebnisse",finalInstructions:"Übertrage sie in die Tabelle von Aufgabe 2 auf deinem Arbeitsblatt.",summary:"Deine Ergebnisse in allen Levels",leaderboard:"Bestenliste",levelCol:"Level / Aufgabe",productCol:"Produkte",calorieCol:"Kalorien",priceCol:"Preis",starsCol:"Sterne",shelfCol:"Haltbarkeit",solution:"Lösung",you:"Du",top:"Top 5",allPlayers:"Alle Spieler",empty:"Noch keine Ergebnisse.",noProducts:"Keine Produkte ausgewählt.",goal:"✓ Kalorienziel erreicht – zwischen 500 und 650 Kalorien.",short:"Noch ",until:" Kalorien bis zum Mindestziel von 500 Kalorien.",tooMany:"Zu viele Kalorien: höchstens 650 Kalorien erlaubt.",days:"Tage",health:"Sterne:",loadError:"Die Bestenliste konnte nicht geladen werden. Prüfe die Verbindung.",saveError:"Speichern fehlgeschlagen. Prüfe die Verbindung.",saving:"Ergebnisse werden gespeichert …",enterName:"Bitte gib deinen Namen ein.",levels:[
 ["Level 1: Das leckerste Frühstück","Stelle dein persönlich leckerstes Frühstück mit 500 bis 650 Kalorien zusammen.","deinen persönlichen Geschmack"],
 ["Level 2: So günstig wie möglich","Erreiche 500 bis 650 Kalorien und gib dabei so wenig Geld wie möglich aus.","den Gesamtpreis"],
 ["Level 3: Möglichst viele Gesundheitssterne","Erreiche 500 bis 650 Kalorien und sammle möglichst viele Gesundheitssterne.","die Gesundheitssterne"],
 ["Level 4: So lange haltbar wie möglich","Erreiche 500 bis 650 Kalorien. Wähle Produkte, die möglichst lange haltbar sind.","die Haltbarkeit"],
 ["Bonuslevel: Gesund, lange haltbar und günstig","Stelle ein Frühstück mit 500 bis 650 Kalorien zusammen, das gesund, lange haltbar und günstig ist.","den Ausgleich zwischen Preis, Gesundheitssternen und Haltbarkeit"]],
 products:["Schokoriegel","Brot mit Schokoaufstrich","Schokocroissant","Weißbrot mit Salami","Käsesticks","Joghurt","Banane","Vollkornbrot mit Käse","Apfel","Gemüse-Sticks","Erdbeeren","Vollkornsandwich mit Hähnchen"]},
-en:{
-page:"🥪 Breakfast box – Levels and bonus level",language:"Choose language",start:"Start",products:"Choose products",calories:"Calories",price:"Price",stars:"Stars",count:"Number of products",clear:"Clear selection",next:"Finish level and continue",bonus:"Finish bonus level",hint:"Tips",hintAria:"Show tips",tip:"Tip: Pay attention to ",nameHeading:"Almost done! What is your name?",nameInstructions:"Enter your name first. Your results will then be saved and the leaderboard shown.",nameLabel:"Your name (max. 24 characters):",namePlaceholder:"Enter name",save:"Save name and continue",final:"Your results",finalInstructions:"Copy them into the table for task 2 on your worksheet.",summary:"Your results in all levels",leaderboard:"Leaderboard",levelCol:"Level / task",productCol:"Products",calorieCol:"Calories",priceCol:"Price",starsCol:"Stars",shelfCol:"Shelf life",solution:"Solution",you:"You",top:"Top 5",allPlayers:"All players",empty:"No results yet.",noProducts:"No products selected.",goal:"✓ Calorie goal reached – between 500 and 650 calories.",short:"",until:" calories until the minimum goal of 500.",tooMany:"Too many calories: 650 calories maximum.",days:"days",shelf:"Shelf life:",health:"Stars:",loadError:"The leaderboard could not be loaded. Check the connection.",saveError:"Saving failed. Check the connection.",saving:"Saving results …",enterName:"Please enter your name.",
-levels:[
+en:{page:"🥪 Breakfast box – Levels and bonus level",productsTitle:"Choose products",calories:"Calories",price:"Price",stars:"Stars",shelf:"Shelf life",start:"Start",clear:"Clear selection",next:"Finish level and continue",bonus:"Finish bonus level",tips:"Tips",tip:"Tip: Pay attention to ",nameHeading:"Almost done! What is your name?",nameInstructions:"Enter your name first. Your results will then be saved and the leaderboard shown.",nameLabel:"Your name (max. 24 characters):",namePlaceholder:"Enter name",save:"Save name and continue",final:"Your results",finalInstructions:"Copy them into the table for task 2 on your worksheet.",summary:"Your results in all levels",leaderboard:"Leaderboard",levelCol:"Level / task",productCol:"Products",calorieCol:"Calories",priceCol:"Price",starsCol:"Stars",shelfCol:"Shelf life",solution:"Solution",you:"You",top:"Top 5",allPlayers:"All players",empty:"No results yet.",noProducts:"No products selected.",goal:"✓ Calorie goal reached – between 500 and 650 calories.",short:"",until:" calories until the minimum goal of 500.",tooMany:"Too many calories: 650 calories maximum.",days:"days",health:"Stars:",loadError:"The leaderboard could not be loaded. Check the connection.",saveError:"Saving failed. Check the connection.",saving:"Saving results …",enterName:"Please enter your name.",levels:[
 ["Level 1: The tastiest breakfast","Make your personally tastiest breakfast with 500 to 650 calories.","your personal taste"],
 ["Level 2: As inexpensive as possible","Reach 500 to 650 calories while spending as little as possible.","the total price"],
 ["Level 3: As many health stars as possible","Reach 500 to 650 calories and collect as many health stars as possible.","the health stars"],
 ["Level 4: Longest shelf life","Reach 500 to 650 calories. Choose products with the longest possible shelf life.","shelf life"],
 ["Bonus level: Healthy, long-lasting and inexpensive","Make a breakfast with 500 to 650 calories that is healthy, long-lasting and inexpensive.","balancing price, health stars and shelf life"]],
 products:["Chocolate bar","Bread with chocolate spread","Chocolate croissant","White bread with salami","Cheese sticks","Yogurt","Banana","Whole-grain bread with cheese","Apple","Vegetable sticks","Strawberries","Whole-grain chicken sandwich"]},
-ru:{
-page:"🥪 Завтрак — уровни и бонусный уровень",language:"Выбрать язык",start:"Начать",products:"Выберите продукты",calories:"Калории",price:"Цена",stars:"Звёзды",count:"Количество продуктов",clear:"Очистить выбор",next:"Завершить уровень и продолжить",bonus:"Завершить бонусный уровень",hint:"Советы",hintAria:"Показать советы",tip:"Совет: обратите внимание на ",nameHeading:"Почти готово! Как вас зовут?",nameInstructions:"Сначала введите имя. Затем результаты будут сохранены и появится таблица лидеров.",nameLabel:"Ваше имя (не более 24 символов):",namePlaceholder:"Введите имя",save:"Сохранить имя и продолжить",final:"Ваши результаты",finalInstructions:"Перенесите их в таблицу задания 2 на рабочем листе.",summary:"Ваши результаты по всем уровням",leaderboard:"Таблица лидеров",levelCol:"Уровень / задание",productCol:"Продукты",calorieCol:"Калории",priceCol:"Цена",starsCol:"Звёзды",shelfCol:"Срок хранения",solution:"Решение",you:"Вы",top:"Топ-5",allPlayers:"Все игроки",empty:"Результатов пока нет.",noProducts:"Продукты не выбраны.",goal:"✓ Цель достигнута — от 500 до 650 калорий.",short:"Ещё ",until:" калорий до минимальной цели 500.",tooMany:"Слишком много калорий: максимум 650.",days:"дн.",shelf:"Срок хранения:",health:"Звёзды:",loadError:"Не удалось загрузить таблицу лидеров. Проверьте соединение.",saveError:"Не удалось сохранить. Проверьте соединение.",saving:"Сохранение результатов …",enterName:"Введите своё имя",
-levels:[
+ru:{page:"🥪 Завтрак — уровни и бонусный уровень",productsTitle:"Выберите продукты",calories:"Калории",price:"Цена",stars:"Звёзды",shelf:"Срок хранения",start:"Начать",clear:"Очистить выбор",next:"Завершить уровень и продолжить",bonus:"Завершить бонусный уровень",tips:"Советы",tip:"Совет: обратите внимание на ",nameHeading:"Почти готово! Как вас зовут?",nameInstructions:"Сначала введите имя. Затем результаты будут сохранены и появится таблица лидеров.",nameLabel:"Ваше имя (не более 24 символов):",namePlaceholder:"Введите имя",save:"Сохранить имя и продолжить",final:"Ваши результаты",finalInstructions:"Перенесите их в таблицу задания 2 на рабочем листе.",summary:"Ваши результаты по всем уровням",leaderboard:"Таблица лидеров",levelCol:"Уровень / задание",productCol:"Продукты",calorieCol:"Калории",priceCol:"Цена",starsCol:"Звёзды",shelfCol:"Срок хранения",solution:"Решение",you:"Вы",top:"Топ-5",allPlayers:"Все игроки",empty:"Результатов пока нет.",noProducts:"Продукты не выбраны.",goal:"✓ Цель достигнута — от 500 до 650 калорий.",short:"Ещё ",until:" калорий до минимальной цели 500.",tooMany:"Слишком много калорий: максимум 650.",days:"дн.",health:"Звёзды:",loadError:"Не удалось загрузить таблицу лидеров. Проверьте соединение.",saveError:"Не удалось сохранить. Проверьте соединение.",saving:"Сохранение результатов …",enterName:"Введите своё имя",levels:[
 ["Уровень 1: Самый вкусный завтрак","Составьте самый вкусный для вас завтрак на 500–650 калорий.","свои вкусовые предпочтения"],
 ["Уровень 2: Как можно дешевле","Наберите 500–650 калорий и потратьте как можно меньше денег.","общую стоимость"],
 ["Уровень 3: Как можно больше звёзд здоровья","Наберите 500–650 калорий и соберите как можно больше звёзд здоровья.","звёзды здоровья"],
 ["Уровень 4: Максимальный срок хранения","Наберите 500–650 калорий. Выбирайте продукты с максимально долгим сроком хранения.","срок хранения"],
 ["Бонусный уровень: Полезно, долго хранится и недорого","Составьте полезный и недорогой завтрак на 500–650 калорий с долгим сроком хранения.","баланс цены, звёзд здоровья и срока хранения"]],
 products:["Шоколадный батончик","Хлеб с шоколадной пастой","Шоколадный круассан","Белый хлеб с салями","Сырные палочки","Йогурт","Банан","Цельнозерновой хлеб с сыром","Яблоко","Овощные палочки","Клубника","Цельнозерновой сэндвич с курицей"]},
-ar:{
-page:"🥪 علبة الفطور – المستويات والمستوى الإضافي",language:"اختيار اللغة",start:"ابدأ",products:"اختر المنتجات",calories:"السعرات الحرارية",price:"السعر",stars:"النجوم",count:"عدد المنتجات",clear:"مسح الاختيار",next:"إنهاء المستوى والمتابعة",bonus:"إنهاء المستوى الإضافي",hint:"نصائح",hintAria:"عرض النصائح",tip:"نصيحة: انتبه إلى ",nameHeading:"أوشكت على الانتهاء! ما اسمك؟",nameInstructions:"أدخل اسمك أولاً. بعد ذلك ستُحفَظ نتائجك وتظهر قائمة المتصدرين.",nameLabel:"اسمك (حتى 24 حرفًا):",namePlaceholder:"أدخل الاسم",save:"حفظ الاسم والمتابعة",final:"نتائجك",finalInstructions:"انقلها إلى جدول السؤال الثاني في ورقة العمل.",summary:"نتائجك في جميع المستويات",leaderboard:"قائمة المتصدرين",levelCol:"المستوى / المهمة",productCol:"المنتجات",calorieCol:"السعرات الحرارية",priceCol:"السعر",starsCol:"النجوم",shelfCol:"مدة الصلاحية",solution:"الحل",you:"أنت",top:"أفضل 5",allPlayers:"جميع اللاعبين",empty:"لا توجد نتائج بعد.",noProducts:"لم يتم اختيار منتجات.",goal:"✓ تم تحقيق هدف السعرات الحرارية — بين 500 و650.",short:"تبقى ",until:" سعرة حرارية للوصول إلى الحد الأدنى 500.",tooMany:"السعرات الحرارية كثيرة: الحد الأقصى 650.",days:"أيام",shelf:"مدة الصلاحية:",health:"النجوم:",loadError:"تعذّر تحميل قائمة المتصدرين. تحقق من الاتصال.",saveError:"تعذّر الحفظ. تحقق من الاتصال.",saving:"جارٍ حفظ النتائج …",enterName:"يرجى إدخال اسمك.",
-levels:[
+ar:{page:"🥪 علبة الفطور – المستويات والمستوى الإضافي",productsTitle:"اختر المنتجات",calories:"السعرات الحرارية",price:"السعر",stars:"النجوم",shelf:"مدة الصلاحية",start:"ابدأ",clear:"مسح الاختيار",next:"إنهاء المستوى والمتابعة",bonus:"إنهاء المستوى الإضافي",tips:"نصائح",tip:"نصيحة: انتبه إلى ",nameHeading:"أوشكت على الانتهاء! ما اسمك؟",nameInstructions:"أدخل اسمك أولاً. بعد ذلك ستُحفَظ نتائجك وتظهر قائمة المتصدرين.",nameLabel:"اسمك (حتى 24 حرفًا):",namePlaceholder:"أدخل الاسم",save:"حفظ الاسم والمتابعة",final:"نتائجك",finalInstructions:"انقلها إلى جدول السؤال الثاني في ورقة العمل.",summary:"نتائجك في جميع المستويات",leaderboard:"قائمة المتصدرين",levelCol:"المستوى / المهمة",productCol:"المنتجات",calorieCol:"السعرات الحرارية",priceCol:"السعر",starsCol:"النجوم",shelfCol:"مدة الصلاحية",solution:"الحل",you:"أنت",top:"أفضل 5",allPlayers:"جميع اللاعبين",empty:"لا توجد نتائج بعد.",noProducts:"لم يتم اختيار منتجات.",goal:"✓ تم تحقيق هدف السعرات الحرارية — بين 500 و650.",short:"تبقى ",until:" سعرة حرارية للوصول إلى الحد الأدنى 500.",tooMany:"السعرات الحرارية كثيرة: الحد الأقصى 650.",days:"أيام",health:"النجوم:",loadError:"تعذّر تحميل قائمة المتصدرين. تحقق من الاتصال.",saveError:"تعذّر الحفظ. تحقق من الاتصال.",saving:"جارٍ حفظ النتائج …",enterName:"يرجى إدخال اسمك",levels:[
 ["المستوى 1: ألذ فطور","حضّر الفطور الذي تفضّله، بحيث يحتوي على 500 إلى 650 سعرة حرارية.","ذوقك الشخصي"],
 ["المستوى 2: أقل تكلفة ممكنة","اجمع 500 إلى 650 سعرة حرارية وأنفق أقل مبلغ ممكن.","السعر الإجمالي"],
 ["المستوى 3: أكبر عدد من نجوم الصحة","اجمع 500 إلى 650 سعرة حرارية واحصل على أكبر عدد ممكن من نجوم الصحة.","نجوم الصحة"],
@@ -216,11 +222,11 @@ const products=[
 {icon:"🍎",kcal:80,cents:40,stars:4,days:14},{icon:"🥕",kcal:40,cents:60,stars:5,days:3},
 {icon:"🍓",kcal:32,cents:70,stars:4,days:2},{icon:"🥪",kcal:320,cents:160,stars:5,days:1}
 ];
-const t=()=>translations[currentLanguage];
-function money(cents){return(cents/100).toLocaleString(currentLanguage==="en"?"en-GB":currentLanguage==="ar"?"ar":"de-DE",{style:"currency",currency:"EUR"})}
-function total(ids){
+const t=()=>translations[lang];
+function money(c){return(c/100).toLocaleString(lang==="en"?"en-GB":lang==="ar"?"ar":"de-DE",{style:"currency",currency:"EUR"})}
+function total(ids=[...selected]){
  const r={kcal:0,cents:0,stars:0,days:Infinity,count:ids.length,ids:[...ids]};
- ids.forEach(id=>{const p=products[id];if(p){r.kcal+=p.kcal;r.cents+=p.cents;r.stars+=p.stars;r.days=Math.min(r.days,p.days)}});
+ ids.forEach(i=>{const p=products[i];if(p){r.kcal+=p.kcal;r.cents+=p.cents;r.stars+=p.stars;r.days=Math.min(r.days,p.days)}});
  if(!Number.isFinite(r.days))r.days=0;return r;
 }
 function progress(id){
@@ -228,26 +234,23 @@ function progress(id){
  t().levels.forEach((_,i)=>{const s=document.createElement("span");s.textContent=i===4?"Bonus":"Level "+(i+1);if(i<level)s.className="done";if(i===level)s.className="current";box.appendChild(s)});
 }
 function applyLanguage(){
- const x=t();
- document.documentElement.lang=currentLanguage;
- document.documentElement.dir=currentLanguage==="ar"?"rtl":"ltr";
- $("pageTitle").textContent=x.page;
- document.querySelectorAll(".language-buttons button").forEach(b=>{const active=b.dataset.language===currentLanguage;b.classList.toggle("active",active);b.setAttribute("aria-pressed",String(active))});
- $("startButton").textContent=x.start;$("productsHeading").textContent=x.products;
- $("calorieLabel").textContent=x.calories;$("priceLabel").textContent=x.price;$("starsLabel").textContent=x.stars;$("countLabel").textContent=x.count;
- $("clearButton").textContent=x.clear;$("hintLabel").textContent=x.hint;$("hintFloat").setAttribute("aria-label",x.hintAria);
+ const x=t();document.documentElement.lang=lang;document.documentElement.dir=lang==="ar"?"rtl":"ltr";
+ $("pageTitle").textContent=x.page;$("productsHeading").textContent=x.productsTitle;
+ $("calorieLabel").textContent=x.calories;$("priceLabel").textContent=x.price;$("starsLabel").textContent=x.stars;$("shelfLabel").textContent=x.shelf;
+ $("startButton").textContent=x.start;$("clearButton").textContent=x.clear;$("hintLabel").textContent=x.tips;$("hintFloat").setAttribute("aria-label",x.tips);
  $("nameHeading").textContent=x.nameHeading;$("nameInstructions").textContent=x.nameInstructions;$("nameLabel").textContent=x.nameLabel;$("playerName").placeholder=x.namePlaceholder;$("submitScore").textContent=x.save;
  $("finalHeading").textContent=x.final;$("finalInstructions").textContent=x.finalInstructions;$("summaryHeading").textContent=x.summary;$("leaderboardHeading").textContent=x.leaderboard;
+ document.querySelectorAll(".language-buttons button").forEach(b=>{const active=b.dataset.language===lang;b.classList.toggle("active",active);b.setAttribute("aria-pressed",String(active))});
  if(!$("startScreen").hidden)renderStart();
- if(!$("game").hidden){$("gameHeading").textContent=x.levels[level][0];$("nextButton").textContent=level===4?x.bonus:x.next;renderGame()}
+ if(!$("game").hidden)renderGame();
  if(!$("finalScreen").hidden){renderOwnSummary();renderFinalMenus();loadLeaderboard()}
 }
 function renderStart(){
- const x=t();$("levelTitle").textContent=x.levels[level][0];$("task").textContent="❗ "+x.levels[level][1];progress("startProgress");
  $("startScreen").hidden=false;$("game").hidden=true;$("actionBar").hidden=true;$("hintFloat").hidden=true;$("hintPopup").hidden=true;$("nameGate").hidden=true;$("finalScreen").hidden=true;
+ $("levelTitle").textContent=t().levels[level][0];$("task").textContent="❗ "+t().levels[level][1];progress("startProgress");
 }
 function renderProducts(){
- const x=t(),box=$("products"),sum=total([...selected]);box.replaceChildren();
+ const x=t(),box=$("products"),sum=total();box.replaceChildren();
  products.forEach((p,i)=>{
   const label=document.createElement("label");label.className="product";
   const input=document.createElement("input");input.type="checkbox";input.checked=selected.has(i);input.disabled=!input.checked&&sum.kcal+p.kcal>MAX;
@@ -255,15 +258,14 @@ function renderProducts(){
   const icon=document.createElement("span");icon.className="emoji";icon.textContent=p.icon;
   const info=document.createElement("span");info.className="product-info";
   const name=document.createElement("span");name.className="product-name";name.textContent=x.products[i];
-  const details=document.createElement("span");details.className="details";details.textContent=p.kcal+" "+x.calories+" · "+money(p.cents)+" · "+x.shelf+" "+p.days+" "+x.days;
+  const detail=document.createElement("span");detail.className="details";detail.textContent=p.kcal+" "+x.calories+" · "+money(p.cents)+" · "+x.shelf+": "+p.days+" "+x.days;
   const stars=document.createElement("span");stars.className="stars";stars.textContent=x.health+" "+"★".repeat(p.stars)+"☆".repeat(5-p.stars);
-  info.append(name,details,stars);label.append(input,icon,info);box.appendChild(label);
+  info.append(name,detail,stars);label.append(input,icon,info);box.appendChild(label);
  });
 }
 function renderSummary(){
- const x=t(),r=total([...selected]);
- $("calories").textContent=r.kcal+" "+x.calories;$("calorieFill").style.width=Math.min(100,r.kcal/MAX*100)+"%";$("calorieFill").style.backgroundColor=r.kcal>=MIN?"#79bd83":"#f2bd57";$("calorieMeter").setAttribute("aria-valuenow",r.kcal);
- $("price").textContent=money(r.cents);$("stars").textContent=r.stars+" ★";$("count").textContent=r.count;
+ const x=t(),r=total();$("calories").textContent=r.kcal+" "+x.calories;$("price").textContent=money(r.cents);$("stars").textContent=r.stars+" ★";$("shelfLife").textContent=r.days+" "+x.days;
+ $("calorieFill").style.width=Math.min(100,r.kcal/MAX*100)+"%";$("calorieFill").style.backgroundColor=r.kcal>=MIN?"#79bd83":"#f2bd57";$("calorieMeter").setAttribute("aria-valuenow",r.kcal);
  const goal=$("goal");
  if(r.kcal>=MIN&&r.kcal<=MAX){goal.textContent=x.goal;goal.classList.add("reached")}
  else if(r.kcal<MIN){goal.textContent=x.short+(MIN-r.kcal)+x.until;goal.classList.remove("reached")}
@@ -282,78 +284,104 @@ function bestFor(n){
   const r=total(ids);if(r.kcal>=MIN&&r.kcal<=MAX)valid.push(r);
  }
  if(!valid.length)return solutionCache[n]=null;
- if(n===0||n===2){const close=valid.filter(x=>x.kcal>=525&&x.kcal<=575),choices=close.length?close:valid;return solutionCache[n]=choices.reduce((a,b)=>b.stars*1000-Math.abs(b.kcal-550)>a.stars*1000-Math.abs(a.kcal-550)?b:a)}
+ if(n===0||n===2){
+  const close=valid.filter(x=>x.kcal>=525&&x.kcal<=575),choices=close.length?close:valid;
+  return solutionCache[n]=choices.reduce((a,b)=>b.stars*1000-Math.abs(b.kcal-550)>a.stars*1000-Math.abs(a.kcal-550)?b:a);
+ }
  const score=x=>n===1?-x.cents:n===3?x.days:(x.stars/x.count/5+Math.min(x.days,30)/30+(1-x.cents/500))/3;
  return solutionCache[n]=valid.reduce((a,b)=>score(b)>score(a)?b:a);
 }
 function similarity(ids,solution){
- if(!solution)return 0;const chosen=new Set(Array.isArray(ids)?ids:[]),target=new Set(solution.ids),union=new Set([...chosen,...target]);let common=0;chosen.forEach(id=>{if(target.has(id))common++});return union.size?common/union.size:1;
+ if(!solution)return 0;const chosen=new Set(Array.isArray(ids)?ids:[]),target=new Set(solution.ids),union=new Set([...chosen,...target]);let common=0;
+ chosen.forEach(id=>{if(target.has(id))common++});return union.size?common/union.size:1;
 }
-function cell(text,className=""){const c=document.createElement("td");if(className)c.className=className;c.textContent=text;return c}
-function headers(){
- const x=t(),r=document.createElement("tr");
- [x.levelCol,x.productCol,x.calorieCol,x.priceCol,x.starsCol,x.shelfCol].forEach(v=>{const th=document.createElement("th");th.textContent=v;r.appendChild(th)});return r;
+function cell(text,className=""){const td=document.createElement("td");td.textContent=text;if(className)td.className=className;return td}
+function makeHeaders(){
+ const x=t(),tr=document.createElement("tr");
+ [x.levelCol,x.productCol,x.calorieCol,x.priceCol,x.starsCol,x.shelfCol].forEach(v=>{const th=document.createElement("th");th.textContent=v;tr.appendChild(th)});return tr;
 }
 function appendResultRow(body,label,ids,name=""){
- const x=t(),safe=Array.isArray(ids)?ids.filter(i=>Number.isInteger(i)&&products[i]):[],r=total(safe),row=document.createElement("tr");
- row.append(cell(label+(name?" — "+name:""),"products-cell"),cell(safe.map(i=>x.products[i]).join(", ")||x.noProducts,"products-cell"),cell(r.kcal+" "+x.calories),cell(money(r.cents)),cell(r.stars+" ★"),cell(r.days+" "+x.days));body.appendChild(row);
+ const x=t(),valid=Array.isArray(ids)?ids.filter(i=>Number.isInteger(i)&&products[i]):[],r=total(valid),tr=document.createElement("tr");
+ tr.append(cell(label+(name?" — "+name:""),"products-cell"),cell(valid.map(i=>x.products[i]).join(", ")||x.noProducts,"products-cell"),cell(r.kcal+" "+x.calories),cell(money(r.cents)),cell(r.stars+" ★"),cell(r.days+" "+x.days));body.appendChild(tr);
 }
 function createLevelMenu(entry){
  const x=t(),details=document.createElement("details");details.className="level-menu";
  const summary=document.createElement("summary");summary.textContent=x.levels[entry.level][0];
  const content=document.createElement("div");content.className="level-menu-content";
- const table=document.createElement("table");table.className="data-table";const head=document.createElement("thead");head.appendChild(headers());table.appendChild(head);
- const body=document.createElement("tbody"),solution=bestFor(entry.level);if(solution)appendResultRow(body,x.solution,solution.ids);appendResultRow(body,x.you,entry.result.ids);table.appendChild(body);
- const title=document.createElement("p");title.textContent=entry.level===0?x.allPlayers:x.top;
- const topTable=document.createElement("table");topTable.className="data-table";const topHead=document.createElement("thead");topHead.appendChild(headers());topTable.appendChild(topHead);
- const topBody=document.createElement("tbody");topBody.id="top-"+entry.level;topTable.appendChild(topBody);
+ const table=document.createElement("table");table.className="data-table";
+ const head=document.createElement("thead");head.appendChild(makeHeaders());table.appendChild(head);
+ const body=document.createElement("tbody"),solution=bestFor(entry.level);
+ if(solution)appendResultRow(body,x.solution,solution.ids);
+ appendResultRow(body,x.you,entry.result.ids);table.appendChild(body);
  const wrap=document.createElement("div");wrap.className="table-wrap";wrap.appendChild(table);
+ const topTitle=document.createElement("h3");topTitle.textContent=entry.level===0?x.allPlayers:x.top;
+ const topTable=document.createElement("table");topTable.className="data-table";
+ const topHead=document.createElement("thead");topHead.appendChild(makeHeaders());topTable.appendChild(topHead);
+ const topBody=document.createElement("tbody");topBody.id="top-"+entry.level;topTable.appendChild(topBody);
  const topWrap=document.createElement("div");topWrap.className="table-wrap";topWrap.appendChild(topTable);
- content.append(wrap,title,topWrap);details.append(summary,content);return details;
+ content.append(wrap,topTitle,topWrap);details.append(summary,content);return details;
 }
 function renderOwnSummary(){
- const x=t(),head=$("summaryHead");head.replaceChildren();[x.levelCol,x.productCol,x.calorieCol,x.priceCol,x.starsCol,x.shelfCol].forEach(v=>{const th=document.createElement("th");th.textContent=v;head.appendChild(th)});
+ const x=t(),head=$("summaryHead");head.replaceChildren();head.appendChild(makeHeaders());
  const body=$("summaryBody");body.replaceChildren();
- completed.forEach(entry=>{const r=entry.result,row=document.createElement("tr");row.append(cell(x.levels[entry.level][0]),cell(r.ids.map(i=>x.products[i]).join(", ")||x.noProducts,"products-cell"),cell(r.kcal+" "+x.calories),cell(money(r.cents)),cell(r.stars+" ★"),cell(r.days+" "+x.days));body.appendChild(row)});
+ completed.forEach(entry=>{
+  const r=entry.result,tr=document.createElement("tr");
+  tr.append(cell(x.levels[entry.level][0]),cell(r.ids.map(i=>x.products[i]).join(", ")||x.noProducts,"products-cell"),cell(r.kcal+" "+x.calories),cell(money(r.cents)),cell(r.stars+" ★"),cell(r.days+" "+x.days));body.appendChild(tr);
+ });
 }
 function renderFinalMenus(){const box=$("levelResults");box.replaceChildren();completed.forEach(e=>box.appendChild(createLevelMenu(e)))}
 async function loadLeaderboard(){
  try{
   const response=await fetch(SUPABASE_URL+"/rest/v1/leaderboard?select=player,selections,created_at&order=created_at.asc&limit=10000",{headers:{"apikey":SUPABASE_KEY,"Authorization":"Bearer "+SUPABASE_KEY}});
-  if(!response.ok)throw new Error();const rows=await response.json(),x=t();
+  if(!response.ok)throw new Error("load");
+  const rows=await response.json(),x=t();
   completed.forEach(entry=>{
    const body=$("top-"+entry.level);if(!body)return;body.replaceChildren();const solution=bestFor(entry.level);
-   const matches=rows.map(row=>{if(!Array.isArray(row.selections))return null;const selection=row.selections.find(s=>s.level===entry.level);return selection?{row,selection}:null}).filter(Boolean);
-   matches.sort((a,b)=>{const d=similarity(b.selection.ids,solution)-similarity(a.selection.ids,solution);return Math.abs(d)>1e-9?d:new Date(a.row.created_at)-new Date(b.row.created_at)});
+   const matches=rows.map(row=>{
+    if(!Array.isArray(row.selections))return null;
+    const selection=row.selections.find(s=>s.level===entry.level);
+    return selection?{row,selection}:null;
+   }).filter(Boolean);
+   matches.sort((a,b)=>{
+    const diff=similarity(b.selection.ids,solution)-similarity(a.selection.ids,solution);
+    return Math.abs(diff)>1e-9?diff:new Date(a.row.created_at)-new Date(b.row.created_at);
+   });
    const shown=entry.level===0?matches:matches.slice(0,5);
    if(!shown.length){const tr=document.createElement("tr"),td=cell(x.empty);td.colSpan=6;tr.appendChild(td);body.appendChild(tr);return}
    shown.forEach(({row,selection},i)=>appendResultRow(body,entry.level===0?(row.player||x.allPlayers):"#"+(i+1),selection.ids,entry.level===0?"":(row.player||"")));
   });
  }catch(e){$("scoreStatus").textContent=t().loadError}
 }
-function renderFinal(){$("finalScreen").hidden=false;renderOwnSummary();renderFinalMenus();loadLeaderboard()}
+function renderFinal(){ $("finalScreen").hidden=false;renderOwnSummary();renderFinalMenus();loadLeaderboard() }
 async function submitResults(){
- const name=$("playerName").value.trim();if(!name){$("scoreStatus").textContent=t().enterName;$("playerName").focus();return}if(submitted)return;
+ const name=$("playerName").value.trim();
+ if(!name){$("scoreStatus").textContent=t().enterName;$("playerName").focus();return}
+ if(submitted)return;
  const button=$("submitScore");button.disabled=true;$("scoreStatus").textContent=t().saving;
- const selections=completed.map(e=>({level:e.level,ids:e.result.ids,durationMs:e.durationMs}));
+ const selections=completed.map(e=>({level:e.level,ids:e.result.ids}));
  try{
-  const response=await fetch(SUPABASE_URL+"/rest/v1/leaderboard",{method:"POST",headers:{"apikey":SUPABASE_KEY,"Authorization":"Bearer "+SUPABASE_KEY,"Content-Type":"application/json","Prefer":"return=minimal"},body:JSON.stringify({player:name.slice(0,24),selections})});
-  if(!response.ok)throw new Error();submitted=true;$("nameGate").hidden=true;renderFinal();
+  const response=await fetch(SUPABASE_URL+"/rest/v1/leaderboard",{
+   method:"POST",
+   headers:{"apikey":SUPABASE_KEY,"Authorization":"Bearer "+SUPABASE_KEY,"Content-Type":"application/json","Prefer":"return=minimal"},
+   body:JSON.stringify({player:name.slice(0,24),selections})
+  });
+  if(!response.ok)throw new Error("save");
+  submitted=true;$("nameGate").hidden=true;renderFinal();
  }catch(e){button.disabled=false;$("scoreStatus").textContent=t().saveError}
 }
 function finishLevel(){
- const result=total([...selected]);if(result.kcal<MIN||result.kcal>MAX)return;
- completed.push({level,result,durationMs:Math.max(0,Math.round(performance.now()-levelStartedAt))});
- if(level===4){$("game").hidden=true;$("actionBar").hidden=true;$("hintFloat").hidden=true;$("hintPopup").hidden=true;$("startScreen").hidden=true;$("nameGate").hidden=false;$("playerName").focus();return}
- level++;selected=new Set();renderStart();
+ const result=total();if(result.kcal<MIN||result.kcal>MAX)return;
+ completed.push({level,result});
+ if(level===4){
+  $("game").hidden=true;$("actionBar").hidden=true;$("hintFloat").hidden=true;$("hintPopup").hidden=true;$("startScreen").hidden=true;$("nameGate").hidden=false;$("playerName").focus();return;
+ }
+ level++;selected.clear();renderStart();
 }
-
-document.querySelectorAll(".language-buttons button").forEach(button=>{
- button.addEventListener("click",()=>{currentLanguage=button.dataset.language;applyLanguage()});
-});
-$("startButton").addEventListener("click",()=>{levelStartedAt=performance.now();$("startScreen").hidden=true;$("game").hidden=false;$("actionBar").hidden=false;renderGame()});
+document.querySelectorAll(".language-buttons button").forEach(button=>button.addEventListener("click",()=>{lang=button.dataset.language;applyLanguage()}));
+$("startButton").addEventListener("click",()=>{$("startScreen").hidden=true;$("game").hidden=false;$("actionBar").hidden=false;renderGame()});
 $("hintFloat").addEventListener("click",()=>{
- const popup=$("hintPopup");if(!popup.hidden){popup.hidden=true;$("hintFloat").setAttribute("aria-expanded","false");return}
+ const popup=$("hintPopup");
+ if(!popup.hidden){popup.hidden=true;$("hintFloat").setAttribute("aria-expanded","false");return}
  popup.textContent=t().tip+t().levels[level][2]+".";popup.hidden=false;$("hintFloat").setAttribute("aria-expanded","true");
 });
 $("clearButton").addEventListener("click",()=>{selected.clear();renderProducts();renderSummary()});
