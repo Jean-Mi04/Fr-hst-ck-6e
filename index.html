@@ -2,7 +2,7 @@
 <html lang="de">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Frühstücksbox – Levels</title>
 <style>
 *{box-sizing:border-box}
@@ -11,7 +11,6 @@ main{max-width:960px;margin:auto}
 h1{font-size:1.5rem;margin:0 0 8px}
 h2{font-size:1.1rem}
 h3{font-size:1rem;margin:8px 0}
-h4{margin:12px 0 6px}
 p{line-height:1.5}
 .panel{background:#fff;border:1px solid #dce4ed;border-radius:15px;padding:16px;margin:13px 0}
 .language-box{display:flex;align-items:center;flex-wrap:wrap;gap:8px;margin:14px 0}
@@ -52,18 +51,23 @@ button:disabled{opacity:.6;cursor:wait}
 .leaderboard-panel{margin-top:18px}
 .leaderboard-form{display:flex;gap:8px;margin-top:6px}
 .leaderboard-form input{font:inherit;min-width:0;flex:1;border:1px solid #aebfd0;border-radius:10px;padding:9px 10px}
-.level-result{border-top:1px solid #dce4ed;padding:12px 0}
-.result-line{padding:9px 11px;background:#f4f7fa;border-radius:9px;overflow-wrap:anywhere;font-size:.9rem}
-.solution-line{background:#eaf3ff}
-.own-line{background:#eef8ef}
-.top-list{padding-left:24px;margin:6px 0}
-.top-list li{margin:7px 0}
-.player-name{font-weight:700}
-.player-products{display:block;font-size:.76rem;color:#52677c;line-height:1.4;overflow-wrap:anywhere}
+.level-result{border-top:1px solid #dce4ed;padding:16px 0}
+.level-task-title{margin:3px 0 11px;color:#415a72;font-weight:700}
+.table-wrap{overflow-x:auto;border-radius:10px}
+.level-table{width:100%;min-width:590px;border-collapse:collapse;font-size:.88rem;background:#fff}
+.level-table th,.level-table td{padding:9px 10px;border:1px solid #dce4ed;text-align:left;vertical-align:top}
+.level-table thead th{background:#edf3f8;font-weight:700;white-space:nowrap}
+.level-table tbody tr:nth-child(even){background:#f8fafc}
+.level-table .name-cell{min-width:180px}
+.row-label{display:block;font-weight:700}
+.row-products{display:block;margin-top:3px;color:#52677c;font-size:.76rem;line-height:1.4;overflow-wrap:anywhere}
+.group-row td{background:#e9f2ff!important;color:#284b6b;font-weight:700}
+.empty-row{color:#64778a;font-style:italic}
 #actionBar{position:fixed;z-index:5;bottom:0;left:0;right:0;background:#fffffffa;border-top:1px solid #d5e0ea;padding:9px 14px}
 .action-inner{max-width:960px;margin:auto;display:flex;justify-content:flex-end;gap:9px}
 [hidden]{display:none!important}
 body[dir="rtl"]{text-align:right}
+body[dir="rtl"] .level-table th,body[dir="rtl"] .level-table td{text-align:right}
 @media(max-width:550px){
  body{padding:10px 10px 88px}
  .panel{padding:13px}
@@ -71,6 +75,8 @@ body[dir="rtl"]{text-align:right}
  .action-inner{display:grid;grid-template-columns:1fr 1.5fr}
  .action-inner button{padding:8px 6px;font-size:.85rem}
  .leaderboard-form{flex-direction:column}
+ .level-table{font-size:.8rem}
+ .level-table th,.level-table td{padding:7px 6px}
 }
 </style>
 </head>
@@ -78,7 +84,7 @@ body[dir="rtl"]{text-align:right}
 <main>
   <h1 id="title"></h1>
 
-  <nav class="language-box" aria-label="Language">
+  <nav class="language-box" aria-label="Sprachauswahl">
     <strong id="languageLabel"></strong>
     <button class="language-button" data-lang="de" type="button">Deutsch</button>
     <button class="language-button" data-lang="ru" type="button">Русский</button>
@@ -166,16 +172,19 @@ de:{
  clear:"Auswahl leeren",next:"Level abschließen und weiter",finish:"Bonus abschließen",
  calories:"Kalorien",price:"Gesamtpreis",stars:"Gesundheitssterne",count:"Anzahl Produkte",
  goalOk:"✓ Kalorienziel erreicht – zwischen 500 und 650 kcal.",
- goalLow:"Noch {n} kcal bis zum Mindestziel von 500 kcal.",goalHigh:"Zu viele Kalorien: höchstens 650 kcal erlaubt.",
+ goalLow:"Noch {n} kcal bis zum Mindestziel von 500 kcal.",
+ goalHigh:"Zu viele Kalorien: höchstens 650 kcal erlaubt.",
  shelf:"Haltbarkeit",days:"Tage",final:"Alle Levels abgeschlossen!",
  finalIntro:"Gib deinen Namen ein. Danach siehst du für jedes Level die Lösung, deine Auswahl und die Top 5.",
- restart:"Noch einmal spielen",your:"Deine Lösung",solution:"Lösung",
- factor:"Achte auf diesen Faktor:",starsEnd:"Gesundheitssterne",shelfEnd:"Haltbarkeit",
- boardTitle:"🏆 Leaderboard",scoreHint:"Bei gleicher Ähnlichkeit entscheidet die schnellere Zeit in diesem Level.",
- nameLabel:"Dein Name (max. 24 Zeichen):",namePlaceholder:"Name eingeben",submit:"Ergebnisse speichern",
- loading:"Wird geladen …",saving:"Ergebnisse werden gespeichert …",saved:"Deine Ergebnisse wurden gespeichert!",
- boardError:"Fehler beim Laden oder Speichern. Prüfe Supabase.",empty:"Noch keine Ergebnisse.",
- noProducts:"Keine Produkte ausgewählt.",needName:"Bitte gib deinen Namen ein.",
+ restart:"Noch einmal spielen",your:"Deine Lösung",solution:"Lösung",task:"Aufgabe",
+ factor:"Achte auf diesen Faktor:",boardTitle:"🏆 Leaderboard",
+ scoreHint:"Bei gleicher Ähnlichkeit entscheidet die schnellere Zeit in diesem Level.",
+ nameLabel:"Dein Name (max. 24 Zeichen):",namePlaceholder:"Name eingeben",
+ submit:"Ergebnisse speichern",loading:"Wird geladen …",saving:"Ergebnisse werden gespeichert …",
+ saved:"Deine Ergebnisse wurden gespeichert!",boardError:"Fehler beim Laden oder Speichern. Prüfe Supabase.",
+ empty:"Noch keine Ergebnisse.",noProducts:"Keine Produkte ausgewählt.",needName:"Bitte gib deinen Namen ein.",
+ tableName:"Name",tableCalories:"Kalorien",tablePrice:"Preis",tableStars:"Sterne",tableShelf:"Haltbarkeit",
+ top:"Top 5",
  levels:[
   {title:"Level 1: Das leckerste Frühstück",task:"Stelle dein persönlich leckerstes Frühstück mit 500 bis 650 kcal zusammen.",factor:"deinen persönlichen Geschmack"},
   {title:"Level 2: So günstig wie möglich",task:"Erreiche 500 bis 650 kcal und gib dabei so wenig Geld wie möglich aus.",factor:"den Gesamtpreis"},
@@ -189,16 +198,19 @@ en:{
  clear:"Clear selection",next:"Complete level and continue",finish:"Complete bonus level",
  calories:"Calories",price:"Total price",stars:"Health stars",count:"Number of products",
  goalOk:"✓ Calorie goal reached — between 500 and 650 kcal.",
- goalLow:"{n} kcal to go to reach the 500 kcal minimum.",goalHigh:"Too many calories: the maximum is 650 kcal.",
+ goalLow:"{n} kcal to go to reach the 500 kcal minimum.",
+ goalHigh:"Too many calories: the maximum is 650 kcal.",
  shelf:"Shelf life",days:"days",final:"All levels completed!",
  finalIntro:"Enter your name. Then see the solution, your selection and the top five for each level.",
- restart:"Play again",your:"Your solution",solution:"Solution",
- factor:"Pay attention to this factor:",starsEnd:"Health stars",shelfEnd:"Shelf life",
- boardTitle:"🏆 Leaderboard",scoreHint:"When similarity is tied, the faster time for that level ranks first.",
- nameLabel:"Your name (max. 24 characters):",namePlaceholder:"Enter your name",submit:"Save results",
- loading:"Loading …",saving:"Saving results …",saved:"Your results have been saved!",
- boardError:"Error loading or saving. Check Supabase.",empty:"No results yet.",
- noProducts:"No products selected.",needName:"Please enter your name.",
+ restart:"Play again",your:"Your solution",solution:"Solution",task:"Task",
+ factor:"Pay attention to this factor:",boardTitle:"🏆 Leaderboard",
+ scoreHint:"When similarity is tied, the faster time for that level ranks first.",
+ nameLabel:"Your name (max. 24 characters):",namePlaceholder:"Enter your name",
+ submit:"Save results",loading:"Loading …",saving:"Saving results …",
+ saved:"Your results have been saved!",boardError:"Error loading or saving. Check Supabase.",
+ empty:"No results yet.",noProducts:"No products selected.",needName:"Please enter your name.",
+ tableName:"Name",tableCalories:"Calories",tablePrice:"Price",tableStars:"Stars",tableShelf:"Shelf life",
+ top:"Top 5",
  levels:[
   {title:"Level 1: The tastiest breakfast",task:"Put together your own tastiest breakfast with 500–650 kcal.",factor:"your personal taste"},
   {title:"Level 2: As inexpensive as possible",task:"Reach 500–650 kcal while spending as little as possible.",factor:"the total price"},
@@ -211,16 +223,20 @@ ru:{
  products:"Выбери продукты",tips:"Подсказка",showTip:"Показать подсказку",hideTip:"Скрыть подсказку",
  clear:"Очистить выбор",next:"Завершить уровень и продолжить",finish:"Завершить бонусный уровень",
  calories:"Калории",price:"Общая цена",stars:"Звёзды здоровья",count:"Количество продуктов",
- goalOk:"✓ Цель достигнута: от 500 до 650 ккал.",goalLow:"До минимума в 500 ккал осталось {n} ккал.",
- goalHigh:"Слишком много калорий: максимум — 650 ккал.",shelf:"Срок хранения",days:"дней",
- final:"Все уровни пройдены!",finalIntro:"Введи имя. Затем появятся решение, твой выбор и топ-5 для каждого уровня.",
- restart:"Играть ещё раз",your:"Твоё решение",solution:"Решение",
- factor:"Обрати внимание на этот фактор:",starsEnd:"Звёзды здоровья",shelfEnd:"Срок хранения",
- boardTitle:"🏆 Рейтинг",scoreHint:"При одинаковом сходстве выше будет более быстрый результат уровня.",
- nameLabel:"Твоё имя (до 24 символов):",namePlaceholder:"Введи имя",submit:"Сохранить результаты",
- loading:"Загружаем …",saving:"Сохраняем результаты …",saved:"Результаты сохранены!",
- boardError:"Ошибка загрузки или сохранения. Проверь Supabase.",empty:"Результатов пока нет.",
- noProducts:"Продукты не выбраны.",needName:"Пожалуйста, введи имя.",
+ goalOk:"✓ Цель достигнута: от 500 до 650 ккал.",
+ goalLow:"До минимума в 500 ккал осталось {n} ккал.",
+ goalHigh:"Слишком много калорий: максимум — 650 ккал.",
+ shelf:"Срок хранения",days:"дней",final:"Все уровни пройдены!",
+ finalIntro:"Введи имя. Затем появятся решение, твой выбор и топ-5 для каждого уровня.",
+ restart:"Играть ещё раз",your:"Твоё решение",solution:"Решение",task:"Задание",
+ factor:"Обрати внимание на этот фактор:",boardTitle:"🏆 Рейтинг",
+ scoreHint:"При одинаковом сходстве выше будет более быстрый результат уровня.",
+ nameLabel:"Твоё имя (до 24 символов):",namePlaceholder:"Введи имя",
+ submit:"Сохранить результаты",loading:"Загружаем …",saving:"Сохраняем результаты …",
+ saved:"Результаты сохранены!",boardError:"Ошибка загрузки или сохранения. Проверь Supabase.",
+ empty:"Результатов пока нет.",noProducts:"Продукты не выбраны.",needName:"Пожалуйста, введи имя.",
+ tableName:"Имя",tableCalories:"Калории",tablePrice:"Цена",tableStars:"Звёзды",tableShelf:"Срок хранения",
+ top:"Топ-5",
  levels:[
   {title:"Уровень 1: Самый вкусный завтрак",task:"Составь самый вкусный для себя завтрак на 500–650 ккал.",factor:"свои личные вкусовые предпочтения"},
   {title:"Уровень 2: Как можно дешевле",task:"Набери 500–650 ккал и потрать как можно меньше денег.",factor:"общую стоимость"},
@@ -234,16 +250,19 @@ ar:{
  clear:"امسح الاختيارات",next:"أنه المستوى وانتقل إلى التالي",finish:"أنه المستوى الإضافي",
  calories:"السعرات الحرارية",price:"السعر الإجمالي",stars:"نجوم الصحة",count:"عدد المنتجات",
  goalOk:"✓ حققت الهدف: بين 500 و650 سعرة حرارية.",
- goalLow:"تحتاج إلى {n} سعرة حرارية إضافية للوصول إلى 500.",goalHigh:"السعرات كثيرة: الحد الأقصى هو 650.",
+ goalLow:"تحتاج إلى {n} سعرة حرارية إضافية للوصول إلى 500.",
+ goalHigh:"السعرات كثيرة: الحد الأقصى هو 650.",
  shelf:"مدة الصلاحية",days:"أيام",final:"أكملت جميع المستويات!",
  finalIntro:"أدخل اسمك. ثم سترى الحل واختيارك وأفضل خمسة لاعبين لكل مستوى.",
- restart:"العب مرة أخرى",your:"اختيارك",solution:"الحل",
- factor:"ركّز على هذا العامل:",starsEnd:"نجوم الصحة",shelfEnd:"مدة الصلاحية",
- boardTitle:"🏆 لوحة المتصدرين",scoreHint:"عند تساوي التشابه يظهر الأسرع في المستوى أولًا.",
- nameLabel:"اسمك (حتى 24 حرفًا):",namePlaceholder:"أدخل اسمك",submit:"احفظ النتائج",
- loading:"جارٍ التحميل …",saving:"جارٍ حفظ النتائج …",saved:"تم حفظ نتائجك!",
- boardError:"حدث خطأ. تحقّق من Supabase.",empty:"لا توجد نتائج بعد.",
- noProducts:"لم يتم اختيار منتجات.",needName:"يرجى إدخال اسمك.",
+ restart:"العب مرة أخرى",your:"اختيارك",solution:"الحل",task:"المهمة",
+ factor:"ركّز على هذا العامل:",boardTitle:"🏆 لوحة المتصدرين",
+ scoreHint:"عند تساوي التشابه يظهر الأسرع في المستوى أولًا.",
+ nameLabel:"اسمك (حتى 24 حرفًا):",namePlaceholder:"أدخل اسمك",
+ submit:"احفظ النتائج",loading:"جارٍ التحميل …",saving:"جارٍ حفظ النتائج …",
+ saved:"تم حفظ نتائجك!",boardError:"حدث خطأ. تحقّق من Supabase.",
+ empty:"لا توجد نتائج بعد.",noProducts:"لم يتم اختيار منتجات.",needName:"يرجى إدخال اسمك.",
+ tableName:"الاسم",tableCalories:"السعرات",tablePrice:"السعر",tableStars:"النجوم",tableShelf:"مدة الصلاحية",
+ top:"أفضل 5",
  levels:[
   {title:"المستوى 1: ألذ إفطار",task:"كوّن إفطارك المفضل بحيث يحتوي على 500 إلى 650 سعرة حرارية.",factor:"ذوقك الشخصي"},
   {title:"المستوى 2: أقل تكلفة ممكنة",task:"احصل على 500 إلى 650 سعرة حرارية وأنفق أقل مبلغ ممكن.",factor:"السعر الإجمالي"},
@@ -296,7 +315,7 @@ function progress(id){
  box.replaceChildren();
  t().levels.forEach((_,i)=>{
   const item=document.createElement("span");
-  item.textContent=i===4?"Bonus":(lang==="de"?"Level ":"Level ")+(i+1);
+  item.textContent=i===4?"Bonus":"Level "+(i+1);
   if(i<level)item.className="done";
   if(i===level)item.className="current";
   box.appendChild(item);
@@ -320,6 +339,7 @@ function renderProducts(){
  products.forEach((product,index)=>{
   const label=document.createElement("label");
   label.className="product";
+
   const input=document.createElement("input");
   input.type="checkbox";
   input.checked=selected.has(index);
@@ -435,18 +455,11 @@ function bestFor(levelIndex){
   if(levelIndex===3)return result.days;
   return (result.stars/result.count/5+Math.min(result.days,30)/30+(1-result.cents/500))/3;
  };
- return solutionCache[levelIndex]=valid.reduce((best,result)=>
-  score(result)>score(best)?result:best
- );
-}
-
-function resultText(label,result){
- const names=result.ids.map(id=>productName(products[id])).join(", ")||t().noProducts;
- return label+": "+names+" — "+result.kcal+" kcal · "+money(result.cents)+" · "+
-  result.stars+" ★ · "+result.days+" "+t().days;
+ return solutionCache[levelIndex]=valid.reduce((best,result)=>score(result)>score(best)?result:best);
 }
 
 function similarity(selectionIds,solution){
+ if(!solution)return 0;
  const chosen=new Set(Array.isArray(selectionIds)?selectionIds:[]);
  const target=new Set(solution.ids);
  const union=new Set([...chosen,...target]);
@@ -461,29 +474,107 @@ function timeFor(row,entry){
  return Number.isFinite(submittedAt)?submittedAt:Infinity;
 }
 
-function createPlayerLine(row,entry){
- const ids=Array.isArray(entry.ids)
-  ?entry.ids.filter(id=>Number.isInteger(id)&&products[id])
-  :[];
- const summary=total(ids);
- const item=document.createElement("li");
+function appendTableRow(tbody,label,ids,playerName=""){
+ const validIds=Array.isArray(ids)?ids.filter(id=>Number.isInteger(id)&&products[id]):[];
+ const summary=total(validIds);
+ const row=document.createElement("tr");
+
+ const nameCell=document.createElement("td");
+ nameCell.className="name-cell";
  const name=document.createElement("span");
- name.className="player-name";
- name.textContent=row.player||"";
- const productsLine=document.createElement("span");
- productsLine.className="player-products";
- productsLine.textContent=
-  (ids.length?ids.map(id=>productName(products[id])).join(", "):t().noProducts)+
-  " · "+summary.kcal+" kcal · "+money(summary.cents)+
-  " · "+summary.stars+" ★ · "+summary.days+" "+t().days;
- item.append(name,productsLine);
- return item;
+ name.className="row-label";
+ name.textContent=playerName?label+" — "+playerName:label;
+
+ const productList=document.createElement("span");
+ productList.className="row-products";
+ productList.textContent=validIds.length
+  ?validIds.map(id=>productName(products[id])).join(", ")
+  :t().noProducts;
+ nameCell.append(name,productList);
+
+ const calories=document.createElement("td");
+ calories.textContent=summary.kcal+" kcal";
+ const price=document.createElement("td");
+ price.textContent=money(summary.cents);
+ const stars=document.createElement("td");
+ stars.textContent=summary.stars+" ★";
+ const shelf=document.createElement("td");
+ shelf.textContent=summary.days+" "+t().days;
+
+ row.append(nameCell,calories,price,stars,shelf);
+ tbody.appendChild(row);
+}
+
+function appendGroupRow(tbody,label){
+ const row=document.createElement("tr");
+ row.className="group-row";
+ const cell=document.createElement("td");
+ cell.colSpan=5;
+ cell.textContent=label;
+ row.appendChild(cell);
+ tbody.appendChild(row);
+}
+
+function appendEmptyRow(tbody,message){
+ const row=document.createElement("tr");
+ row.className="empty-row";
+ const cell=document.createElement("td");
+ cell.colSpan=5;
+ cell.textContent=message;
+ row.appendChild(cell);
+ tbody.appendChild(row);
+}
+
+function createLevelTable(entry){
+ const labels=t();
+ const section=document.createElement("section");
+ section.className="level-result";
+
+ const heading=document.createElement("h3");
+ heading.textContent=entry.title;
+
+ const task=document.createElement("p");
+ task.className="level-task-title";
+ task.textContent=labels.task+": "+entry.task;
+
+ const wrap=document.createElement("div");
+ wrap.className="table-wrap";
+
+ const table=document.createElement("table");
+ table.className="level-table";
+
+ const thead=document.createElement("thead");
+ const header=document.createElement("tr");
+ [labels.tableName,labels.tableCalories,labels.tablePrice,labels.tableStars,labels.tableShelf].forEach(text=>{
+  const th=document.createElement("th");
+  th.textContent=text;
+  header.appendChild(th);
+ });
+ thead.appendChild(header);
+
+ const tbody=document.createElement("tbody");
+ tbody.id="rows-"+entry.level;
+
+ const solution=bestFor(entry.level);
+ appendGroupRow(tbody,labels.solution);
+ if(solution)appendTableRow(tbody,labels.solution,solution.ids);
+ else appendEmptyRow(tbody,labels.empty);
+
+ appendGroupRow(tbody,labels.your);
+ appendTableRow(tbody,labels.your,entry.result.ids,$("playerName").value.trim());
+
+ appendGroupRow(tbody,labels.top);
+ const topBody=document.createElement("tbody");
+ topBody.id="top-"+entry.level;
+
+ table.append(thead,tbody,topBody);
+ wrap.appendChild(table);
+ section.append(heading,task,wrap);
+ return section;
 }
 
 async function loadLeaderboard(){
  const status=$("scoreStatus");
- status.textContent=t().loading;
-
  try{
   const url=SUPABASE_URL+
    "/rest/v1/leaderboard?select=player,selections,created_at&order=created_at.asc&limit=1000";
@@ -493,34 +584,33 @@ async function loadLeaderboard(){
   if(!response.ok)throw new Error("Could not load leaderboard");
   const rows=await response.json();
 
-  t().levels.forEach((_,levelIndex)=>{
-   const list=$("top-"+levelIndex);
-   if(!list)return;
-   list.replaceChildren();
+  completed.forEach(currentEntry=>{
+   const tbody=$("top-"+currentEntry.level);
+   if(!tbody)return;
+   tbody.replaceChildren();
 
-   const solution=bestFor(levelIndex);
+   const solution=bestFor(currentEntry.level);
    const matching=rows.map(row=>{
     if(!Array.isArray(row.selections))return null;
-    const entry=row.selections.find(item=>item.level===levelIndex);
-    return entry?{row,entry}:null;
+    const selection=row.selections.find(item=>item.level===currentEntry.level);
+    return selection?{row,selection}:null;
    }).filter(Boolean);
 
    matching.sort((a,b)=>{
-    const scoreDifference=
-     similarity(b.entry.ids,solution)-similarity(a.entry.ids,solution);
-    if(Math.abs(scoreDifference)>1e-9)return scoreDifference;
-    return timeFor(a.row,a.entry)-timeFor(b.row,b.entry);
+    const difference=similarity(b.selection.ids,solution)-similarity(a.selection.ids,solution);
+    if(Math.abs(difference)>1e-9)return difference;
+    return timeFor(a.row,a.selection)-timeFor(b.row,b.selection);
    });
 
-   matching.slice(0,5).forEach(({row,entry})=>{
-    list.appendChild(createPlayerLine(row,entry));
-   });
-
-   if(!matching.length){
-    const empty=document.createElement("li");
-    empty.textContent=t().empty;
-    list.appendChild(empty);
+   const topFive=matching.slice(0,5);
+   if(!topFive.length){
+    appendEmptyRow(tbody,t().empty);
+    return;
    }
+
+   topFive.forEach(({row,selection},index)=>{
+    appendTableRow(tbody,"#"+(index+1),selection.ids,row.player||"");
+   });
   });
 
   if(!submittedOnce)status.textContent="";
@@ -543,37 +633,11 @@ function renderFinal(){
 
  const box=$("levelResults");
  box.replaceChildren();
-
- completed.forEach(entry=>{
-  const section=document.createElement("section");
-  section.className="level-result";
-
-  const heading=document.createElement("h3");
-  heading.textContent=t().levels[entry.level].title;
-
-  const solutionHeading=document.createElement("h4");
-  solutionHeading.textContent=t().solution;
-  const solutionLine=document.createElement("p");
-  solutionLine.className="result-line solution-line";
-  const solution=bestFor(entry.level);
-  solutionLine.textContent=solution?resultText(t().solution,solution):t().empty;
-
-  const ownHeading=document.createElement("h4");
-  ownHeading.textContent=t().your;
-  const ownLine=document.createElement("p");
-  ownLine.className="result-line own-line";
-  ownLine.textContent=resultText(t().your,entry.result);
-
-  const topHeading=document.createElement("h4");
-  topHeading.textContent="Top 5";
-  const list=document.createElement("ol");
-  list.className="top-list";
-  list.id="top-"+entry.level;
-
-  section.append(heading,solutionHeading,solutionLine,ownHeading,ownLine,topHeading,list);
-  box.appendChild(section);
- });
-
+ completed.forEach(entry=>box.appendChild(createLevelTable({
+  ...entry,
+  title:t().levels[entry.level].title,
+  task:t().levels[entry.level].task
+ })));
  loadLeaderboard();
 }
 
@@ -617,7 +681,6 @@ async function submitResults(){
 
   submittedOnce=true;
   button.hidden=true;
-  status.textContent=t().saved;
   await loadLeaderboard();
   status.textContent=t().saved;
  }catch(error){
@@ -722,5 +785,6 @@ renderAll();
 </script>
 </body>
 </html>
+
 
 
