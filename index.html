@@ -1,4 +1,3 @@
-Du hast recht – hier ist die reparierte Version: Bestenliste und Namenseingabe sind wieder enthalten, „Neu starten“ ist entfernt. Die Levelbox ist auf iPads kompakter; die Produkte werden nicht mehr zusätzlich als Text über der Produktliste aufgeführt.
 <!DOCTYPE html>
 <html lang="de">
 <head>
@@ -12,7 +11,7 @@ main{max-width:960px;margin:auto}
 .site-logo{position:sticky;top:0;z-index:30;height:66px;padding:5px 0;background:#f3f6fb;display:flex;align-items:center;gap:9px}
 .site-logo svg{display:block;flex:0 0 auto;width:82px;height:50px}
 .language-buttons{display:flex;align-items:center;gap:4px;flex-wrap:wrap}
-.language-buttons button{min-height:29px;padding:4px 8px;border:1px solid #aebfd0;border-radius:7px;background:#fff;color:#203349;font-size:.72rem;font-weight:700;line-height:1.15}
+.language-buttons button{min-height:29px;padding:4px 8px;border:1px solid #aebfd0;border-radius:7px;background:#fff;color:#203349;font-size:.72rem;font-weight:700}
 .language-buttons button.active{background:#2469b2;border-color:#2469b2;color:#fff}
 h1{font-size:1.35rem;margin:8px 0}
 h2{font-size:1.1rem}
@@ -54,17 +53,23 @@ button:disabled{opacity:.55;cursor:not-allowed}
 .action-inner{max-width:960px;margin:auto;display:flex;justify-content:flex-end;gap:8px}
 #hintFloat{position:fixed;z-index:40;left:50%;bottom:72px;transform:translateX(-50%);display:flex;align-items:center;justify-content:center;gap:5px;min-height:40px;padding:0 12px;border:2px solid #d89d00;border-radius:999px;background:#fff3bd;box-shadow:0 3px 12px #20334945;font:inherit;font-size:.88rem;font-weight:700}
 #hintFloat span:first-child{font-size:20px}
-#hintFloat:hover{background:#ffe68a;transform:translateX(-50%) scale(1.03)}
+#hintFloat:hover{background:#ffe68a}
 #hintPopup{position:fixed;z-index:39;left:50%;bottom:120px;transform:translateX(-50%);width:min(320px,calc(100vw - 32px));padding:12px 14px;border:1px solid #d7c47c;border-radius:12px;background:#fffdf2;box-shadow:0 5px 18px #20334935;line-height:1.5}
-.table-wrap{overflow-x:auto;border-radius:10px}
-.data-table{width:100%;min-width:620px;border-collapse:collapse;font-size:.86rem;background:#fff}
-.data-table th,.data-table td{padding:8px;border:1px solid #dce4ed;text-align:left;vertical-align:top}
+.table-wrap{width:100%;overflow-x:auto;border-radius:10px}
+.data-table{width:100%;min-width:760px;table-layout:fixed;border-collapse:collapse;font-size:.84rem;background:#fff}
+.data-table col:nth-child(1){width:25%}
+.data-table col:nth-child(2){width:35%}
+.data-table col:nth-child(3){width:12%}
+.data-table col:nth-child(4){width:9%}
+.data-table col:nth-child(5){width:8%}
+.data-table col:nth-child(6){width:11%}
+.data-table th,.data-table td{padding:8px;border:1px solid #dce4ed;text-align:left;vertical-align:top;overflow-wrap:anywhere}
 .data-table th{background:#edf3f8}
 .data-table tbody tr:nth-child(even){background:#f8fafc}
-.products-cell{min-width:170px;overflow-wrap:anywhere}
 .level-menu{margin:10px 0;border:1px solid #dce4ed;border-radius:12px;background:#fff;overflow:hidden}
 .level-menu summary{cursor:pointer;padding:12px 14px;background:#edf3f8;font-weight:700}
 .level-menu-content{padding:12px}
+.products-cell{overflow-wrap:anywhere}
 [hidden]{display:none!important}
 [dir="rtl"] .progress{flex-direction:row-reverse}
 @media(min-width:700px) and (max-width:1180px){
@@ -103,10 +108,10 @@ button:disabled{opacity:.55;cursor:not-allowed}
     <path d="M165 28h112v34h-77v15h77v34h-77v15h77v34H165z" fill="#1765ad"/>
   </svg>
   <div class="language-buttons" role="group" aria-label="Sprache auswählen">
-    <button type="button" data-language="de" aria-label="Deutsch" title="Deutsch">Deutsch</button>
-    <button type="button" data-language="en" aria-label="English" title="English">English</button>
-    <button type="button" data-language="ru" aria-label="Русский" title="Русский">Русский</button>
-    <button type="button" data-language="ar" aria-label="العربية" title="العربية">العربية</button>
+    <button type="button" data-language="de">Deutsch</button>
+    <button type="button" data-language="en">English</button>
+    <button type="button" data-language="ru">Русский</button>
+    <button type="button" data-language="ar">العربية</button>
   </div>
 </header>
 
@@ -125,12 +130,7 @@ button:disabled{opacity:.55;cursor:not-allowed}
     <h2 id="gameHeading"></h2>
     <div class="goal" id="goal"></div>
     <div class="stats">
-      <div class="stat">
-        <span id="calorieLabel"></span>
-        <div class="calorie-meter" id="calorieMeter" role="progressbar" aria-valuemin="0" aria-valuemax="650" aria-valuenow="0">
-          <div class="calorie-fill" id="calorieFill"></div><strong id="calories"></strong>
-        </div>
-      </div>
+      <div class="stat"><span id="calorieLabel"></span><div class="calorie-meter" id="calorieMeter" role="progressbar" aria-valuemin="0" aria-valuemax="650" aria-valuenow="0"><div class="calorie-fill" id="calorieFill"></div><strong id="calories"></strong></div></div>
       <div class="stat"><span id="priceLabel"></span><strong id="price"></strong></div>
       <div class="stat"><span id="starsLabel"></span><strong id="stars"></strong></div>
       <div class="stat"><span id="shelfLabel"></span><strong id="shelfLife"></strong></div>
@@ -142,9 +142,7 @@ button:disabled{opacity:.55;cursor:not-allowed}
   </section>
 </div>
 
-<button id="hintFloat" type="button" aria-label="Tipps anzeigen" aria-expanded="false" hidden>
-  <span aria-hidden="true">💡</span><span id="hintLabel">Tipps</span>
-</button>
+<button id="hintFloat" type="button" aria-expanded="false" hidden><span aria-hidden="true">💡</span><span id="hintLabel">Tipps</span></button>
 <div id="hintPopup" role="status" aria-live="polite" hidden></div>
 
 <section class="panel" id="nameGate" hidden>
@@ -162,18 +160,13 @@ button:disabled{opacity:.55;cursor:not-allowed}
   <h2 id="finalHeading"></h2>
   <p id="finalInstructions"></p>
   <h3 id="summaryHeading"></h3>
-  <div class="table-wrap"><table class="data-table"><thead><tr id="summaryHead"></tr></thead><tbody id="summaryBody"></tbody></table></div>
+  <div class="table-wrap"><table class="data-table"><colgroup><col><col><col><col><col><col></colgroup><thead><tr id="summaryHead"></tr></thead><tbody id="summaryBody"></tbody></table></div>
   <h2 id="leaderboardHeading"></h2>
   <div id="levelResults"></div>
 </section>
 </main>
 
-<div id="actionBar" hidden>
-  <div class="action-inner">
-    <button id="clearButton" type="button"></button>
-    <button class="primary" id="nextButton" type="button"></button>
-  </div>
-</div>
+<div id="actionBar" hidden><div class="action-inner"><button id="clearButton" type="button"></button><button class="primary" id="nextButton" type="button"></button></div></div>
 
 <script>
 "use strict";
@@ -182,67 +175,26 @@ const SUPABASE_KEY="sb_publishable_nbtW5O1UNe6ADiNCXXP5tg_BiZPO4aw";
 const MIN=500,MAX=650,$=id=>document.getElementById(id);
 let lang="de",level=0,selected=new Set(),completed=[],submitted=false;
 const solutionCache={};
-
-const translations={
-de:{page:"🥪 Frühstücksbox – Levels und Bonuslevel",productsTitle:"Produkte auswählen",calories:"Kalorien",price:"Preis",stars:"Sterne",shelf:"Haltbarkeit",start:"Start",clear:"Auswahl leeren",next:"Level abschließen und weiter",bonus:"Bonus abschließen",tips:"Tipps",tip:"Tipp: Achte auf ",nameHeading:"Fast geschafft! Wie heißt du?",nameInstructions:"Gib zuerst deinen Namen ein. Danach werden deine Ergebnisse gespeichert und die Bestenliste angezeigt.",nameLabel:"Dein Name (max. 24 Zeichen):",namePlaceholder:"Name eingeben",save:"Name speichern und weiter",final:"Deine Ergebnisse",finalInstructions:"Übertrage sie in die Tabelle von Aufgabe 2 auf deinem Arbeitsblatt.",summary:"Deine Ergebnisse in allen Levels",leaderboard:"Bestenliste",levelCol:"Level / Aufgabe",productCol:"Produkte",calorieCol:"Kalorien",priceCol:"Preis",starsCol:"Sterne",shelfCol:"Haltbarkeit",solution:"Lösung",you:"Du",top:"Top 5",allPlayers:"Alle Spieler",empty:"Noch keine Ergebnisse.",noProducts:"Keine Produkte ausgewählt.",goal:"✓ Kalorienziel erreicht – zwischen 500 und 650 Kalorien.",short:"Noch ",until:" Kalorien bis zum Mindestziel von 500 Kalorien.",tooMany:"Zu viele Kalorien: höchstens 650 Kalorien erlaubt.",days:"Tage",health:"Sterne:",loadError:"Die Bestenliste konnte nicht geladen werden. Prüfe die Verbindung.",saveError:"Speichern fehlgeschlagen. Prüfe die Verbindung.",saving:"Ergebnisse werden gespeichert …",enterName:"Bitte gib deinen Namen ein.",levels:[
-["Level 1: Das leckerste Frühstück","Stelle dein persönlich leckerstes Frühstück mit 500 bis 650 Kalorien zusammen.","deinen persönlichen Geschmack"],
-["Level 2: So günstig wie möglich","Erreiche 500 bis 650 Kalorien und gib dabei so wenig Geld wie möglich aus.","den Gesamtpreis"],
-["Level 3: Möglichst viele Gesundheitssterne","Erreiche 500 bis 650 Kalorien und sammle möglichst viele Gesundheitssterne.","die Gesundheitssterne"],
-["Level 4: So lange haltbar wie möglich","Erreiche 500 bis 650 Kalorien. Wähle Produkte, die möglichst lange haltbar sind.","die Haltbarkeit"],
-["Bonuslevel: Gesund, lange haltbar und günstig","Stelle ein Frühstück mit 500 bis 650 Kalorien zusammen, das gesund, lange haltbar und günstig ist.","den Ausgleich zwischen Preis, Gesundheitssternen und Haltbarkeit"]],
-products:["Schokoriegel","Brot mit Schokoaufstrich","Schokocroissant","Weißbrot mit Salami","Käsesticks","Joghurt","Banane","Vollkornbrot mit Käse","Apfel","Gemüse-Sticks","Erdbeeren","Vollkornsandwich mit Hähnchen"]},
-en:{page:"🥪 Breakfast box – Levels and bonus level",productsTitle:"Choose products",calories:"Calories",price:"Price",stars:"Stars",shelf:"Shelf life",start:"Start",clear:"Clear selection",next:"Finish level and continue",bonus:"Finish bonus level",tips:"Tips",tip:"Tip: Pay attention to ",nameHeading:"Almost done! What is your name?",nameInstructions:"Enter your name first. Your results will then be saved and the leaderboard shown.",nameLabel:"Your name (max. 24 characters):",namePlaceholder:"Enter name",save:"Save name and continue",final:"Your results",finalInstructions:"Copy them into the table for task 2 on your worksheet.",summary:"Your results in all levels",leaderboard:"Leaderboard",levelCol:"Level / task",productCol:"Products",calorieCol:"Calories",priceCol:"Price",starsCol:"Stars",shelfCol:"Shelf life",solution:"Solution",you:"You",top:"Top 5",allPlayers:"All players",empty:"No results yet.",noProducts:"No products selected.",goal:"✓ Calorie goal reached – between 500 and 650 calories.",short:"",until:" calories until the minimum goal of 500.",tooMany:"Too many calories: 650 calories maximum.",days:"days",health:"Stars:",loadError:"The leaderboard could not be loaded. Check the connection.",saveError:"Saving failed. Check the connection.",saving:"Saving results …",enterName:"Please enter your name.",levels:[
-["Level 1: The tastiest breakfast","Make your personally tastiest breakfast with 500 to 650 calories.","your personal taste"],
-["Level 2: As inexpensive as possible","Reach 500 to 650 calories while spending as little as possible.","the total price"],
-["Level 3: As many health stars as possible","Reach 500 to 650 calories and collect as many health stars as possible.","the health stars"],
-["Level 4: Longest shelf life","Reach 500 to 650 calories. Choose products with the longest possible shelf life.","shelf life"],
-["Bonus level: Healthy, long-lasting and inexpensive","Make a breakfast with 500 to 650 calories that is healthy, long-lasting and inexpensive.","balancing price, health stars and shelf life"]],
-products:["Chocolate bar","Bread with chocolate spread","Chocolate croissant","White bread with salami","Cheese sticks","Yogurt","Banana","Whole-grain bread with cheese","Apple","Vegetable sticks","Strawberries","Whole-grain chicken sandwich"]},
-ru:{page:"🥪 Завтрак — уровни и бонусный уровень",productsTitle:"Выберите продукты",calories:"Калории",price:"Цена",stars:"Звёзды",shelf:"Срок хранения",start:"Начать",clear:"Очистить выбор",next:"Завершить уровень и продолжить",bonus:"Завершить бонусный уровень",tips:"Советы",tip:"Совет: обратите внимание на ",nameHeading:"Почти готово! Как вас зовут?",nameInstructions:"Сначала введите имя. Затем результаты будут сохранены и появится таблица лидеров.",nameLabel:"Ваше имя (не более 24 символов):",namePlaceholder:"Введите имя",save:"Сохранить имя и продолжить",final:"Ваши результаты",finalInstructions:"Перенесите их в таблицу задания 2 на рабочем листе.",summary:"Ваши результаты по всем уровням",leaderboard:"Таблица лидеров",levelCol:"Уровень / задание",productCol:"Продукты",calorieCol:"Калории",priceCol:"Цена",starsCol:"Звёзды",shelfCol:"Срок хранения",solution:"Решение",you:"Вы",top:"Топ-5",allPlayers:"Все игроки",empty:"Результатов пока нет.",noProducts:"Продукты не выбраны.",goal:"✓ Цель достигнута — от 500 до 650 калорий.",short:"Ещё ",until:" калорий до минимальной цели 500.",tooMany:"Слишком много калорий: максимум 650.",days:"дн.",health:"Звёзды:",loadError:"Не удалось загрузить таблицу лидеров. Проверьте соединение.",saveError:"Не удалось сохранить. Проверьте соединение.",saving:"Сохранение результатов …",enterName:"Введите своё имя",levels:[
-["Уровень 1: Самый вкусный завтрак","Составьте самый вкусный для вас завтрак на 500–650 калорий.","свои вкусовые предпочтения"],
-["Уровень 2: Как можно дешевле","Наберите 500–650 калорий и потратьте как можно меньше денег.","общую стоимость"],
-["Уровень 3: Как можно больше звёзд здоровья","Наберите 500–650 калорий и соберите как можно больше звёзд здоровья.","звёзды здоровья"],
-["Уровень 4: Максимальный срок хранения","Наберите 500–650 калорий. Выбирайте продукты с максимально долгим сроком хранения.","срок хранения"],
-["Бонусный уровень: Полезно, долго хранится и недорого","Составьте полезный и недорогой завтрак на 500–650 калорий с долгим сроком хранения.","баланс цены, звёзд здоровья и срока хранения"]],
-products:["Шоколадный батончик","Хлеб с шоколадной пастой","Шоколадный круассан","Белый хлеб с салями","Сырные палочки","Йогурт","Банан","Цельнозерновой хлеб с сыром","Яблоко","Овощные палочки","Клубника","Цельнозерновой сэндвич с курицей"]},
-ar:{page:"🥪 علبة الفطور – المستويات والمستوى الإضافي",productsTitle:"اختر المنتجات",calories:"السعرات الحرارية",price:"السعر",stars:"النجوم",shelf:"مدة الصلاحية",start:"ابدأ",clear:"مسح الاختيار",next:"إنهاء المستوى والمتابعة",bonus:"إنهاء المستوى الإضافي",tips:"نصائح",tip:"نصيحة: انتبه إلى ",nameHeading:"أوشكت على الانتهاء! ما اسمك؟",nameInstructions:"أدخل اسمك أولاً. بعد ذلك ستُحفَظ نتائجك وتظهر قائمة المتصدرين.",nameLabel:"اسمك (حتى 24 حرفًا):",namePlaceholder:"أدخل الاسم",save:"حفظ الاسم والمتابعة",final:"نتائجك",finalInstructions:"انقلها إلى جدول السؤال الثاني في ورقة العمل.",summary:"نتائجك في جميع المستويات",leaderboard:"قائمة المتصدرين",levelCol:"المستوى / المهمة",productCol:"المنتجات",calorieCol:"السعرات الحرارية",priceCol:"السعر",starsCol:"النجوم",shelfCol:"مدة الصلاحية",solution:"الحل",you:"أنت",top:"أفضل 5",allPlayers:"جميع اللاعبين",empty:"لا توجد نتائج بعد.",noProducts:"لم يتم اختيار منتجات.",goal:"✓ تم تحقيق هدف السعرات الحرارية — بين 500 و650.",short:"تبقى ",until:" سعرة حرارية للوصول إلى الحد الأدنى 500.",tooMany:"السعرات الحرارية كثيرة: الحد الأقصى 650.",days:"أيام",health:"النجوم:",loadError:"تعذّر تحميل قائمة المتصدرين. تحقق من الاتصال.",saveError:"تعذّر الحفظ. تحقق من الاتصال.",saving:"جارٍ حفظ النتائج …",enterName:"يرجى إدخال اسمك",levels:[
-["المستوى 1: ألذ فطور","حضّر الفطور الذي تفضّله، بحيث يحتوي على 500 إلى 650 سعرة حرارية.","ذوقك الشخصي"],
-["المستوى 2: أقل تكلفة ممكنة","اجمع 500 إلى 650 سعرة حرارية وأنفق أقل مبلغ ممكن.","السعر الإجمالي"],
-["المستوى 3: أكبر عدد من نجوم الصحة","اجمع 500 إلى 650 سعرة حرارية واحصل على أكبر عدد ممكن من نجوم الصحة.","نجوم الصحة"],
-["المستوى 4: أطول مدة صلاحية","اجمع 500 إلى 650 سعرة حرارية واختر منتجات تدوم أطول مدة ممكنة.","مدة الصلاحية"],
-["المستوى الإضافي: صحي وطويل الصلاحية ورخيص","حضّر فطورًا صحيًا ورخيصًا يدوم طويلًا ويحتوي على 500 إلى 650 سعرة حرارية.","التوازن بين السعر ونجوم الصحة ومدة الصلاحية"]],
-products:["لوح شوكولاتة","خبز مع دهن الشوكولاتة","كرواسون بالشوكولاتة","خبز أبيض مع السلامي","أعواد الجبن","زبادي","موز","خبز حبوب كاملة مع الجبن","تفاحة","أعواد الخضار","فراولة","ساندويتش دجاج بخبز الحبوب الكاملة"]}
+const tr={
+de:{page:"🥪 Frühstücksbox – Levels und Bonuslevel",productsTitle:"Produkte auswählen",calories:"Kalorien",price:"Preis",stars:"Sterne",shelf:"Haltbarkeit",start:"Start",clear:"Auswahl leeren",next:"Level abschließen und weiter",bonus:"Bonus abschließen",tips:"Tipps",tip:"Tipp: Achte auf ",nameHeading:"Fast geschafft! Wie heißt du?",nameInstructions:"Gib zuerst deinen Namen ein. Danach werden deine Ergebnisse gespeichert und die Bestenliste angezeigt.",nameLabel:"Dein Name (max. 24 Zeichen):",namePlaceholder:"Name eingeben",save:"Name speichern und weiter",final:"Deine Ergebnisse",finalInstructions:"Übertrage sie in die Tabelle von Aufgabe 2 auf deinem Arbeitsblatt.",summary:"Deine Ergebnisse in allen Levels",leaderboard:"Bestenliste",levelCol:"Level / Aufgabe",productCol:"Produkte",calorieCol:"Kalorien",priceCol:"Preis",starsCol:"Sterne",shelfCol:"Haltbarkeit",solution:"Lösung",you:"Du",top:"Top 5",allPlayers:"Alle Spieler",empty:"Noch keine Ergebnisse.",noProducts:"Keine Produkte ausgewählt.",goal:"✓ Kalorienziel erreicht – zwischen 500 und 650 Kalorien.",short:"Noch ",until:" Kalorien bis zum Mindestziel von 500 Kalorien.",tooMany:"Zu viele Kalorien: höchstens 650 Kalorien erlaubt.",days:"Tage",health:"Sterne:",loadError:"Die Bestenliste konnte nicht geladen werden. Prüfe die Verbindung.",saveError:"Speichern fehlgeschlagen. Prüfe die Verbindung.",saving:"Ergebnisse werden gespeichert …",enterName:"Bitte gib deinen Namen ein.",levels:[["Level 1: Das leckerste Frühstück","Stelle dein persönlich leckerstes Frühstück mit 500 bis 650 Kalorien zusammen.","deinen persönlichen Geschmack"],["Level 2: So günstig wie möglich","Erreiche 500 bis 650 Kalorien und gib dabei so wenig Geld wie möglich aus.","den Gesamtpreis"],["Level 3: Möglichst viele Gesundheitssterne","Erreiche 500 bis 650 Kalorien und sammle möglichst viele Gesundheitssterne.","die Gesundheitssterne"],["Level 4: So lange haltbar wie möglich","Erreiche 500 bis 650 Kalorien. Wähle Produkte, die möglichst lange haltbar sind.","die Haltbarkeit"],["Bonuslevel: Gesund, lange haltbar und günstig","Stelle ein Frühstück mit 500 bis 650 Kalorien zusammen, das gesund, lange haltbar und günstig ist.","den Ausgleich zwischen Preis, Gesundheitssternen und Haltbarkeit"]],products:["Schokoriegel","Brot mit Schokoaufstrich","Schokocroissant","Weißbrot mit Salami","Käsesticks","Joghurt","Banane","Vollkornbrot mit Käse","Apfel","Gemüse-Sticks","Erdbeeren","Vollkornsandwich mit Hähnchen"]},
+en:{page:"🥪 Breakfast box – Levels and bonus level",productsTitle:"Choose products",calories:"Calories",price:"Price",stars:"Stars",shelf:"Shelf life",start:"Start",clear:"Clear selection",next:"Finish level and continue",bonus:"Finish bonus level",tips:"Tips",tip:"Tip: Pay attention to ",nameHeading:"Almost done! What is your name?",nameInstructions:"Enter your name first. Your results will then be saved and the leaderboard shown.",nameLabel:"Your name (max. 24 characters):",namePlaceholder:"Enter name",save:"Save name and continue",final:"Your results",finalInstructions:"Copy them into the table for task 2 on your worksheet.",summary:"Your results in all levels",leaderboard:"Leaderboard",levelCol:"Level / task",productCol:"Products",calorieCol:"Calories",priceCol:"Price",starsCol:"Stars",shelfCol:"Shelf life",solution:"Solution",you:"You",top:"Top 5",allPlayers:"All players",empty:"No results yet.",noProducts:"No products selected.",goal:"✓ Calorie goal reached – between 500 and 650 calories.",short:"",until:" calories until the minimum goal of 500.",tooMany:"Too many calories: 650 calories maximum.",days:"days",health:"Stars:",loadError:"The leaderboard could not be loaded. Check the connection.",saveError:"Saving failed. Check the connection.",saving:"Saving results …",enterName:"Please enter your name.",levels:[["Level 1: The tastiest breakfast","Make your personally tastiest breakfast with 500 to 650 calories.","your personal taste"],["Level 2: As inexpensive as possible","Reach 500 to 650 calories while spending as little as possible.","the total price"],["Level 3: As many health stars as possible","Reach 500 to 650 calories and collect as many health stars as possible.","the health stars"],["Level 4: Longest shelf life","Reach 500 to 650 calories. Choose products with the longest possible shelf life.","shelf life"],["Bonus level: Healthy, long-lasting and inexpensive","Make a breakfast with 500 to 650 calories that is healthy, long-lasting and inexpensive.","balancing price, health stars and shelf life"]],products:["Chocolate bar","Bread with chocolate spread","Chocolate croissant","White bread with salami","Cheese sticks","Yogurt","Banana","Whole-grain bread with cheese","Apple","Vegetable sticks","Strawberries","Whole-grain chicken sandwich"]},
+ru:{page:"🥪 Завтрак — уровни и бонусный уровень",productsTitle:"Выберите продукты",calories:"Калории",price:"Цена",stars:"Звёзды",shelf:"Срок хранения",start:"Начать",clear:"Очистить выбор",next:"Завершить уровень и продолжить",bonus:"Завершить бонусный уровень",tips:"Советы",tip:"Совет: обратите внимание на ",nameHeading:"Почти готово! Как вас зовут?",nameInstructions:"Сначала введите имя. Затем результаты будут сохранены и появится таблица лидеров.",nameLabel:"Ваше имя (не более 24 символов):",namePlaceholder:"Введите имя",save:"Сохранить имя и продолжить",final:"Ваши результаты",finalInstructions:"Перенесите их в таблицу задания 2 на рабочем листе.",summary:"Ваши результаты по всем уровням",leaderboard:"Таблица лидеров",levelCol:"Уровень / задание",productCol:"Продукты",calorieCol:"Калории",priceCol:"Цена",starsCol:"Звёзды",shelfCol:"Срок хранения",solution:"Решение",you:"Вы",top:"Топ-5",allPlayers:"Все игроки",empty:"Результатов пока нет.",noProducts:"Продукты не выбраны.",goal:"✓ Цель достигнута — от 500 до 650 калорий.",short:"Ещё ",until:" калорий до минимальной цели 500.",tooMany:"Слишком много калорий: максимум 650.",days:"дн.",health:"Звёзды:",loadError:"Не удалось загрузить таблицу лидеров. Проверьте соединение.",saveError:"Не удалось сохранить. Проверьте соединение.",saving:"Сохранение результатов …",enterName:"Введите своё имя",levels:[["Уровень 1: Самый вкусный завтрак","Составьте самый вкусный для вас завтрак на 500–650 калорий.","свои вкусовые предпочтения"],["Уровень 2: Как можно дешевле","Наберите 500–650 калорий и потратьте как можно меньше денег.","общую стоимость"],["Уровень 3: Как можно больше звёзд здоровья","Наберите 500–650 калорий и соберите как можно больше звёзд здоровья.","звёзды здоровья"],["Уровень 4: Максимальный срок хранения","Наберите 500–650 калорий. Выбирайте продукты с максимально долгим сроком хранения.","срок хранения"],["Бонусный уровень: Полезно, долго хранится и недорого","Составьте полезный и недорогой завтрак на 500–650 калорий с долгим сроком хранения.","баланс цены, звёзд здоровья и срока хранения"]],products:["Шоколадный батончик","Хлеб с шоколадной пастой","Шоколадный круассан","Белый хлеб с салями","Сырные палочки","Йогурт","Банан","Цельнозерновой хлеб с сыром","Яблоко","Овощные палочки","Клубника","Цельнозерновой сэндвич с курицей"]},
+ar:{page:"🥪 علبة الفطور – المستويات والمستوى الإضافي",productsTitle:"اختر المنتجات",calories:"السعرات الحرارية",price:"السعر",stars:"النجوم",shelf:"مدة الصلاحية",start:"ابدأ",clear:"مسح الاختيار",next:"إنهاء المستوى والمتابعة",bonus:"إنهاء المستوى الإضافي",tips:"نصائح",tip:"نصيحة: انتبه إلى ",nameHeading:"أوشكت على الانتهاء! ما اسمك؟",nameInstructions:"أدخل اسمك أولاً. بعد ذلك ستُحفَظ نتائجك وتظهر قائمة المتصدرين.",nameLabel:"اسمك (حتى 24 حرفًا):",namePlaceholder:"أدخل الاسم",save:"حفظ الاسم والمتابعة",final:"نتائجك",finalInstructions:"انقلها إلى جدول السؤال الثاني في ورقة العمل.",summary:"نتائجك في جميع المستويات",leaderboard:"قائمة المتصدرين",levelCol:"المستوى / المهمة",productCol:"المنتجات",calorieCol:"السعرات الحرارية",priceCol:"السعر",starsCol:"النجوم",shelfCol:"مدة الصلاحية",solution:"الحل",you:"أنت",top:"أفضل 5",allPlayers:"جميع اللاعبين",empty:"لا توجد نتائج بعد.",noProducts:"لم يتم اختيار منتجات.",goal:"✓ تم تحقيق هدف السعرات الحرارية — بين 500 و650.",short:"تبقى ",until:" سعرة حرارية للوصول إلى الحد الأدنى 500.",tooMany:"السعرات الحرارية كثيرة: الحد الأقصى 650.",days:"أيام",health:"النجوم:",loadError:"تعذّر تحميل قائمة المتصدرين. تحقق من الاتصال.",saveError:"تعذّر الحفظ. تحقق من الاتصال.",saving:"جارٍ حفظ النتائج …",enterName:"يرجى إدخال اسمك",levels:[["المستوى 1: ألذ فطور","حضّر الفطور الذي تفضّله، بحيث يحتوي على 500 إلى 650 سعرة حرارية.","ذوقك الشخصي"],["المستوى 2: أقل تكلفة ممكنة","اجمع 500 إلى 650 سعرة حرارية وأنفق أقل مبلغ ممكن.","السعر الإجمالي"],["المستوى 3: أكبر عدد من نجوم الصحة","اجمع 500 إلى 650 سعرة حرارية واحصل على أكبر عدد ممكن من نجوم الصحة.","نجوم الصحة"],["المستوى 4: أطول مدة صلاحية","اجمع 500 إلى 650 سعرة حرارية واختر منتجات تدوم أطول مدة ممكنة.","مدة الصلاحية"],["المستوى الإضافي: صحي وطويل الصلاحية ورخيص","حضّر فطورًا صحيًا ورخيصًا يدوم طويلًا ويحتوي على 500 إلى 650 سعرة حرارية.","التوازن بين السعر ونجوم الصحة ومدة الصلاحية"]],products:["لوح شوكولاتة","خبز مع دهن الشوكولاتة","كرواسون بالشوكولاتة","خبز أبيض مع السلامي","أعواد الجبن","زبادي","موز","خبز حبوب كاملة مع الجبن","تفاحة","أعواد الخضار","فراولة","ساندويتش دجاج بخبز الحبوب الكاملة"]}
 };
-
-const products=[
-{icon:"🍫",kcal:110,cents:40,stars:1,days:180},{icon:"🍞",kcal:270,cents:45,stars:2,days:2},
-{icon:"🥐",kcal:290,cents:70,stars:2,days:21},{icon:"🥪",kcal:300,cents:70,stars:2,days:1},
-{icon:"🧀",kcal:60,cents:30,stars:2,days:28},{icon:"🥣",kcal:90,cents:35,stars:3,days:14},
-{icon:"🍌",kcal:100,cents:40,stars:3,days:5},{icon:"🍞",kcal:250,cents:60,stars:3,days:4},
-{icon:"🍎",kcal:80,cents:40,stars:4,days:14},{icon:"🥕",kcal:40,cents:60,stars:5,days:3},
-{icon:"🍓",kcal:32,cents:70,stars:4,days:2},{icon:"🥪",kcal:320,cents:160,stars:5,days:1}
-];
-const t=()=>translations[lang];
+const foods=[{icon:"🍫",kcal:110,cents:40,stars:1,days:180},{icon:"🍞",kcal:270,cents:45,stars:2,days:2},{icon:"🥐",kcal:290,cents:70,stars:2,days:21},{icon:"🥪",kcal:300,cents:70,stars:2,days:1},{icon:"🧀",kcal:60,cents:30,stars:2,days:28},{icon:"🥣",kcal:90,cents:35,stars:3,days:14},{icon:"🍌",kcal:100,cents:40,stars:3,days:5},{icon:"🍞",kcal:250,cents:60,stars:3,days:4},{icon:"🍎",kcal:80,cents:40,stars:4,days:14},{icon:"🥕",kcal:40,cents:60,stars:5,days:3},{icon:"🍓",kcal:32,cents:70,stars:4,days:2},{icon:"🥪",kcal:320,cents:160,stars:5,days:1}];
+const t=()=>tr[lang];
 function money(c){return(c/100).toLocaleString(lang==="en"?"en-GB":lang==="ar"?"ar":"de-DE",{style:"currency",currency:"EUR"})}
-function total(ids=[...selected]){
- const r={kcal:0,cents:0,stars:0,days:Infinity,count:ids.length,ids:[...ids]};
- ids.forEach(i=>{const p=products[i];if(p){r.kcal+=p.kcal;r.cents+=p.cents;r.stars+=p.stars;r.days=Math.min(r.days,p.days)}});
- if(!Number.isFinite(r.days))r.days=0;return r;
-}
-function progress(id){
- const box=$(id);box.replaceChildren();
- t().levels.forEach((_,i)=>{const s=document.createElement("span");s.textContent=i===4?"Bonus":"Level "+(i+1);if(i<level)s.className="done";if(i===level)s.className="current";box.appendChild(s)});
-}
+function total(ids=[...selected]){let r={kcal:0,cents:0,stars:0,days:Infinity,count:ids.length,ids:[...ids]};ids.forEach(i=>{let p=foods[i];if(p){r.kcal+=p.kcal;r.cents+=p.cents;r.stars+=p.stars;r.days=Math.min(r.days,p.days)}});if(!Number.isFinite(r.days))r.days=0;return r}
+function progress(id){let box=$(id);box.replaceChildren();t().levels.forEach((_,i)=>{let s=document.createElement("span");s.textContent=i===4?"Bonus":"Level "+(i+1);if(i<level)s.className="done";if(i===level)s.className="current";box.appendChild(s)})}
 function applyLanguage(){
- const x=t();document.documentElement.lang=lang;document.documentElement.dir=lang==="ar"?"rtl":"ltr";
+ let x=t();document.documentElement.lang=lang;document.documentElement.dir=lang==="ar"?"rtl":"ltr";
  $("pageTitle").textContent=x.page;$("productsHeading").textContent=x.productsTitle;
  $("calorieLabel").textContent=x.calories;$("priceLabel").textContent=x.price;$("starsLabel").textContent=x.stars;$("shelfLabel").textContent=x.shelf;
  $("startButton").textContent=x.start;$("clearButton").textContent=x.clear;$("hintLabel").textContent=x.tips;$("hintFloat").setAttribute("aria-label",x.tips);
  $("nameHeading").textContent=x.nameHeading;$("nameInstructions").textContent=x.nameInstructions;$("nameLabel").textContent=x.nameLabel;$("playerName").placeholder=x.namePlaceholder;$("submitScore").textContent=x.save;
  $("finalHeading").textContent=x.final;$("finalInstructions").textContent=x.finalInstructions;$("summaryHeading").textContent=x.summary;$("leaderboardHeading").textContent=x.leaderboard;
- document.querySelectorAll(".language-buttons button").forEach(b=>{const active=b.dataset.language===lang;b.classList.toggle("active",active);b.setAttribute("aria-pressed",String(active))});
- if(!$("startScreen").hidden)renderStart();
- if(!$("game").hidden)renderGame();
+ document.querySelectorAll(".language-buttons button").forEach(b=>{let active=b.dataset.language===lang;b.classList.toggle("active",active);b.setAttribute("aria-pressed",String(active))});
+ if(!$("startScreen").hidden)renderStart();if(!$("game").hidden)renderGame();
  if(!$("finalScreen").hidden){renderOwnSummary();renderFinalMenus();loadLeaderboard()}
 }
 function renderStart(){
@@ -250,144 +202,94 @@ function renderStart(){
  $("levelTitle").textContent=t().levels[level][0];$("task").textContent="❗ "+t().levels[level][1];progress("startProgress");
 }
 function renderProducts(){
- const x=t(),box=$("products"),sum=total();box.replaceChildren();
- products.forEach((p,i)=>{
-  const label=document.createElement("label");label.className="product";
-  const input=document.createElement("input");input.type="checkbox";input.checked=selected.has(i);input.disabled=!input.checked&&sum.kcal+p.kcal>MAX;
-  input.addEventListener("change",()=>{if(input.checked)selected.add(i);else selected.delete(i);renderProducts();renderSummary()});
-  const icon=document.createElement("span");icon.className="emoji";icon.textContent=p.icon;
-  const info=document.createElement("span");info.className="product-info";
-  const name=document.createElement("span");name.className="product-name";name.textContent=x.products[i];
-  const detail=document.createElement("span");detail.className="details";detail.textContent=p.kcal+" "+x.calories+" · "+money(p.cents)+" · "+x.shelf+": "+p.days+" "+x.days;
-  const stars=document.createElement("span");stars.className="stars";stars.textContent=x.health+" "+"★".repeat(p.stars)+"☆".repeat(5-p.stars);
-  info.append(name,detail,stars);label.append(input,icon,info);box.appendChild(label);
- });
+ let x=t(),box=$("products"),sum=total();box.replaceChildren();
+ foods.forEach((p,i)=>{let label=document.createElement("label");label.className="product";
+ let input=document.createElement("input");input.type="checkbox";input.checked=selected.has(i);input.disabled=!input.checked&&sum.kcal+p.kcal>MAX;
+ input.addEventListener("change",()=>{input.checked?selected.add(i):selected.delete(i);renderProducts();renderSummary()});
+ let icon=document.createElement("span");icon.className="emoji";icon.textContent=p.icon;
+ let info=document.createElement("span");info.className="product-info";
+ let name=document.createElement("span");name.className="product-name";name.textContent=x.products[i];
+ let detail=document.createElement("span");detail.className="details";detail.textContent=p.kcal+" "+x.calories+" · "+money(p.cents)+" · "+x.shelf+": "+p.days+" "+x.days;
+ let stars=document.createElement("span");stars.className="stars";stars.textContent=x.health+" "+"★".repeat(p.stars)+"☆".repeat(5-p.stars);
+ info.append(name,detail,stars);label.append(input,icon,info);box.appendChild(label)});
 }
 function renderSummary(){
- const x=t(),r=total();$("calories").textContent=r.kcal+" "+x.calories;$("price").textContent=money(r.cents);$("stars").textContent=r.stars+" ★";$("shelfLife").textContent=r.days+" "+x.days;
+ let x=t(),r=total();$("calories").textContent=r.kcal+" "+x.calories;$("price").textContent=money(r.cents);$("stars").textContent=r.stars+" ★";$("shelfLife").textContent=r.days+" "+x.days;
  $("calorieFill").style.width=Math.min(100,r.kcal/MAX*100)+"%";$("calorieFill").style.backgroundColor=r.kcal>=MIN?"#79bd83":"#f2bd57";$("calorieMeter").setAttribute("aria-valuenow",r.kcal);
- const goal=$("goal");
- if(r.kcal>=MIN&&r.kcal<=MAX){goal.textContent=x.goal;goal.classList.add("reached")}
- else if(r.kcal<MIN){goal.textContent=x.short+(MIN-r.kcal)+x.until;goal.classList.remove("reached")}
- else{goal.textContent=x.tooMany;goal.classList.remove("reached")}
+ let g=$("goal");if(r.kcal>=MIN&&r.kcal<=MAX){g.textContent=x.goal;g.classList.add("reached")}else if(r.kcal<MIN){g.textContent=x.short+(MIN-r.kcal)+x.until;g.classList.remove("reached")}else{g.textContent=x.tooMany;g.classList.remove("reached")}
 }
-function renderGame(){
- $("gameHeading").textContent=t().levels[level][0];$("hintPopup").hidden=true;$("hintFloat").hidden=false;$("hintFloat").setAttribute("aria-expanded","false");
- $("nextButton").textContent=level===4?t().bonus:t().next;progress("progress");renderProducts();renderSummary();
-}
+function renderGame(){$("gameHeading").textContent=t().levels[level][0];$("hintPopup").hidden=true;$("hintFloat").hidden=false;$("hintFloat").setAttribute("aria-expanded","false");$("nextButton").textContent=level===4?t().bonus:t().next;progress("progress");renderProducts();renderSummary()}
 function bestFor(n){
- if(Object.prototype.hasOwnProperty.call(solutionCache,n))return solutionCache[n];
- const valid=[];
- for(let mask=1;mask<(1<<products.length);mask++){
-  const ids=[];for(let i=0;i<products.length;i++)if(mask&(1<<i))ids.push(i);
-  if(n===4&&ids.includes(2))continue;
-  const r=total(ids);if(r.kcal>=MIN&&r.kcal<=MAX)valid.push(r);
- }
+ if(n in solutionCache)return solutionCache[n];let valid=[];
+ for(let mask=1;mask<(1<<foods.length);mask++){let ids=[];for(let i=0;i<foods.length;i++)if(mask&(1<<i))ids.push(i);if(n===4&&ids.includes(2))continue;let r=total(ids);if(r.kcal>=MIN&&r.kcal<=MAX)valid.push(r)}
  if(!valid.length)return solutionCache[n]=null;
- if(n===0||n===2){
-  const close=valid.filter(x=>x.kcal>=525&&x.kcal<=575),choices=close.length?close:valid;
-  return solutionCache[n]=choices.reduce((a,b)=>b.stars*1000-Math.abs(b.kcal-550)>a.stars*1000-Math.abs(a.kcal-550)?b:a);
- }
- const score=x=>n===1?-x.cents:n===3?x.days:(x.stars/x.count/5+Math.min(x.days,30)/30+(1-x.cents/500))/3;
- return solutionCache[n]=valid.reduce((a,b)=>score(b)>score(a)?b:a);
+ if(n===0||n===2){let close=valid.filter(x=>x.kcal>=525&&x.kcal<=575),a=(close.length?close:valid);return solutionCache[n]=a.reduce((u,v)=>v.stars*1000-Math.abs(v.kcal-550)>u.stars*1000-Math.abs(u.kcal-550)?v:u)}
+ let score=x=>n===1?-x.cents:n===3?x.days:(x.stars/x.count/5+Math.min(x.days,30)/30+(1-x.cents/500))/3;
+ return solutionCache[n]=valid.reduce((u,v)=>score(v)>score(u)?v:u)
 }
-function similarity(ids,solution){
- if(!solution)return 0;const chosen=new Set(Array.isArray(ids)?ids:[]),target=new Set(solution.ids),union=new Set([...chosen,...target]);let common=0;
- chosen.forEach(id=>{if(target.has(id))common++});return union.size?common/union.size:1;
+function makeHeaders(){let x=t(),trEl=document.createElement("tr");[x.levelCol,x.productCol,x.calorieCol,x.priceCol,x.starsCol,x.shelfCol].forEach(v=>{let th=document.createElement("th");th.textContent=v;trEl.appendChild(th)});return trEl}
+function addResultRow(body,label,ids,name=""){
+ let x=t(),valid=Array.isArray(ids)?ids.filter(i=>Number.isInteger(i)&&foods[i]):[],r=total(valid),row=document.createElement("tr");
+ [label+(name?" — "+name:""),valid.map(i=>x.products[i]).join(", ")||x.noProducts,r.kcal+" "+x.calories,money(r.cents),r.stars+" ★",r.days+" "+x.days].forEach((v,i)=>{let td=document.createElement("td");td.textContent=v;if(i===1)td.className="products-cell";row.appendChild(td)});body.appendChild(row)
 }
-function cell(text,className=""){const td=document.createElement("td");td.textContent=text;if(className)td.className=className;return td}
-function makeHeaders(){
- const x=t(),tr=document.createElement("tr");
- [x.levelCol,x.productCol,x.calorieCol,x.priceCol,x.starsCol,x.shelfCol].forEach(v=>{const th=document.createElement("th");th.textContent=v;tr.appendChild(th)});return tr;
+function table(){
+ let tbl=document.createElement("table");tbl.className="data-table";
+ let cg=document.createElement("colgroup");for(let i=0;i<6;i++)cg.appendChild(document.createElement("col"));
+ let head=document.createElement("thead");head.appendChild(makeHeaders());tbl.append(cg,head);return tbl
 }
-function appendResultRow(body,label,ids,name=""){
- const x=t(),valid=Array.isArray(ids)?ids.filter(i=>Number.isInteger(i)&&products[i]):[],r=total(valid),tr=document.createElement("tr");
- tr.append(cell(label+(name?" — "+name:""),"products-cell"),cell(valid.map(i=>x.products[i]).join(", ")||x.noProducts,"products-cell"),cell(r.kcal+" "+x.calories),cell(money(r.cents)),cell(r.stars+" ★"),cell(r.days+" "+x.days));body.appendChild(tr);
-}
-function createLevelMenu(entry){
- const x=t(),details=document.createElement("details");details.className="level-menu";
- const summary=document.createElement("summary");summary.textContent=x.levels[entry.level][0];
- const content=document.createElement("div");content.className="level-menu-content";
- const table=document.createElement("table");table.className="data-table";
- const head=document.createElement("thead");head.appendChild(makeHeaders());table.appendChild(head);
- const body=document.createElement("tbody"),solution=bestFor(entry.level);
- if(solution)appendResultRow(body,x.solution,solution.ids);
- appendResultRow(body,x.you,entry.result.ids);table.appendChild(body);
- const wrap=document.createElement("div");wrap.className="table-wrap";wrap.appendChild(table);
- const topTitle=document.createElement("h3");topTitle.textContent=entry.level===0?x.allPlayers:x.top;
- const topTable=document.createElement("table");topTable.className="data-table";
- const topHead=document.createElement("thead");topHead.appendChild(makeHeaders());topTable.appendChild(topHead);
- const topBody=document.createElement("tbody");topBody.id="top-"+entry.level;topTable.appendChild(topBody);
- const topWrap=document.createElement("div");topWrap.className="table-wrap";topWrap.appendChild(topTable);
- content.append(wrap,topTitle,topWrap);details.append(summary,content);return details;
+function createMenu(entry){
+ let x=t(),details=document.createElement("details");details.className="level-menu";
+ let summary=document.createElement("summary");summary.textContent=x.levels[entry.level][0];
+ let content=document.createElement("div");content.className="level-menu-content";
+ let ownTable=table(),ownBody=document.createElement("tbody"),solution=bestFor(entry.level);
+ if(solution)addResultRow(ownBody,x.solution,solution.ids);addResultRow(ownBody,x.you,entry.result.ids);ownTable.appendChild(ownBody);
+ let wrap=document.createElement("div");wrap.className="table-wrap";wrap.appendChild(ownTable);
+ let title=document.createElement("h3");title.textContent=entry.level===0?x.allPlayers:x.top;
+ let topTable=table(),topBody=document.createElement("tbody");topBody.id="top-"+entry.level;topTable.appendChild(topBody);
+ let topWrap=document.createElement("div");topWrap.className="table-wrap";topWrap.appendChild(topTable);
+ content.append(wrap,title,topWrap);details.append(summary,content);return details
 }
 function renderOwnSummary(){
- const x=t(),head=$("summaryHead");head.replaceChildren();head.appendChild(makeHeaders());
- const body=$("summaryBody");body.replaceChildren();
- completed.forEach(entry=>{
-  const r=entry.result,tr=document.createElement("tr");
-  tr.append(cell(x.levels[entry.level][0]),cell(r.ids.map(i=>x.products[i]).join(", ")||x.noProducts,"products-cell"),cell(r.kcal+" "+x.calories),cell(money(r.cents)),cell(r.stars+" ★"),cell(r.days+" "+x.days));body.appendChild(tr);
- });
+ let h=$("summaryHead");h.replaceChildren();let headers=makeHeaders();while(headers.firstChild)h.appendChild(headers.firstChild);
+ let body=$("summaryBody");body.replaceChildren();
+ completed.forEach(e=>{let r=e.result,row=document.createElement("tr");[t().levels[e.level][0],r.ids.map(i=>t().products[i]).join(", ")||t().noProducts,r.kcal+" "+t().calories,money(r.cents),r.stars+" ★",r.days+" "+t().days].forEach((v,i)=>{let td=document.createElement("td");td.textContent=v;if(i===1)td.className="products-cell";row.appendChild(td)});body.appendChild(row)})
 }
-function renderFinalMenus(){const box=$("levelResults");box.replaceChildren();completed.forEach(e=>box.appendChild(createLevelMenu(e)))}
+function renderFinalMenus(){let box=$("levelResults");box.replaceChildren();completed.forEach(e=>box.appendChild(createMenu(e)))}
+function similarity(ids,solution){if(!solution)return 0;let a=new Set(Array.isArray(ids)?ids:[]),b=new Set(solution.ids),u=new Set([...a,...b]),n=0;a.forEach(i=>{if(b.has(i))n++});return u.size?n/u.size:1}
 async function loadLeaderboard(){
  try{
-  const response=await fetch(SUPABASE_URL+"/rest/v1/leaderboard?select=player,selections,created_at&order=created_at.asc&limit=10000",{headers:{"apikey":SUPABASE_KEY,"Authorization":"Bearer "+SUPABASE_KEY}});
-  if(!response.ok)throw new Error("load");
-  const rows=await response.json(),x=t();
-  completed.forEach(entry=>{
-   const body=$("top-"+entry.level);if(!body)return;body.replaceChildren();const solution=bestFor(entry.level);
-   const matches=rows.map(row=>{
-    if(!Array.isArray(row.selections))return null;
-    const selection=row.selections.find(s=>s.level===entry.level);
-    return selection?{row,selection}:null;
-   }).filter(Boolean);
-   matches.sort((a,b)=>{
-    const diff=similarity(b.selection.ids,solution)-similarity(a.selection.ids,solution);
-    return Math.abs(diff)>1e-9?diff:new Date(a.row.created_at)-new Date(b.row.created_at);
-   });
-   const shown=entry.level===0?matches:matches.slice(0,5);
-   if(!shown.length){const tr=document.createElement("tr"),td=cell(x.empty);td.colSpan=6;tr.appendChild(td);body.appendChild(tr);return}
-   shown.forEach(({row,selection},i)=>appendResultRow(body,entry.level===0?(row.player||x.allPlayers):"#"+(i+1),selection.ids,entry.level===0?"":(row.player||"")));
-  });
+  let res=await fetch(SUPABASE_URL+"/rest/v1/leaderboard?select=player,selections,created_at&order=created_at.asc&limit=10000",{headers:{apikey:SUPABASE_KEY,Authorization:"Bearer "+SUPABASE_KEY}});
+  if(!res.ok)throw Error("load");let rows=await res.json(),x=t();
+  completed.forEach(e=>{let body=$("top-"+e.level);if(!body)return;body.replaceChildren();let sol=bestFor(e.level);
+   let matches=rows.map(row=>({row,selection:Array.isArray(row.selections)?row.selections.find(s=>s.level===e.level):null})).filter(v=>v.selection);
+   matches.sort((a,b)=>{let d=similarity(b.selection.ids,sol)-similarity(a.selection.ids,sol);return Math.abs(d)>1e-9?d:new Date(a.row.created_at)-new Date(b.row.created_at)});
+   let shown=e.level===0?matches:matches.slice(0,5);
+   if(!shown.length){let row=document.createElement("tr"),td=document.createElement("td");td.colSpan=6;td.textContent=x.empty;row.appendChild(td);body.appendChild(row);return}
+   shown.forEach((v,i)=>addResultRow(body,e.level===0?(v.row.player||x.allPlayers):"#"+(i+1),v.selection.ids,e.level===0?"":(v.row.player||"")))
+  })
  }catch(e){$("scoreStatus").textContent=t().loadError}
 }
-function renderFinal(){ $("finalScreen").hidden=false;renderOwnSummary();renderFinalMenus();loadLeaderboard() }
+function renderFinal(){$("finalScreen").hidden=false;renderOwnSummary();renderFinalMenus();loadLeaderboard()}
 async function submitResults(){
- const name=$("playerName").value.trim();
- if(!name){$("scoreStatus").textContent=t().enterName;$("playerName").focus();return}
- if(submitted)return;
- const button=$("submitScore");button.disabled=true;$("scoreStatus").textContent=t().saving;
- const selections=completed.map(e=>({level:e.level,ids:e.result.ids}));
+ let name=$("playerName").value.trim();if(!name){$("scoreStatus").textContent=t().enterName;$("playerName").focus();return}if(submitted)return;
+ let button=$("submitScore");button.disabled=true;$("scoreStatus").textContent=t().saving;
  try{
-  const response=await fetch(SUPABASE_URL+"/rest/v1/leaderboard",{
-   method:"POST",
-   headers:{"apikey":SUPABASE_KEY,"Authorization":"Bearer "+SUPABASE_KEY,"Content-Type":"application/json","Prefer":"return=minimal"},
-   body:JSON.stringify({player:name.slice(0,24),selections})
-  });
-  if(!response.ok)throw new Error("save");
-  submitted=true;$("nameGate").hidden=true;renderFinal();
+  let res=await fetch(SUPABASE_URL+"/rest/v1/leaderboard",{method:"POST",headers:{apikey:SUPABASE_KEY,Authorization:"Bearer "+SUPABASE_KEY,"Content-Type":"application/json",Prefer:"return=minimal"},body:JSON.stringify({player:name.slice(0,24),selections:completed.map(e=>({level:e.level,ids:e.result.ids}))})});
+  if(!res.ok)throw Error("save");submitted=true;$("nameGate").hidden=true;renderFinal()
  }catch(e){button.disabled=false;$("scoreStatus").textContent=t().saveError}
 }
 function finishLevel(){
- const result=total();if(result.kcal<MIN||result.kcal>MAX)return;
- completed.push({level,result});
- if(level===4){
-  $("game").hidden=true;$("actionBar").hidden=true;$("hintFloat").hidden=true;$("hintPopup").hidden=true;$("startScreen").hidden=true;$("nameGate").hidden=false;$("playerName").focus();return;
- }
- level++;selected.clear();renderStart();
+ let result=total();if(result.kcal<MIN||result.kcal>MAX)return;completed.push({level,result});
+ if(level===4){$("game").hidden=true;$("actionBar").hidden=true;$("hintFloat").hidden=true;$("hintPopup").hidden=true;$("startScreen").hidden=true;$("nameGate").hidden=false;$("playerName").focus();return}
+ level++;selected.clear();renderStart()
 }
-document.querySelectorAll(".language-buttons button").forEach(button=>button.addEventListener("click",()=>{lang=button.dataset.language;applyLanguage()}));
+document.querySelectorAll(".language-buttons button").forEach(b=>b.addEventListener("click",()=>{lang=b.dataset.language;applyLanguage()}));
 $("startButton").addEventListener("click",()=>{$("startScreen").hidden=true;$("game").hidden=false;$("actionBar").hidden=false;renderGame()});
-$("hintFloat").addEventListener("click",()=>{
- const popup=$("hintPopup");
- if(!popup.hidden){popup.hidden=true;$("hintFloat").setAttribute("aria-expanded","false");return}
- popup.textContent=t().tip+t().levels[level][2]+".";popup.hidden=false;$("hintFloat").setAttribute("aria-expanded","true");
-});
+$("hintFloat").addEventListener("click",()=>{let p=$("hintPopup");if(!p.hidden){p.hidden=true;$("hintFloat").setAttribute("aria-expanded","false");return}p.textContent=t().tip+t().levels[level][2]+".";p.hidden=false;$("hintFloat").setAttribute("aria-expanded","true")});
 $("clearButton").addEventListener("click",()=>{selected.clear();renderProducts();renderSummary()});
 $("nextButton").addEventListener("click",finishLevel);
 $("submitScore").addEventListener("click",submitResults);
-$("playerName").addEventListener("keydown",event=>{if(event.key==="Enter")submitResults()});
+$("playerName").addEventListener("keydown",e=>{if(e.key==="Enter")submitResults()});
 applyLanguage();renderStart();
 </script>
 </body>
