@@ -6,79 +6,64 @@
 <title>Frühstücksbox – Levels</title>
 <style>
 *{box-sizing:border-box}
-body{margin:0;padding:16px 16px 82px;background:#f3f6fb;color:#203349;font-family:system-ui,sans-serif}
+body{margin:0;padding:0 14px 82px;background:#f3f6fb;color:#203349;font-family:system-ui,sans-serif}
 main{max-width:960px;margin:auto}
-h1{font-size:1.5rem;margin:0 0 8px}
+.site-logo{position:sticky;top:0;z-index:30;height:66px;padding:5px 0;background:#f3f6fb}
+.site-logo svg{display:block;width:106px;height:56px}
+h1{font-size:1.4rem;margin:8px 0}
 h2{font-size:1.1rem}
 h3{font-size:1rem;margin:8px 0}
 p{line-height:1.5}
 .panel{background:#fff;border:1px solid #dce4ed;border-radius:15px;padding:16px;margin:13px 0}
-.language-box{display:flex;align-items:center;flex-wrap:wrap;gap:8px;margin:14px 0}
 button{font:inherit;cursor:pointer;border:1px solid #aebfd0;background:#fff;color:#203349;border-radius:10px;padding:9px 13px}
 button:hover{background:#edf5ff}
 button:focus-visible,input:focus-visible{outline:3px solid #2266cc;outline-offset:3px}
 button:disabled{opacity:.6;cursor:wait}
-.language-button{border-radius:999px}
-.language-button.active,.primary{background:#2469b2;color:#fff;border-color:#2469b2}
-.progress{display:flex;flex-wrap:wrap;gap:7px;margin:10px 0}
+.primary{background:#2469b2;color:#fff;border-color:#2469b2}
+.progress{display:flex;flex-wrap:wrap;gap:7px;margin:8px 0}
 .progress span{border:1px solid #d5e0ea;border-radius:999px;padding:5px 10px;font-size:.83rem}
 .progress .current{background:#e9f2ff;border-color:#266ac0;font-weight:700}
 .progress .done{background:#e6f5ec;border-color:#9bc9aa;color:#176747}
-.task{padding:15px;background:#ffe4e4;border:2px solid #c83232;border-radius:12px;color:#781c1c;font-weight:700;font-size:1.08rem;line-height:1.55}
+.task{padding:15px;background:#ffe4e4;border:2px solid #c83232;border-radius:12px;color:#781c1c;font-weight:700;font-size:1.05rem;line-height:1.5}
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:9px}
 .product{display:flex;gap:9px;align-items:flex-start;border:1px solid #d7e1eb;border-radius:12px;padding:11px;cursor:pointer}
 .product:has(input:checked){background:#edf6ff;border-color:#4f8bc6}
 .product:has(input:disabled){opacity:.55;cursor:not-allowed}
 .product input{margin-top:5px;width:19px;height:19px;accent-color:#2266bb;flex-shrink:0}
 .product-info{min-width:0}
-.product-name{font-size:.85rem;line-height:1.35;margin:2px 0 5px}
-.product-name span{display:block}
-.primary-name{font-weight:700}
-.german-name{font-size:.78rem;color:#5a6d80}
+.product-name{font-size:.85rem;line-height:1.35;margin:2px 0 5px;font-weight:700}
 .details{font-size:.82rem;color:#52677c;line-height:1.5}
 .stars{display:block;color:#895400;font-size:.8rem;margin-top:4px}
-.emoji{font-size:1.25rem;margin-inline-end:4px}
+.emoji{font-size:1.25rem;margin-right:4px}
 .stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
 .stat{background:#f2f6fa;border-radius:9px;padding:8px 10px;min-width:0}
 .stat>span{display:block;font-size:.76rem;color:#55697d}
 .stat strong{display:block;margin-top:3px}
 .calorie-meter{position:relative;overflow:hidden;min-height:32px;margin-top:5px;border-radius:8px;background:#dfe6ed}
-.calorie-fill{position:absolute;inset:0 auto 0 0;width:0%;border-radius:inherit;transition:width 350ms ease}
+.calorie-fill{position:absolute;inset:0 auto 0 0;width:0%;border-radius:inherit;transition:width 250ms}
 .calorie-meter strong{position:relative;z-index:1;display:block;padding:6px 8px}
 .goal{background:#fff2c9;border-radius:9px;padding:8px 11px;margin:9px 0;font-size:.87rem;font-weight:700}
 .goal.reached{background:#e6f5ec;color:#176747}
 .tip{margin-top:10px;padding:12px;border:1px solid #cbdced;border-radius:10px;background:#f7fbff}
-
-/* Das Level, der Fortschritt und die Werte bleiben beim Scrollen sichtbar. */
-#game>.panel:first-child{
- position:sticky;
- top:0;
- z-index:10;
- box-shadow:0 5px 14px #2033491a;
-}
-
+#game>.panel:first-child{position:sticky;top:66px;z-index:10;box-shadow:0 5px 14px #2033491a}
 .table-wrap{overflow-x:auto;border-radius:10px}
-.data-table{width:100%;min-width:620px;border-collapse:collapse;font-size:.88rem;background:#fff}
+.data-table{width:100%;min-width:650px;border-collapse:collapse;font-size:.88rem;background:#fff}
 .data-table th,.data-table td{padding:9px 10px;border:1px solid #dce4ed;text-align:left;vertical-align:top}
 .data-table thead th{background:#edf3f8;font-weight:700;white-space:nowrap}
 .data-table tbody tr:nth-child(even){background:#f8fafc}
-.data-table .products-cell{min-width:190px}
-.row-label{display:block;font-weight:700}
-.row-products{display:block;margin-top:3px;color:#52677c;font-size:.76rem;line-height:1.4;overflow-wrap:anywhere}
-.group-row td{background:#e9f2ff!important;color:#284b6b;font-weight:700}
-.empty-row{color:#64778a;font-style:italic}
+.products-cell{min-width:190px;overflow-wrap:anywhere}
+.row-products{color:#52677c;font-size:.8rem;line-height:1.4}
 .level-result{border-top:1px solid #dce4ed;padding:16px 0}
 .level-task-title{margin:3px 0 11px;color:#415a72;font-weight:700}
 .leaderboard-panel{margin-top:18px}
 .leaderboard-form{display:flex;gap:8px;margin-top:6px}
 .leaderboard-form input{font:inherit;min-width:0;flex:1;border:1px solid #aebfd0;border-radius:10px;padding:9px 10px}
+.group-title{margin:15px 0 7px;font-weight:700;color:#284b6b}
 #actionBar{position:fixed;z-index:20;bottom:0;left:0;right:0;background:#fffffffa;border-top:1px solid #d5e0ea;padding:9px 14px}
 .action-inner{max-width:960px;margin:auto;display:flex;justify-content:flex-end;gap:9px}
 [hidden]{display:none!important}
-body[dir="rtl"]{text-align:right}
-body[dir="rtl"] .data-table th,body[dir="rtl"] .data-table td{text-align:right}
 @media(max-width:550px){
- body{padding:10px 10px 88px}
+ body{padding-left:10px;padding-right:10px;padding-bottom:88px}
  .panel{padding:13px}
  .stats{grid-template-columns:repeat(2,minmax(0,1fr))}
  .action-inner{display:grid;grid-template-columns:1fr 1.5fr}
@@ -91,21 +76,21 @@ body[dir="rtl"] .data-table th,body[dir="rtl"] .data-table td{text-align:right}
 </head>
 <body>
 <main>
-  <h1 id="title"></h1>
+  <header class="site-logo" aria-label="6E Logo">
+    <svg viewBox="0 0 300 180" role="img" aria-label="6E">
+      <rect x="4" y="4" width="292" height="172" fill="#fff000" stroke="#111" stroke-width="8"/>
+      <text x="18" y="151" font-family="Arial Black,Arial,sans-serif" font-size="158" font-weight="900" fill="#1765ad">6</text>
+      <path d="M165 28h112v34h-77v15h77v34h-77v15h77v34H165z" fill="#1765ad"/>
+    </svg>
+  </header>
 
-  <nav class="language-box" aria-label="Sprachauswahl">
-    <strong id="languageLabel"></strong>
-    <button class="language-button" data-lang="de" type="button">Deutsch</button>
-    <button class="language-button" data-lang="ru" type="button">Русский</button>
-    <button class="language-button" data-lang="ar" type="button">العربية</button>
-    <button class="language-button" data-lang="en" type="button">English</button>
-  </nav>
+  <h1>🥪 Frühstücksbox – Levels und Bonuslevel</h1>
 
   <section class="panel" id="startScreen">
     <div class="progress" id="startProgress"></div>
     <h2 id="levelTitle"></h2>
     <p class="task" id="task"></p>
-    <button class="primary" id="startButton" type="button"></button>
+    <button class="primary" id="startButton" type="button">Start</button>
   </section>
 
   <div id="game" hidden>
@@ -115,64 +100,69 @@ body[dir="rtl"] .data-table th,body[dir="rtl"] .data-table td{text-align:right}
       <div class="goal" id="goal"></div>
       <div class="stats">
         <div class="stat">
-          <span id="calorieLabel"></span>
+          <span>Kalorien</span>
           <div class="calorie-meter" id="calorieMeter" role="progressbar" aria-valuemin="0" aria-valuemax="650" aria-valuenow="0">
             <div class="calorie-fill" id="calorieFill"></div>
             <strong id="calories">0 kcal</strong>
           </div>
         </div>
-        <div class="stat"><span id="priceLabel"></span><strong id="price"></strong></div>
-        <div class="stat"><span id="starsLabel"></span><strong id="stars"></strong></div>
-        <div class="stat"><span id="countLabel"></span><strong id="count"></strong></div>
+        <div class="stat"><span>Preis</span><strong id="price"></strong></div>
+        <div class="stat"><span>Sterne</span><strong id="stars"></strong></div>
+        <div class="stat"><span>Anzahl Produkte</span><strong id="count"></strong></div>
       </div>
     </section>
 
     <section class="panel">
-      <h2 id="productsHeading"></h2>
+      <h2>Produkte auswählen</h2>
       <div class="grid" id="products"></div>
     </section>
 
     <section class="panel">
-      <h2 id="tipsHeading"></h2>
-      <button id="tipButton" type="button"></button>
+      <h2>Tipp</h2>
+      <button id="tipButton" type="button">Tipp anzeigen</button>
       <div class="tip" id="tip" hidden></div>
     </section>
   </div>
 
   <section class="panel" id="nameGate" hidden>
-    <h2 id="nameGateTitle"></h2>
-    <p id="nameGateIntro"></p>
-    <label for="playerName" id="nameLabel"></label>
+    <h2>Fast geschafft! Wie heißt du?</h2>
+    <p>Gib zuerst deinen Namen ein. Danach werden deine Ergebnisse gespeichert und die Bestenliste angezeigt.</p>
+    <label for="playerName">Dein Name (max. 24 Zeichen):</label>
     <div class="leaderboard-form">
-      <input id="playerName" type="text" maxlength="24" autocomplete="nickname">
-      <button class="primary" id="submitScore" type="button"></button>
+      <input id="playerName" type="text" maxlength="24" autocomplete="nickname" placeholder="Name eingeben">
+      <button class="primary" id="submitScore" type="button">Name speichern und weiter</button>
     </div>
     <p id="scoreStatus" role="status" aria-live="polite"></p>
   </section>
 
   <section class="panel" id="finalScreen" hidden>
-    <h2 id="finalHeading"></h2>
-    <p id="finalIntro"></p>
+    <h2>Deine Ergebnisse.</h2>
+    <p>Übertrage sie in die Tabelle von Aufgabe 2 auf deinem Arbeitsblatt.</p>
 
-    <section class="panel leaderboard-panel">
-      <h3 id="leaderboardTitle"></h3>
-      <p id="scoreHint"></p>
-      <h3 id="ownResultsTitle"></h3>
+    <section class="panel">
+      <h3>Deine Ergebnisse in allen Levels</h3>
       <div class="table-wrap">
         <table class="data-table">
-          <thead id="summaryHead"></thead>
+          <thead>
+            <tr>
+              <th>Level / Aufgabe</th><th>Produkte</th><th>Kalorien</th>
+              <th>Preis</th><th>Sterne</th><th>Haltbarkeit</th>
+            </tr>
+          </thead>
           <tbody id="summaryBody"></tbody>
         </table>
       </div>
     </section>
 
+    <h2>Bestenliste</h2>
+    <p>Bei gleicher Ähnlichkeit entscheidet die schnellere Zeit in diesem Level.</p>
     <div id="levelResults"></div>
   </section>
 </main>
 
 <div id="actionBar" hidden>
   <div class="action-inner">
-    <button id="clearButton" type="button"></button>
+    <button id="clearButton" type="button">Auswahl leeren</button>
     <button class="primary" id="nextButton" type="button"></button>
   </div>
 </div>
@@ -185,158 +175,49 @@ const SUPABASE_KEY="sb_publishable_nbtW5O1UNe6ADiNCXXP5tg_BiZPO4aw";
 const MIN=500,MAX=650;
 const $=id=>document.getElementById(id);
 
-const words={
-de:{
- language:"Sprache:",title:"🥪 Frühstücksbox – Levels und Bonuslevel",start:"Start",
- products:"Produkte auswählen",tips:"Tipp",showTip:"Tipp anzeigen",hideTip:"Tipp ausblenden",
- clear:"Auswahl leeren",next:"Level abschließen und weiter",finish:"Bonus abschließen",
- calories:"Kalorien",price:"Preis",stars:"Sterne",count:"Anzahl Produkte",
- goalOk:"✓ Kalorienziel erreicht – zwischen 500 und 650 kcal.",
- goalLow:"Noch {n} kcal bis zum Mindestziel von 500 kcal.",
- goalHigh:"Zu viele Kalorien: höchstens 650 kcal erlaubt.",
- shelf:"Haltbarkeit",days:"Tage",final:"Alle Levels abgeschlossen!",
- finalIntro:"Hier siehst du deine Ergebnisse und das Leaderboard.",
- nameGateTitle:"Fast geschafft! Wie heißt du?",nameGateIntro:"Gib zuerst deinen Namen ein. Danach werden deine Ergebnisse gespeichert und das Leaderboard angezeigt.",
- restart:"",your:"Deine Lösung",solution:"Lösung",task:"Aufgabe",
- factor:"Achte auf diesen Faktor:",boardTitle:"🏆 Leaderboard",
- scoreHint:"Bei gleicher Ähnlichkeit entscheidet die schnellere Zeit in diesem Level.",
- ownResultsTitle:"Deine Ergebnisse in allen Levels",
- nameLabel:"Dein Name (max. 24 Zeichen):",namePlaceholder:"Name eingeben",
- submit:"Name speichern und zum Leaderboard",loading:"Wird geladen …",saving:"Ergebnisse werden gespeichert …",
- saved:"Deine Ergebnisse wurden gespeichert!",boardError:"Fehler beim Laden oder Speichern. Prüfe Supabase.",
- empty:"Noch keine Ergebnisse.",noProducts:"Keine Produkte ausgewählt.",needName:"Bitte gib deinen Namen ein.",
- tableName:"Name",tableLevel:"Level / Aufgabe",tableProducts:"Produkte",
- tableCalories:"Kalorien",tablePrice:"Preis",tableStars:"Sterne",tableShelf:"Haltbarkeit",
- top:"Top 5",allPlayers:"Alle Spieler",
- levels:[
-  {title:"Level 1: Das leckerste Frühstück",task:"Stelle dein persönlich leckerstes Frühstück mit 500 bis 650 kcal zusammen.",factor:"deinen persönlichen Geschmack"},
-  {title:"Level 2: So günstig wie möglich",task:"Erreiche 500 bis 650 kcal und gib dabei so wenig Geld wie möglich aus.",factor:"den Gesamtpreis"},
-  {title:"Level 3: Möglichst viele Gesundheitssterne",task:"Erreiche 500 bis 650 kcal und sammle möglichst viele Gesundheitssterne.",factor:"die Gesundheitssterne"},
-  {title:"Level 4: So lange haltbar wie möglich",task:"Erreiche 500 bis 650 kcal. Wähle Produkte, die möglichst lange haltbar sind.",factor:"die Haltbarkeit"},
-  {title:"Bonuslevel: Gesund, lange haltbar und günstig",task:"Stelle ein Frühstück mit 500 bis 650 kcal zusammen, das gesund, lange haltbar und günstig ist.",factor:"den Ausgleich zwischen Preis, Gesundheitssternen und Haltbarkeit"}
-]},
-en:{
- language:"Language:",title:"🥪 Breakfast Box — Levels and Bonus Level",start:"Start",
- products:"Choose products",tips:"Hint",showTip:"Show hint",hideTip:"Hide hint",
- clear:"Clear selection",next:"Complete level and continue",finish:"Complete bonus level",
- calories:"Calories",price:"Price",stars:"Stars",count:"Number of products",
- goalOk:"✓ Calorie goal reached — between 500 and 650 kcal.",
- goalLow:"{n} kcal to go to reach the 500 kcal minimum.",
- goalHigh:"Too many calories: the maximum is 650 kcal.",
- shelf:"Shelf life",days:"days",final:"All levels completed!",
- finalIntro:"Here are your results and the leaderboard.",
- nameGateTitle:"Almost there! What is your name?",nameGateIntro:"Enter your name first. Your results will then be saved and the leaderboard will appear.",
- restart:"",your:"Your solution",solution:"Solution",task:"Task",
- factor:"Pay attention to this factor:",boardTitle:"🏆 Leaderboard",
- scoreHint:"When similarity is tied, the faster time for that level ranks first.",
- ownResultsTitle:"Your results for all levels",
- nameLabel:"Your name (max. 24 characters):",namePlaceholder:"Enter your name",
- submit:"Save name and open leaderboard",loading:"Loading …",saving:"Saving results …",
- saved:"Your results have been saved!",boardError:"Error loading or saving. Check Supabase.",
- empty:"No results yet.",noProducts:"No products selected.",needName:"Please enter your name.",
- tableName:"Name",tableLevel:"Level / task",tableProducts:"Products",
- tableCalories:"Calories",tablePrice:"Price",tableStars:"Stars",tableShelf:"Shelf life",
- top:"Top 5",allPlayers:"All players",
- levels:[
-  {title:"Level 1: The tastiest breakfast",task:"Put together your own tastiest breakfast with 500–650 kcal.",factor:"your personal taste"},
-  {title:"Level 2: As inexpensive as possible",task:"Reach 500–650 kcal while spending as little as possible.",factor:"the total price"},
-  {title:"Level 3: As many health stars as possible",task:"Reach 500–650 kcal and collect as many health stars as possible.",factor:"the health stars"},
-  {title:"Level 4: As long-lasting as possible",task:"Reach 500–650 kcal. Choose products with the longest shelf life possible.",factor:"the shelf life"},
-  {title:"Bonus level: Healthy, long-lasting and inexpensive",task:"Put together a 500–650 kcal breakfast that is healthy, long-lasting and inexpensive.",factor:"the balance between price, health stars and shelf life"}
-]},
-ru:{
- language:"Язык:",title:"🥪 Ланчбокс — уровни и бонусный уровень",start:"Начать",
- products:"Выбери продукты",tips:"Подсказка",showTip:"Показать подсказку",hideTip:"Скрыть подсказку",
- clear:"Очистить выбор",next:"Завершить уровень и продолжить",finish:"Завершить бонусный уровень",
- calories:"Калории",price:"Цена",stars:"Звёзды",count:"Количество продуктов",
- goalOk:"✓ Цель достигнута: от 500 до 650 ккал.",
- goalLow:"До минимума в 500 ккал осталось {n} ккал.",
- goalHigh:"Слишком много калорий: максимум — 650 ккал.",
- shelf:"Срок хранения",days:"дней",final:"Все уровни пройдены!",
- finalIntro:"Здесь показаны твои результаты и рейтинг.",
- nameGateTitle:"Почти готово! Как тебя зовут?",nameGateIntro:"Сначала введи имя. Затем результаты сохранятся и откроется рейтинг.",
- restart:"",your:"Твоё решение",solution:"Решение",task:"Задание",
- factor:"Обрати внимание на этот фактор:",boardTitle:"🏆 Рейтинг",
- scoreHint:"При одинаковом сходстве выше будет более быстрый результат уровня.",
- ownResultsTitle:"Твои результаты по всем уровням",
- nameLabel:"Твоё имя (до 24 символов):",namePlaceholder:"Введи имя",
- submit:"Сохранить имя и открыть рейтинг",loading:"Загружаем …",saving:"Сохраняем результаты …",
- saved:"Результаты сохранены!",boardError:"Ошибка загрузки или сохранения. Проверь Supabase.",
- empty:"Результатов пока нет.",noProducts:"Продукты не выбраны.",needName:"Пожалуйста, введи имя.",
- tableName:"Имя",tableLevel:"Уровень / задание",tableProducts:"Продукты",
- tableCalories:"Калории",tablePrice:"Цена",tableStars:"Звёзды",tableShelf:"Срок хранения",
- top:"Топ-5",allPlayers:"Все игроки",
- levels:[
-  {title:"Уровень 1: Самый вкусный завтрак",task:"Составь самый вкусный для себя завтрак на 500–650 ккал.",factor:"свои личные вкусовые предпочтения"},
-  {title:"Уровень 2: Как можно дешевле",task:"Набери 500–650 ккал и потрать как можно меньше денег.",factor:"общую стоимость"},
-  {title:"Уровень 3: Как можно больше звёзд здоровья",task:"Набери 500–650 ккал и собери как можно больше звёзд здоровья.",factor:"звёзды здоровья"},
-  {title:"Уровень 4: Как можно дольше хранить",task:"Набери 500–650 ккал. Выбирай продукты с максимально долгим сроком хранения.",factor:"срок хранения"},
-  {title:"Бонусный уровень: Полезно, долго хранится и недорого",task:"Составь завтрак на 500–650 ккал, который будет полезным, долго храниться и стоить недорого.",factor:"баланс цены, звёзд здоровья и срока хранения"}
-]},
-ar:{
- language:"اللغة:",title:"🥪 علبة الإفطار — المستويات والمستوى الإضافي",start:"ابدأ",
- products:"اختر المنتجات",tips:"تلميح",showTip:"اعرض التلميح",hideTip:"أخفِ التلميح",
- clear:"امسح الاختيارات",next:"أنه المستوى وانتقل إلى التالي",finish:"أنه المستوى الإضافي",
- calories:"السعرات الحرارية",price:"السعر",stars:"النجوم",count:"عدد المنتجات",
- goalOk:"✓ حققت الهدف: بين 500 و650 سعرة حرارية.",
- goalLow:"تحتاج إلى {n} سعرة حرارية إضافية للوصول إلى 500.",
- goalHigh:"السعرات كثيرة: الحد الأقصى هو 650.",
- shelf:"مدة الصلاحية",days:"أيام",final:"أكملت جميع المستويات!",
- finalIntro:"إليك نتائجك ولوحة المتصدرين.",
- nameGateTitle:"أوشكت على الانتهاء! ما اسمك؟",nameGateIntro:"أدخل اسمك أولًا. بعد ذلك تُحفظ نتائجك وتظهر لوحة المتصدرين.",
- restart:"",your:"اختيارك",solution:"الحل",task:"المهمة",
- factor:"ركّز على هذا العامل:",boardTitle:"🏆 لوحة المتصدرين",
- scoreHint:"عند تساوي التشابه يظهر الأسرع في المستوى أولًا.",
- ownResultsTitle:"نتائجك في جميع المستويات",
- nameLabel:"اسمك (حتى 24 حرفًا):",namePlaceholder:"أدخل اسمك",
- submit:"احفظ الاسم وافتح لوحة المتصدرين",loading:"جارٍ التحميل …",saving:"جارٍ حفظ النتائج …",
- saved:"تم حفظ نتائجك!",boardError:"حدث خطأ. تحقّق من Supabase.",
- empty:"لا توجد نتائج بعد.",noProducts:"لم يتم اختيار منتجات.",needName:"يرجى إدخال اسمك.",
- tableName:"الاسم",tableLevel:"المستوى / المهمة",tableProducts:"المنتجات",
- tableCalories:"السعرات",tablePrice:"السعر",tableStars:"النجوم",tableShelf:"مدة الصلاحية",
- top:"أفضل 5",allPlayers:"جميع اللاعبين",
- levels:[
-  {title:"المستوى 1: ألذ إفطار",task:"كوّن إفطارك المفضل بحيث يحتوي على 500 إلى 650 سعرة حرارية.",factor:"ذوقك الشخصي"},
-  {title:"المستوى 2: أقل تكلفة ممكنة",task:"احصل على 500 إلى 650 سعرة حرارية وأنفق أقل مبلغ ممكن.",factor:"السعر الإجمالي"},
-  {title:"المستوى 3: أكبر عدد من نجوم الصحة",task:"احصل على 500 إلى 650 سعرة حرارية واجمع أكبر عدد ممكن من نجوم الصحة.",factor:"نجوم الصحة"},
-  {title:"المستوى 4: أطول مدة صلاحية ممكنة",task:"احصل على 500 إلى 650 سعرة حرارية. اختر منتجات تدوم لأطول مدة ممكنة.",factor:"مدة الصلاحية"},
-  {title:"المستوى الإضافي: صحي وطويل الصلاحية ورخيص",task:"كوّن إفطارًا يحتوي على 500 إلى 650 سعرة حرارية، واجعله صحيًا وطويل الصلاحية ورخيصًا.",factor:"التوازن بين السعر ونجوم الصحة ومدة الصلاحية"}
-]}
-};
-
-const products=[
- {icon:"🍫",de:"Schokoriegel",en:"Chocolate bar",ru:"Шоколадный батончик",ar:"لوح شوكولاتة",kcal:110,cents:40,stars:1,days:180},
- {icon:"🍞",de:"Brot mit Schokoaufstrich",en:"Bread with chocolate spread",ru:"Хлеб с шоколадной пастой",ar:"خبز مع دهن الشوكولاتة",kcal:270,cents:45,stars:2,days:2},
- {icon:"🥐",de:"Schokocroissant",en:"Chocolate croissant",ru:"Шоколадный круассан",ar:"كرواسون بالشوكولاتة",kcal:290,cents:70,stars:2,days:21},
- {icon:"🥪",de:"Weißbrot mit Salami",en:"White bread with salami",ru:"Белый хлеб с салями",ar:"خبز أبيض مع السلامي",kcal:300,cents:70,stars:2,days:1},
- {icon:"🧀",de:"Käsesticks",en:"Cheese strings",ru:"Сырные палочки",ar:"أصابع الجبن",kcal:60,cents:30,stars:2,days:28},
- {icon:"🥣",de:"Joghurt",en:"Yogurt",ru:"Йогурт",ar:"زبادي",kcal:90,cents:35,stars:3,days:14},
- {icon:"🍌",de:"Banane",en:"Banana",ru:"Банан",ar:"موز",kcal:100,cents:40,stars:3,days:5},
- {icon:"🍞",de:"Vollkornbrot mit Käse",en:"Whole-grain bread with cheese",ru:"Цельнозерновой хлеб с сыром",ar:"خبز حبوب كاملة مع الجبن",kcal:250,cents:60,stars:3,days:4},
- {icon:"🍎",de:"Apfel",en:"Apple",ru:"Яблоко",ar:"تفاحة",kcal:80,cents:40,stars:4,days:14},
- {icon:"🥕",de:"Gemüse-Sticks",en:"Vegetable sticks",ru:"Овощные палочки",ar:"أصابع الخضار",kcal:40,cents:60,stars:5,days:3},
- {icon:"🍓",de:"Erdbeeren",en:"Strawberries",ru:"Клубника",ar:"فراولة",kcal:32,cents:70,stars:4,days:2},
- {icon:"🥪",de:"Vollkornsandwich mit Hähnchen",en:"Whole-grain chicken sandwich",ru:"Цельнозерновой сэндвич с курицей",ar:"شطيرة خبز الحبوب الكاملة بالدجاج",kcal:320,cents:160,stars:5,days:1}
+const levels=[
+ {title:"Level 1: Das leckerste Frühstück",task:"Stelle dein persönlich leckerstes Frühstück mit 500 bis 650 kcal zusammen.",factor:"deinen persönlichen Geschmack"},
+ {title:"Level 2: So günstig wie möglich",task:"Erreiche 500 bis 650 kcal und gib dabei so wenig Geld wie möglich aus.",factor:"den Gesamtpreis"},
+ {title:"Level 3: Möglichst viele Gesundheitssterne",task:"Erreiche 500 bis 650 kcal und sammle möglichst viele Gesundheitssterne.",factor:"die Gesundheitssterne"},
+ {title:"Level 4: So lange haltbar wie möglich",task:"Erreiche 500 bis 650 kcal. Wähle Produkte, die möglichst lange haltbar sind.",factor:"die Haltbarkeit"},
+ {title:"Bonuslevel: Gesund, lange haltbar und günstig",task:"Stelle ein Frühstück mit 500 bis 650 kcal zusammen, das gesund, lange haltbar und günstig ist.",factor:"den Ausgleich zwischen Preis, Gesundheitssternen und Haltbarkeit"}
 ];
 
-let lang="de",level=0,selected=new Set(),completed=[],submittedOnce=false,levelStartedAt=0;
-const solutionCache={};
-const t=()=>words[lang];
-const money=c=>(c/100).toLocaleString(({de:"de-DE",ru:"ru-RU",ar:"ar-SY",en:"en-GB"})[lang],{style:"currency",currency:"EUR"});
+const products=[
+ {icon:"🍫",name:"Schokoriegel",kcal:110,cents:40,stars:1,days:180},
+ {icon:"🍞",name:"Brot mit Schokoaufstrich",kcal:270,cents:45,stars:2,days:2},
+ {icon:"🥐",name:"Schokocroissant",kcal:290,cents:70,stars:2,days:21},
+ {icon:"🥪",name:"Weißbrot mit Salami",kcal:300,cents:70,stars:2,days:1},
+ {icon:"🧀",name:"Käsesticks",kcal:60,cents:30,stars:2,days:28},
+ {icon:"🥣",name:"Joghurt",kcal:90,cents:35,stars:3,days:14},
+ {icon:"🍌",name:"Banane",kcal:100,cents:40,stars:3,days:5},
+ {icon:"🍞",name:"Vollkornbrot mit Käse",kcal:250,cents:60,stars:3,days:4},
+ {icon:"🍎",name:"Apfel",kcal:80,cents:40,stars:4,days:14},
+ {icon:"🥕",name:"Gemüse-Sticks",kcal:40,cents:60,stars:5,days:3},
+ {icon:"🍓",name:"Erdbeeren",kcal:32,cents:70,stars:4,days:2},
+ {icon:"🥪",name:"Vollkornsandwich mit Hähnchen",kcal:320,cents:160,stars:5,days:1}
+];
 
-function productName(product){
- return lang==="de"?product.de:product[lang]+" / "+product.de;
+let level=0;
+let selected=new Set();
+let completed=[];
+let submitted=false;
+let levelStartedAt=0;
+const solutionCache={};
+
+function money(cents){
+ return (cents/100).toLocaleString("de-DE",{style:"currency",currency:"EUR"});
 }
 
 function total(ids){
  const result={kcal:0,cents:0,stars:0,days:Infinity,count:ids.length,ids:[...ids]};
  ids.forEach(id=>{
-  const product=products[id];
-  if(!product)return;
-  result.kcal+=product.kcal;
-  result.cents+=product.cents;
-  result.stars+=product.stars;
-  result.days=Math.min(result.days,product.days);
+  const p=products[id];
+  if(!p)return;
+  result.kcal+=p.kcal;
+  result.cents+=p.cents;
+  result.stars+=p.stars;
+  result.days=Math.min(result.days,p.days);
  });
  if(!Number.isFinite(result.days))result.days=0;
  return result;
@@ -345,18 +226,18 @@ function total(ids){
 function progress(id){
  const box=$(id);
  box.replaceChildren();
- t().levels.forEach((_,i)=>{
-  const item=document.createElement("span");
-  item.textContent=i===4?"Bonus":"Level "+(i+1);
-  if(i<level)item.className="done";
-  if(i===level)item.className="current";
-  box.appendChild(item);
+ levels.forEach((_,i)=>{
+  const span=document.createElement("span");
+  span.textContent=i===4?"Bonus":"Level "+(i+1);
+  if(i<level)span.className="done";
+  if(i===level)span.className="current";
+  box.appendChild(span);
  });
 }
 
 function renderStart(){
- $("levelTitle").textContent=t().levels[level].title;
- $("task").textContent="❗ "+t().levels[level].task;
+ $("levelTitle").textContent=levels[level].title;
+ $("task").textContent="❗ "+levels[level].task;
  progress("startProgress");
  $("startScreen").hidden=false;
  $("game").hidden=true;
@@ -366,17 +247,17 @@ function renderStart(){
 }
 
 function renderProducts(){
- const box=$("products"),sum=total([...selected]);
+ const box=$("products");
+ const sum=total([...selected]);
  box.replaceChildren();
 
- products.forEach((product,index)=>{
+ products.forEach((p,index)=>{
   const label=document.createElement("label");
   label.className="product";
-
   const input=document.createElement("input");
   input.type="checkbox";
   input.checked=selected.has(index);
-  input.disabled=!input.checked&&sum.kcal+product.kcal>MAX;
+  input.disabled=!input.checked&&sum.kcal+p.kcal>MAX;
   input.addEventListener("change",()=>{
    if(input.checked)selected.add(index);
    else selected.delete(index);
@@ -386,36 +267,20 @@ function renderProducts(){
 
   const info=document.createElement("span");
   info.className="product-info";
-
-  const icon=document.createElement("span");
-  icon.className="emoji";
-  icon.textContent=product.icon;
-
   const name=document.createElement("span");
   name.className="product-name";
-  const primary=document.createElement("span");
-  primary.className="primary-name";
-  primary.textContent=lang==="de"?product.de:product[lang];
-  name.appendChild(primary);
-
-  if(lang!=="de"){
-   const german=document.createElement("span");
-   german.className="german-name";
-   german.textContent=product.de;
-   name.appendChild(german);
-  }
-
+  name.textContent=p.name;
   const details=document.createElement("span");
   details.className="details";
-  details.textContent=product.kcal+" kcal · "+money(product.cents)+" · "+
-   t().shelf+": "+product.days+" "+t().days;
-
+  details.textContent=p.kcal+" kcal · "+money(p.cents)+" · Haltbarkeit: "+p.days+" Tage";
   const stars=document.createElement("span");
   stars.className="stars";
-  stars.textContent=t().stars+": "+"★".repeat(product.stars)+"☆".repeat(5-product.stars);
-
-  info.append(icon,name,details,stars);
-  label.append(input,info);
+  stars.textContent="Sterne: "+"★".repeat(p.stars)+"☆".repeat(5-p.stars);
+  info.append(name,details,stars);
+  const icon=document.createElement("span");
+  icon.className="emoji";
+  icon.textContent=p.icon;
+  label.append(input,icon,info);
   box.appendChild(label);
  });
 }
@@ -432,29 +297,22 @@ function renderSummary(){
 
  const goal=$("goal");
  if(result.kcal>=MIN&&result.kcal<=MAX){
-  goal.textContent=t().goalOk;
+  goal.textContent="✓ Kalorienziel erreicht – zwischen 500 und 650 kcal.";
   goal.classList.add("reached");
  }else if(result.kcal<MIN){
-  goal.textContent=t().goalLow.replace("{n}",MIN-result.kcal);
+  goal.textContent="Noch "+(MIN-result.kcal)+" kcal bis zum Mindestziel von 500 kcal.";
   goal.classList.remove("reached");
  }else{
-  goal.textContent=t().goalHigh;
+  goal.textContent="Zu viele Kalorien: höchstens 650 kcal erlaubt.";
   goal.classList.remove("reached");
  }
 }
 
 function renderGame(){
- $("gameHeading").textContent=t().levels[level].title;
- $("productsHeading").textContent=t().products;
- $("tipsHeading").textContent=t().tips;
- $("calorieLabel").textContent=t().calories;
- $("calorieMeter").setAttribute("aria-label",t().calories);
- $("priceLabel").textContent=t().price;
- $("starsLabel").textContent=t().stars;
- $("countLabel").textContent=t().count;
+ $("gameHeading").textContent=levels[level].title;
  $("tip").hidden=true;
- $("tipButton").textContent=t().showTip;
- $("nextButton").textContent=level===4?t().finish:t().next;
+ $("tipButton").textContent="Tipp anzeigen";
+ $("nextButton").textContent=level===4?"Bonus abschließen":"Level abschließen und weiter";
  progress("progress");
  renderProducts();
  renderSummary();
@@ -462,7 +320,6 @@ function renderGame(){
 
 function bestFor(levelIndex){
  if(Object.prototype.hasOwnProperty.call(solutionCache,levelIndex))return solutionCache[levelIndex];
-
  const valid=[];
  for(let mask=1;mask<(1<<products.length);mask++){
   const ids=[];
@@ -474,98 +331,57 @@ function bestFor(levelIndex){
  if(!valid.length)return solutionCache[levelIndex]=null;
 
  if(levelIndex===0||levelIndex===2){
-  const near550=valid.filter(result=>result.kcal>=525&&result.kcal<=575);
-  const candidates=near550.length?near550:valid;
-  return solutionCache[levelIndex]=candidates.reduce((best,result)=>{
-   const score=result.stars*1000-Math.abs(result.kcal-550);
-   const bestScore=best.stars*1000-Math.abs(best.kcal-550);
-   return score>bestScore?result:best;
-  });
+  const close=valid.filter(x=>x.kcal>=525&&x.kcal<=575);
+  const choices=close.length?close:valid;
+  return solutionCache[levelIndex]=choices.reduce((best,x)=>
+   x.stars*1000-Math.abs(x.kcal-550)>best.stars*1000-Math.abs(best.kcal-550)?x:best
+  );
  }
-
- const score=result=>{
-  if(levelIndex===1)return -result.cents;
-  if(levelIndex===3)return result.days;
-  return (result.stars/result.count/5+Math.min(result.days,30)/30+(1-result.cents/500))/3;
+ const score=x=>{
+  if(levelIndex===1)return -x.cents;
+  if(levelIndex===3)return x.days;
+  return (x.stars/x.count/5+Math.min(x.days,30)/30+(1-x.cents/500))/3;
  };
- return solutionCache[levelIndex]=valid.reduce((best,result)=>score(result)>score(best)?result:best);
+ return solutionCache[levelIndex]=valid.reduce((best,x)=>score(x)>score(best)?x:best);
 }
 
-function similarity(selectionIds,solution){
+function similarity(ids,solution){
  if(!solution)return 0;
- const chosen=new Set(Array.isArray(selectionIds)?selectionIds:[]);
+ const chosen=new Set(Array.isArray(ids)?ids:[]);
  const target=new Set(solution.ids);
  const union=new Set([...chosen,...target]);
- let intersection=0;
- chosen.forEach(id=>{if(target.has(id))intersection++;});
- return union.size?intersection/union.size:1;
+ let common=0;
+ chosen.forEach(id=>{if(target.has(id))common++;});
+ return union.size?common/union.size:1;
 }
 
-function timeFor(row,entry){
- if(Number.isFinite(entry.durationMs))return entry.durationMs;
- const submittedAt=new Date(row.created_at).getTime();
- return Number.isFinite(submittedAt)?submittedAt:Infinity;
-}
-
-function makeCell(text,className){
+function makeCell(text,className=""){
  const cell=document.createElement("td");
  if(className)cell.className=className;
  cell.textContent=text;
  return cell;
 }
 
-function appendStatsRow(tbody,label,ids,playerName=""){
- const validIds=Array.isArray(ids)?ids.filter(id=>Number.isInteger(id)&&products[id]):[];
- const summary=total(validIds);
+function appendResultRow(tbody,label,ids,playerName=""){
+ const safeIds=Array.isArray(ids)?ids.filter(id=>Number.isInteger(id)&&products[id]):[];
+ const result=total(safeIds);
  const row=document.createElement("tr");
-
- const nameCell=document.createElement("td");
- nameCell.className="products-cell";
- const name=document.createElement("span");
- name.className="row-label";
- name.textContent=playerName?label+" — "+playerName:label;
-
- const productList=document.createElement("span");
- productList.className="row-products";
- productList.textContent=validIds.length
-  ?validIds.map(id=>productName(products[id])).join(", ")
-  :t().noProducts;
-
- nameCell.append(name,productList);
+ const productNames=safeIds.map(id=>products[id].name).join(", ")||"Keine Produkte ausgewählt.";
  row.append(
-  nameCell,
-  makeCell(summary.kcal+" kcal"),
-  makeCell(money(summary.cents)),
-  makeCell(summary.stars+" ★"),
-  makeCell(summary.days+" "+t().days)
+  makeCell(label+(playerName?" — "+playerName:""),"products-cell"),
+  makeCell(productNames,"products-cell"),
+  makeCell(result.kcal+" kcal"),
+  makeCell(money(result.cents)),
+  makeCell(result.stars+" ★"),
+  makeCell(result.days+" Tage")
  );
  tbody.appendChild(row);
 }
 
-function appendGroupRow(tbody,label){
- const row=document.createElement("tr");
- row.className="group-row";
- const cell=document.createElement("td");
- cell.colSpan=5;
- cell.textContent=label;
- row.appendChild(cell);
- tbody.appendChild(row);
-}
-
-function appendEmptyRow(tbody,message){
- const row=document.createElement("tr");
- row.className="empty-row";
- const cell=document.createElement("td");
- cell.colSpan=5;
- cell.textContent=message;
- row.appendChild(cell);
- tbody.appendChild(row);
-}
-
-function tableHeader(labels){
+function tableHeader(){
  const thead=document.createElement("thead");
  const row=document.createElement("tr");
- [labels.tableName,labels.calories,labels.price,labels.stars,labels.shelf].forEach(text=>{
+ ["Name","Produkte","Kalorien","Preis","Sterne","Haltbarkeit"].forEach(text=>{
   const th=document.createElement("th");
   th.textContent=text;
   row.appendChild(th);
@@ -575,173 +391,127 @@ function tableHeader(labels){
 }
 
 function createLevelTable(entry){
- const labels=t();
  const section=document.createElement("section");
  section.className="level-result";
 
  const heading=document.createElement("h3");
- heading.textContent=entry.title;
-
+ heading.textContent=levels[entry.level].title;
  const task=document.createElement("p");
  task.className="level-task-title";
- task.textContent=labels.task+": "+entry.task;
+ task.textContent="Aufgabe: "+levels[entry.level].task;
 
  const wrap=document.createElement("div");
  wrap.className="table-wrap";
-
  const table=document.createElement("table");
  table.className="data-table";
- table.appendChild(tableHeader({
-  tableName:labels.tableName,
-  calories:labels.tableCalories,
-  price:labels.tablePrice,
-  stars:labels.tableStars,
-  shelf:labels.tableShelf
- }));
+ table.appendChild(tableHeader());
 
  const body=document.createElement("tbody");
  const solution=bestFor(entry.level);
- if(solution)appendStatsRow(body,labels.solution,solution.ids);
- else appendEmptyRow(body,labels.empty);
+ if(solution)appendResultRow(body,"Lösung",solution.ids);
+ appendResultRow(body,"Du",entry.result.ids);
 
- appendStatsRow(body,$("playerName").value.trim()||labels.your,entry.result.ids);
- appendGroupRow(body,entry.level===0?labels.allPlayers:labels.top);
+ const topTitle=document.createElement("p");
+ topTitle.className="group-title";
+ topTitle.textContent=entry.level===0?"Alle Spieler":"Top 5";
 
+ const topTable=document.createElement("table");
+ topTable.className="data-table";
+ topTable.appendChild(tableHeader());
  const topBody=document.createElement("tbody");
  topBody.id="top-"+entry.level;
- table.append(body,topBody);
+ topTable.appendChild(topBody);
 
- wrap.appendChild(table);
+ table.appendChild(body);
+ wrap.append(table,topTitle,topTable);
  section.append(heading,task,wrap);
  return section;
 }
 
 function renderOwnSummary(){
- const head=$("summaryHead");
  const body=$("summaryBody");
- head.replaceChildren();
  body.replaceChildren();
-
- const header=document.createElement("tr");
- [
-  t().tableLevel,t().tableProducts,t().tableCalories,t().tablePrice,
-  t().tableStars,t().tableShelf
- ].forEach(label=>{
-  const th=document.createElement("th");
-  th.textContent=label;
-  header.appendChild(th);
- });
- head.appendChild(header);
-
  completed.forEach(entry=>{
-  const row=document.createElement("tr");
   const result=entry.result;
-  const levelCell=document.createElement("td");
-  levelCell.textContent=t().levels[entry.level].title;
-  const productCell=document.createElement("td");
-  productCell.className="products-cell";
-  productCell.textContent=result.ids.map(id=>productName(products[id])).join(", ")||t().noProducts;
+  const row=document.createElement("tr");
+  const productNames=result.ids.map(id=>products[id].name).join(", ");
   row.append(
-   levelCell,productCell,
+   makeCell(levels[entry.level].title),
+   makeCell(productNames,"products-cell"),
    makeCell(result.kcal+" kcal"),
    makeCell(money(result.cents)),
    makeCell(result.stars+" ★"),
-   makeCell(result.days+" "+t().days)
+   makeCell(result.days+" Tage")
   );
   body.appendChild(row);
  });
 }
 
 async function loadLeaderboard(){
- const status=$("scoreStatus");
  try{
-  const url=SUPABASE_URL+
-   "/rest/v1/leaderboard?select=player,selections,created_at&order=created_at.asc&limit=10000";
-  const response=await fetch(url,{
-   headers:{"apikey":SUPABASE_KEY,"Authorization":"Bearer "+SUPABASE_KEY}
-  });
-  if(!response.ok)throw new Error("Could not load leaderboard");
+  const url=SUPABASE_URL+"/rest/v1/leaderboard?select=player,selections,created_at&order=created_at.asc&limit=10000";
+  const response=await fetch(url,{headers:{
+   "apikey":SUPABASE_KEY,
+   "Authorization":"Bearer "+SUPABASE_KEY
+  }});
+  if(!response.ok)throw new Error("Load failed");
   const rows=await response.json();
 
-  completed.forEach(currentEntry=>{
-   const tbody=$("top-"+currentEntry.level);
+  completed.forEach(entry=>{
+   const tbody=$("top-"+entry.level);
    if(!tbody)return;
    tbody.replaceChildren();
-
-   const solution=bestFor(currentEntry.level);
+   const solution=bestFor(entry.level);
    const matching=rows.map(row=>{
     if(!Array.isArray(row.selections))return null;
-    const selection=row.selections.find(item=>item.level===currentEntry.level);
+    const selection=row.selections.find(item=>item.level===entry.level);
     return selection?{row,selection}:null;
    }).filter(Boolean);
 
    matching.sort((a,b)=>{
     const difference=similarity(b.selection.ids,solution)-similarity(a.selection.ids,solution);
     if(Math.abs(difference)>1e-9)return difference;
-    return timeFor(a.row,a.selection)-timeFor(b.row,b.selection);
+    return new Date(a.row.created_at)-new Date(b.row.created_at);
    });
 
-   const shown=currentEntry.level===0?matching:matching.slice(0,5);
+   const shown=entry.level===0?matching:matching.slice(0,5);
    if(!shown.length){
-    appendEmptyRow(tbody,t().empty);
+    const row=document.createElement("tr");
+    row.appendChild(makeCell("Noch keine Ergebnisse."));
+    tbody.appendChild(row);
     return;
    }
-
    shown.forEach(({row,selection},index)=>{
-    const label=currentEntry.level===0
-     ?(row.player||t().allPlayers)
-     :"#"+(index+1);
-    appendStatsRow(tbody,label,selection.ids,currentEntry.level===0?"":(row.player||""));
+    const label=entry.level===0?(row.player||"Spieler"):"#"+(index+1);
+    appendResultRow(tbody,label,selection.ids,entry.level===0?"":(row.player||""));
    });
   });
-
-  status.textContent=submittedOnce?t().saved:"";
  }catch(error){
-  status.textContent=t().boardError;
+  $("scoreStatus").textContent="Die Bestenliste konnte nicht geladen werden. Prüfe die Supabase-Verbindung.";
  }
 }
 
 function renderFinal(){
- $("finalHeading").textContent=t().final;
- $("finalIntro").textContent=t().finalIntro;
- $("leaderboardTitle").textContent=t().boardTitle;
- $("scoreHint").textContent=t().scoreHint;
- $("ownResultsTitle").textContent=t().ownResultsTitle;
-
+ $("finalScreen").hidden=false;
  const box=$("levelResults");
  box.replaceChildren();
-
- completed.forEach(entry=>{
-  box.appendChild(createLevelTable({
-   ...entry,
-   title:t().levels[entry.level].title,
-   task:t().levels[entry.level].task
-  }));
- });
-
+ completed.forEach(entry=>box.appendChild(createLevelTable(entry)));
  renderOwnSummary();
  loadLeaderboard();
 }
 
 async function submitResults(){
  const name=$("playerName").value.trim();
- const status=$("scoreStatus");
- const button=$("submitScore");
-
- if(submittedOnce)return;
  if(!name){
-  status.textContent=t().needName;
+  $("scoreStatus").textContent="Bitte gib deinen Namen ein.";
   $("playerName").focus();
   return;
  }
- if(completed.length!==5){
-  status.textContent=t().boardError;
-  return;
- }
+ if(submitted)return;
 
+ const button=$("submitScore");
  button.disabled=true;
- status.textContent=t().saving;
-
+ $("scoreStatus").textContent="Ergebnisse werden gespeichert …";
  const selections=completed.map(entry=>({
   level:entry.level,
   ids:entry.result.ids,
@@ -759,15 +529,13 @@ async function submitResults(){
    },
    body:JSON.stringify({player:name.slice(0,24),selections})
   });
-  if(!response.ok)throw new Error("Could not save results");
-
-  submittedOnce=true;
+  if(!response.ok)throw new Error("Save failed");
+  submitted=true;
   $("nameGate").hidden=true;
-  $("finalScreen").hidden=false;
   renderFinal();
  }catch(error){
   button.disabled=false;
-  status.textContent=t().boardError;
+  $("scoreStatus").textContent="Speichern fehlgeschlagen. Prüfe die Supabase-Verbindung.";
  }
 }
 
@@ -776,8 +544,7 @@ function finishLevel(){
  if(result.kcal<MIN||result.kcal>MAX)return;
 
  completed.push({
-  level,
-  result,
+  level,result,
   durationMs:Math.max(0,Math.round(performance.now()-levelStartedAt))
  });
 
@@ -786,12 +553,6 @@ function finishLevel(){
   $("actionBar").hidden=true;
   $("startScreen").hidden=true;
   $("nameGate").hidden=false;
-  $("finalScreen").hidden=true;
-  $("nameGateTitle").textContent=t().nameGateTitle;
-  $("nameGateIntro").textContent=t().nameGateIntro;
-  $("nameLabel").textContent=t().nameLabel;
-  $("playerName").placeholder=t().namePlaceholder;
-  $("submitScore").textContent=t().submit;
   $("playerName").focus();
   return;
  }
@@ -800,40 +561,6 @@ function finishLevel(){
  selected=new Set();
  renderStart();
 }
-
-function renderAll(){
- document.documentElement.lang=lang;
- document.documentElement.dir=lang==="ar"?"rtl":"ltr";
- document.body.dir=lang==="ar"?"rtl":"ltr";
- $("title").textContent=t().title;
- $("languageLabel").textContent=t().language;
- $("startButton").textContent=t().start;
- $("clearButton").textContent=t().clear;
-
- document.querySelectorAll(".language-button").forEach(button=>{
-  button.classList.toggle("active",button.dataset.lang===lang);
- });
-
- if(!$("startScreen").hidden)renderStart();
- if(!$("game").hidden)renderGame();
-
- if(!$("nameGate").hidden){
-  $("nameGateTitle").textContent=t().nameGateTitle;
-  $("nameGateIntro").textContent=t().nameGateIntro;
-  $("nameLabel").textContent=t().nameLabel;
-  $("playerName").placeholder=t().namePlaceholder;
-  $("submitScore").textContent=t().submit;
- }
-
- if(!$("finalScreen").hidden)renderFinal();
-}
-
-document.querySelectorAll(".language-button").forEach(button=>{
- button.addEventListener("click",()=>{
-  lang=button.dataset.lang;
-  renderAll();
- });
-});
 
 $("startButton").addEventListener("click",()=>{
  levelStartedAt=performance.now();
@@ -847,12 +574,12 @@ $("tipButton").addEventListener("click",()=>{
  const tip=$("tip");
  if(!tip.hidden){
   tip.hidden=true;
-  $("tipButton").textContent=t().showTip;
-  return;
+  $("tipButton").textContent="Tipp anzeigen";
+ }else{
+  tip.textContent="Achte auf diesen Faktor: "+levels[level].factor+".";
+  tip.hidden=false;
+  $("tipButton").textContent="Tipp ausblenden";
  }
- tip.textContent=t().factor+" "+t().levels[level].factor+".";
- tip.hidden=false;
- $("tipButton").textContent=t().hideTip;
 });
 
 $("clearButton").addEventListener("click",()=>{
@@ -867,7 +594,7 @@ $("playerName").addEventListener("keydown",event=>{
  if(event.key==="Enter")submitResults();
 });
 
-renderAll();
+renderStart();
 </script>
 </body>
 </html>
