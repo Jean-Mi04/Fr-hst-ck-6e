@@ -58,11 +58,11 @@ button:disabled{opacity:.55;cursor:not-allowed}
 #hintPopup{position:fixed;z-index:39;left:50%;bottom:120px;transform:translateX(-50%);width:min(320px,calc(100vw - 32px));padding:12px 14px;border:1px solid #d7c47c;border-radius:12px;background:#fffdf2;box-shadow:0 5px 18px #20334935;line-height:1.5}
 .table-wrap{width:100%;overflow-x:auto;border-radius:10px}
 .data-table{width:100%;min-width:760px;table-layout:fixed;border-collapse:collapse;font-size:.84rem;background:#fff}
-.data-table col:nth-child(1){width:25%}
-.data-table col:nth-child(2){width:35%}
+.data-table col:nth-child(1){width:22%}
+.data-table col:nth-child(2){width:33%}
 .data-table col:nth-child(3){width:12%}
 .data-table col:nth-child(4){width:9%}
-.data-table col:nth-child(5){width:8%}
+.data-table col:nth-child(5){width:13%}
 .data-table col:nth-child(6){width:11%}
 .data-table th,.data-table td{padding:8px;border:1px solid #dce4ed;text-align:start;vertical-align:top;overflow-wrap:anywhere}
 .data-table th{background:#edf3f8}
@@ -117,6 +117,15 @@ button:disabled{opacity:.55;cursor:not-allowed}
  border-radius:5px;
  box-shadow:0 3px 10px #20334915
 }
+#compareHeading{margin-top:26px}
+.compare{margin:12px 0;padding:14px;border:1px solid #dce4ed;border-radius:12px;background:#fff}
+.compare h3{margin:0 0 6px;line-height:1.4}
+.compare-count{display:inline-block;margin:4px 0 8px;padding:5px 10px;border-radius:8px;background:#e6f5ec;color:#176747;font-weight:700}
+.compare-hint{margin:0;font-size:.82rem;color:#55697d}
+.name-list{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.name-list button{padding:5px 12px;border-radius:999px;font-size:.88rem}
+.name-list button[aria-expanded="true"]{background:#2469b2;border-color:#2469b2;color:#fff}
+.compare-detail{margin-top:8px}
 #leaderboardStatus{font-size:.9rem;color:#9b2525}
 [hidden]{display:none!important}
 [dir="rtl"] .progress{flex-direction:row-reverse}
@@ -240,6 +249,8 @@ button:disabled{opacity:.55;cursor:not-allowed}
   <h2 id="leaderboardHeading"></h2>
   <p id="leaderboardStatus" role="status" aria-live="polite" hidden></p>
   <div id="levelResults"></div>
+  <h2 id="compareHeading"></h2>
+  <div id="comparisons"></div>
 </section>
 </main>
 
@@ -270,6 +281,7 @@ de:{
  final:"Deine Ergebnisse",
  finalInstructions:"Übertrage diese Ergebnisse in die Tabelle in Aufgabe 2 auf deinem Arbeitsblatt.",
  summary:"Deine Ergebnisse in allen Levels",leaderboard:"Bestenliste",
+ compare:"Vergleich aller Spieler",cmp1:"Level 1 und Level 3: Mehr Gesundheitssterne in Level 3 als in Level 1",cmp2:"Level 2 und Level 3: Level 2 ist günstiger als Level 3",cmp3:"Level 3 und Level 4: Das gesunde Frühstück (Level 3) wird schneller schlecht als das haltbare (Level 4)",countText:"Bei {n} von {total} Spielern trifft das zu.",clickHint:"Klicke auf einen Namen, um beide Level im Detail zu vergleichen.",noneMatch:"Bei keinem Spieler.",
  levelCol:"Level / Aufgabe",productCol:"Produkte",calorieCol:"Kalorien",priceCol:"Preis",starsCol:"Gesundheitssterne",shelfCol:"Haltbarkeit",
  solution:"Lösung",you:"Du",top:"Top 5",allPlayers:"Alle Spieler",empty:"Noch keine Ergebnisse.",noProducts:"Keine Produkte ausgewählt.",
  goal:"✓ Kalorienziel erreicht – zwischen 500 und 650 Kalorien.",
@@ -296,6 +308,7 @@ en:{
  nameLabel:"Your name (max. 24 characters):",namePlaceholder:"Enter name",save:"Save name and continue",
  final:"Your results",finalInstructions:"Copy these results into the table for task 2 on your worksheet.",
  summary:"Your results in all levels",leaderboard:"Leaderboard",
+ compare:"Comparison of all players",cmp1:"Level 1 and level 3: more health stars in level 3 than in level 1",cmp2:"Level 2 and level 3: level 2 is cheaper than level 3",cmp3:"Level 3 and level 4: the healthy breakfast (level 3) goes bad faster than the long-lasting one (level 4)",countText:"This applies to {n} of {total} players.",clickHint:"Click a name to compare both levels in detail.",noneMatch:"No players.",
  levelCol:"Level / task",productCol:"Products",calorieCol:"Calories",priceCol:"Price",starsCol:"Health stars",shelfCol:"Shelf life",
  solution:"Solution",you:"You",top:"Top 5",allPlayers:"All players",empty:"No results yet.",noProducts:"No products selected.",
  goal:"✓ Calorie goal reached – between 500 and 650 calories.",
@@ -321,6 +334,7 @@ ru:{
  nameLabel:"Ваше имя (не более 24 символов):",namePlaceholder:"Введите имя",save:"Сохранить имя и продолжить",
  final:"Ваши результаты",finalInstructions:"Перенесите эти результаты в таблицу задания 2 на рабочем листе.",
  summary:"Ваши результаты по всем уровням",leaderboard:"Таблица лидеров",
+ compare:"Сравнение всех игроков",cmp1:"Уровень 1 и уровень 3: в уровне 3 больше звёзд здоровья, чем в уровне 1",cmp2:"Уровень 2 и уровень 3: уровень 2 дешевле, чем уровень 3",cmp3:"Уровень 3 и уровень 4: полезный завтрак (уровень 3) портится быстрее, чем долгохранящийся (уровень 4)",countText:"Это верно для {n} из {total} игроков.",clickHint:"Нажмите на имя, чтобы подробно сравнить оба уровня.",noneMatch:"Таких игроков нет.",
  levelCol:"Уровень / задание",productCol:"Продукты",calorieCol:"Калории",priceCol:"Цена",starsCol:"Звёзды здоровья",shelfCol:"Срок хранения",
  solution:"Решение",you:"Вы",top:"Топ-5",allPlayers:"Все игроки",empty:"Результатов пока нет.",noProducts:"Продукты не выбраны.",
  goal:"✓ Цель достигнута — от 500 до 650 калорий.",
@@ -346,6 +360,7 @@ ar:{
  nameLabel:"اسمك (حتى 24 حرفًا):",namePlaceholder:"أدخل الاسم",save:"حفظ الاسم والمتابعة",
  final:"نتائجك",finalInstructions:"انقل هذه النتائج إلى جدول السؤال الثاني في ورقة العمل.",
  summary:"نتائجك في جميع المستويات",leaderboard:"قائمة المتصدرين",
+ compare:"مقارنة نتائج جميع اللاعبين",cmp1:"المستوى 1 والمستوى 3: نجوم صحة أكثر في المستوى 3 منها في المستوى 1",cmp2:"المستوى 2 والمستوى 3: المستوى 2 أرخص من المستوى 3",cmp3:"المستوى 3 والمستوى 4: الفطور الصحي (المستوى 3) يفسد أسرع من الفطور طويل الصلاحية (المستوى 4)",countText:"ينطبق هذا على {n} من أصل {total} لاعبين.",clickHint:"انقر على اسم لمقارنة المستويين بالتفصيل.",noneMatch:"لا يوجد لاعبون.",
  levelCol:"المستوى / المهمة",productCol:"المنتجات",calorieCol:"السعرات الحرارية",priceCol:"السعر",starsCol:"نجوم الصحة",shelfCol:"مدة الصلاحية",
  solution:"الحل",you:"أنت",top:"أفضل 5",allPlayers:"جميع اللاعبين",empty:"لا توجد نتائج بعد.",noProducts:"لم يتم اختيار منتجات.",
  goal:"✓ تم تحقيق هدف السعرات الحرارية — بين 500 و650.",
@@ -439,7 +454,7 @@ function applyLanguage(){
   clearButton:x.clear,hintLabel:x.tips,nameHeading:x.nameHeading,
   nameInstructions:x.nameInstructions,nameLabel:x.nameLabel,submitScore:x.save,
   finalHeading:x.final,finalInstructions:x.finalInstructions,
-  summaryHeading:x.summary,leaderboardHeading:x.leaderboard
+  summaryHeading:x.summary,leaderboardHeading:x.leaderboard,compareHeading:x.compare
  };
  Object.entries(labels).forEach(([id,text])=>$(id).textContent=text);
  $("playerName").placeholder=x.namePlaceholder;
@@ -623,6 +638,7 @@ async function loadLeaderboard(){
   );
   if(!response.ok)throw new Error("load");
   const rows=await response.json(),x=t();
+  renderComparisons(rows);
   completed.forEach(entry=>{
    const body=$("top-"+entry.level);if(!body)return;
    body.replaceChildren();
@@ -647,8 +663,57 @@ async function loadLeaderboard(){
    ));
   });
  }catch(error){
+  $("comparisons").replaceChildren();
   status.textContent=t().loadError;status.hidden=false;
  }
+}
+const comparisons=[
+ {a:0,b:2,key:"cmp1",test:(A,B)=>B.stars>A.stars},
+ {a:1,b:2,key:"cmp2",test:(A,B)=>A.cents<B.cents},
+ {a:2,b:3,key:"cmp3",test:(A,B)=>A.days<B.days}
+];
+function levelIds(row,l){
+ if(!Array.isArray(row.selections))return null;
+ const s=row.selections.find(e=>e&&e.level===l);
+ return s&&Array.isArray(s.ids)?s.ids.filter(i=>Number.isInteger(i)&&products[i]):null;
+}
+function renderComparisons(rows){
+ const x=t(),box=$("comparisons");box.replaceChildren();
+ comparisons.forEach(c=>{
+  const both=rows.map(row=>({row,A:levelIds(row,c.a),B:levelIds(row,c.b)})).filter(e=>e.A&&e.B);
+  const hits=both.filter(e=>c.test(total(e.A),total(e.B)));
+  const card=document.createElement("div");card.className="compare";
+  const heading=document.createElement("h3");heading.textContent=x[c.key];
+  const count=document.createElement("p");count.className="compare-count";
+  count.textContent=x.countText.replace("{n}",hits.length).replace("{total}",both.length);
+  card.append(heading,count);
+  if(!hits.length){
+   const none=document.createElement("p");none.textContent=x.noneMatch;
+   card.appendChild(none);box.appendChild(card);return;
+  }
+  const hint=document.createElement("p");hint.className="compare-hint";hint.textContent=x.clickHint;
+  const list=document.createElement("div");list.className="name-list";
+  const detail=document.createElement("div");detail.className="compare-detail";detail.hidden=true;
+  hits.forEach(e=>{
+   const button=document.createElement("button");button.type="button";
+   button.textContent=e.row.player||"?";button.setAttribute("aria-expanded","false");
+   button.addEventListener("click",()=>{
+    const wasOpen=button.getAttribute("aria-expanded")==="true";
+    list.querySelectorAll("button").forEach(b=>b.setAttribute("aria-expanded","false"));
+    detail.replaceChildren();detail.hidden=true;
+    if(wasOpen)return;
+    button.setAttribute("aria-expanded","true");
+    const table=createTable(),body=document.createElement("tbody");
+    appendResultRow(body,x.levels[c.a][0],e.A);
+    appendResultRow(body,x.levels[c.b][0],e.B);
+    table.appendChild(body);
+    const wrap=document.createElement("div");wrap.className="table-wrap";wrap.appendChild(table);
+    detail.appendChild(wrap);detail.hidden=false;
+   });
+   list.appendChild(button);
+  });
+  card.append(hint,list,detail);box.appendChild(card);
+ });
 }
 function renderFinal(){
  $("finalScreen").hidden=false;
