@@ -67,10 +67,28 @@ button:disabled{opacity:.55;cursor:not-allowed}
 .data-table th,.data-table td{padding:8px;border:1px solid #dce4ed;text-align:start;vertical-align:top;overflow-wrap:anywhere}
 .data-table th{background:#edf3f8}
 .data-table tbody tr:nth-child(even){background:#f8fafc}
-.data-table th:nth-child(3),.data-table td:nth-child(3){color:#1b7a3a;font-weight:700}
-.data-table th:nth-child(4),.data-table td:nth-child(4){color:#c62828;font-weight:700}
-.data-table th:nth-child(5),.data-table td:nth-child(5){color:#1d5fbf;font-weight:700}
-.data-table th:nth-child(6),.data-table td:nth-child(6){color:#7a4a1e;font-weight:700}
+.data-table th{text-align:center;vertical-align:middle;overflow-wrap:normal;hyphens:auto}
+.data-table th:nth-child(3){background:#b9e4a9}
+.data-table th:nth-child(4){background:#f6a5a5}
+.data-table th:nth-child(5){background:#35b8f2}
+.data-table th:nth-child(6){background:#8b4a3c;color:#fff}
+.sheet-table{min-width:860px;font-size:.9rem}
+.sheet-table col:nth-child(1){width:16%}
+.sheet-table col:nth-child(2){width:46%}
+.sheet-table col:nth-child(3){width:10%}
+.sheet-table col:nth-child(4){width:9%}
+.sheet-table col:nth-child(5){width:11%}
+.sheet-table col:nth-child(6){width:8%}
+.sheet-table td{vertical-align:middle;text-align:center;font-weight:700}
+.sheet-table td:first-child{overflow-wrap:normal;hyphens:auto;font-weight:400;font-size:.95rem;line-height:1.35}
+.sheet-table tbody tr:nth-child(even){background:#fff}
+.mini-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:4px}
+.mini{display:flex;flex-direction:column;align-items:center;gap:1px;padding:3px 2px;border:1px solid #dde3ea;border-radius:6px;background:#fff;color:#55697d;font-size:.6rem;font-weight:400;line-height:1.15}
+.mini-top{display:flex;align-items:center;gap:4px}
+.mini-box{display:block;width:11px;height:11px;border:1.5px solid #556;border-radius:2px;font-size:9px;line-height:8px;text-align:center}
+.mini svg{display:block;width:26px;height:26px}
+.mini.on{background:#e3f1ff;border-color:#2469b2;color:#203349;font-weight:700}
+.mini.on .mini-box{background:#2469b2;border-color:#2469b2;color:#fff}
 .level-menu{margin:10px 0;border:1px solid #dce4ed;border-radius:12px;background:#fff;overflow:hidden}
 .level-menu summary{cursor:pointer;padding:12px 14px;background:#edf3f8;font-weight:700}
 .level-menu-content{padding:12px}
@@ -87,6 +105,7 @@ button:disabled{opacity:.55;cursor:not-allowed}
 }
 .final-instruction-text{flex:1;min-width:0}
 .final-instruction-text p{margin:0;font-size:1.05rem;line-height:1.65;font-weight:600}
+.worksheet-link{flex:0 0 280px;max-width:100%}
 .worksheet-preview{
  display:block;
  flex:0 0 280px;
@@ -127,7 +146,8 @@ button:disabled{opacity:.55;cursor:not-allowed}
  #hintFloat{bottom:76px}
  #hintPopup{bottom:122px}
  .final-instruction{flex-direction:column;align-items:stretch;gap:14px;padding:13px}
- .worksheet-preview{flex:none;width:min(100%,340px);align-self:center}
+ .worksheet-link{flex:none;align-self:center}
+ .worksheet-preview{flex:none;width:min(100%,340px)}
 }
 </style>
 </head>
@@ -204,65 +224,14 @@ button:disabled{opacity:.55;cursor:not-allowed}
       <p id="finalInstructions"></p>
     </div>
 
-    <svg class="worksheet-preview" viewBox="0 0 624 542" role="img"
-         aria-labelledby="worksheetTitle worksheetDescription" xmlns="http://www.w3.org/2000/svg">
-      <title id="worksheetTitle">Arbeitsblatt zu Aufgabe 2</title>
-      <desc id="worksheetDescription">Nachgebildete Vorschau des Arbeitsblatts: Die Ergebnisse der vier Levels werden in die Tabelle eingetragen.</desc>
-      <rect width="624" height="542" fill="#fff"/>
-      <rect width="624" height="44" fill="#bfe9a8"/>
-      <g fill="#111" font-family="Arial,sans-serif">
-        <text x="13" y="28" font-size="19" font-weight="700">Das Recht auf Gesundheit – Wir machen ein Frühstück</text>
-        <text x="576" y="32" font-size="28">🥪</text>
-        <text x="552" y="60" font-size="12">Name:________</text>
-        <text x="88" y="71" font-size="13">
-          <tspan font-weight="700">Aufgabe 1: </tspan><tspan>Spiele alle Level in der App.</tspan>
-        </text>
-        <text x="88" y="105" font-size="13">
-          <tspan font-weight="700">Aufgabe 2: </tspan><tspan>Übertrage die Ergebnisse in diese Tabelle:</tspan>
-        </text>
-      </g>
-      <g transform="translate(17 126)" font-family="Arial,sans-serif" fill="#111">
-        <rect width="591" height="398" fill="#fff"/>
-        <rect x="366" y="122" width="65" height="92" fill="#d9d9d9"/>
-        <rect x="431" y="214" width="94" height="92" fill="#d9d9d9"/>
-        <rect x="525" y="306" width="66" height="92" fill="#d9d9d9"/>
-        <g stroke="#555" stroke-width="1" fill="none">
-          <rect width="591" height="398"/>
-          <path d="M141 0V398 M296 0V398 M366 0V398 M431 0V398 M525 0V398 M0 31H591 M0 122H591 M0 214H591 M0 306H591"/>
-        </g>
-        <g font-size="9" text-anchor="middle">
-          <text x="70" y="19">Level:</text>
-          <text x="218" y="19">Ausgewählte Produkte:</text>
-          <text x="331" y="19">Kalorien:</text>
-          <text x="398" y="19">Preis:</text>
-          <text x="478" y="19">Gesundheitssterne:</text>
-          <text x="558" y="19">Haltbarkeit</text>
-        </g>
-        <g font-size="13" text-anchor="middle">
-          <text x="70" y="73"><tspan x="70">Level 1: Das leckerste</tspan><tspan x="70" dy="18">Frühstück</tspan></text>
-          <text x="70" y="164"><tspan x="70">Level 2: So günstig</tspan><tspan x="70" dy="18">wie möglich</tspan></text>
-          <text x="70" y="247"><tspan x="70">Level 3: Möglichst</tspan><tspan x="70" dy="18">viele</tspan><tspan x="70" dy="18">Gesundheitssterne</tspan></text>
-          <text x="70" y="346"><tspan x="70">Level 4: So lange</tspan><tspan x="70" dy="18">haltbar wie möglich</tspan></text>
-        </g>
-        <g font-size="15" text-anchor="middle">
-          <text x="478" y="83">☆☆☆☆☆</text>
-          <text x="478" y="175">☆☆☆☆☆</text>
-          <text x="478" y="267">☆☆☆☆☆</text>
-          <text x="478" y="359">☆☆☆☆☆</text>
-        </g>
-        <g stroke="#333" stroke-width="1">
-          <path d="M303 85H359 M371 85H425 M541 85H575
-                   M303 177H359 M371 177H425 M541 177H575
-                   M303 269H359 M371 269H425 M541 269H575
-                   M303 361H359 M371 361H425 M541 361H575"/>
-        </g>
-      </g>
-    </svg>
+    <a class="worksheet-link" href="arbeitsblatt.png" target="_blank" rel="noopener">
+      <img class="worksheet-preview" src="arbeitsblatt.png" alt="Tabelle aus Aufgabe 2 des Arbeitsblatts">
+    </a>
   </div>
 
   <h3 id="summaryHeading"></h3>
   <div class="table-wrap">
-    <table class="data-table">
+    <table class="data-table sheet-table">
       <colgroup><col><col><col><col><col><col></colgroup>
       <thead><tr id="summaryHead"></tr></thead>
       <tbody id="summaryBody"></tbody>
@@ -614,7 +583,31 @@ function renderOwnSummary(){
  head.replaceChildren();
  while(headers.firstChild)head.appendChild(headers.firstChild);
  const body=$("summaryBody");body.replaceChildren();
- completed.forEach(entry=>appendResultRow(body,t().levels[entry.level][0],entry.result.ids));
+ completed.forEach(entry=>appendSheetRow(body,entry));
+}
+function picture(i,suffix){
+ return images[i].replace(/(id="|#)(p\d+[a-z])/g,"$1$2"+suffix);
+}
+function appendSheetRow(body,entry){
+ const x=t(),ids=entry.result.ids,r=total(ids),row=document.createElement("tr");
+ const levelCell=document.createElement("td");levelCell.textContent=x.levels[entry.level][0];
+ const productCell=document.createElement("td");
+ const grid=document.createElement("div");grid.className="mini-grid";
+ products.forEach((_,i)=>{
+  const on=ids.includes(i),tile=document.createElement("div");
+  tile.className="mini"+(on?" on":"");
+  const top=document.createElement("span");top.className="mini-top";
+  const box=document.createElement("span");box.className="mini-box";box.textContent=on?"✓":"";
+  const img=document.createElement("span");img.innerHTML=picture(i,"-s"+entry.level);
+  const name=document.createElement("span");name.textContent=x.products[i];
+  top.append(box,img);tile.append(top,name);grid.appendChild(tile);
+ });
+ productCell.appendChild(grid);
+ row.append(levelCell,productCell);
+ [r.kcal+" "+x.calories,money(r.cents),r.stars+" ★",r.days+" "+x.days].forEach(text=>{
+  const td=document.createElement("td");td.textContent=text;row.appendChild(td);
+ });
+ body.appendChild(row);
 }
 function renderFinalMenus(){
  const box=$("levelResults");box.replaceChildren();
