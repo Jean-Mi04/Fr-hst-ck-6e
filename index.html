@@ -125,6 +125,16 @@ button:disabled{opacity:.55;cursor:not-allowed}
 .name-list button{padding:5px 12px;border-radius:999px;font-size:.88rem}
 .name-list button[aria-expanded="true"]{background:#2469b2;border-color:#2469b2;color:#fff}
 .compare-detail{margin-top:8px}
+.compare-table{min-width:640px}
+.compare-table col:nth-child(1){width:24%}
+.compare-table col:nth-child(2){width:26%}
+.compare-table col:nth-child(3){width:13%}
+.compare-table col:nth-child(4){width:10%}
+.compare-table col:nth-child(5){width:15%}
+.compare-table col:nth-child(6){width:12%}
+.icon-list{display:flex;flex-wrap:wrap;gap:3px}
+.icon-list span{display:block;width:26px;height:26px;border-radius:5px;background:#f6f1e7}
+.icon-list svg{display:block;width:100%;height:100%}
 .hl-4 td:nth-child(4),.hl-5 td:nth-child(5),.hl-6 td:nth-child(6){font-size:1.05rem;font-weight:800}
 .hl-4 td:nth-child(4){background:#fde2e2;box-shadow:inset 0 0 0 3px #e05a5a;color:#9b1c1c}
 .hl-5 td:nth-child(5){background:#d6f0fc;box-shadow:inset 0 0 0 3px #1d9bd7;color:#0b4f78}
@@ -559,7 +569,8 @@ function makeHeaders(){
  });
  return row;
 }
-function appendResultRow(body,label,ids,name=""){
+let iconCounter=0;
+function appendResultRow(body,label,ids,name="",icons=false){
  const x=t();
  const valid=Array.isArray(ids)?ids.filter(i=>Number.isInteger(i)&&products[i]):[];
  const r=total(valid),row=document.createElement("tr");
@@ -571,6 +582,17 @@ function appendResultRow(body,label,ids,name=""){
  values.forEach((text,i)=>{
   const td=document.createElement("td");td.textContent=text;
   if(i===1)td.className="products-cell";
+  if(i===1&&icons&&valid.length){
+   td.replaceChildren();
+   const list=document.createElement("div");list.className="icon-list";
+   valid.forEach(id=>{
+    const icon=document.createElement("span");
+    icon.innerHTML=picture(id,"-c"+(++iconCounter));
+    icon.title=x.products[id];icon.setAttribute("role","img");icon.setAttribute("aria-label",x.products[id]);
+    list.appendChild(icon);
+   });
+   td.appendChild(list);
+  }
   row.appendChild(td);
  });
  body.appendChild(row);
@@ -707,9 +729,9 @@ function renderComparisons(rows){
     if(wasOpen)return;
     button.setAttribute("aria-expanded","true");
     const table=createTable(),body=document.createElement("tbody");
-    table.classList.add("hl-"+c.col);
+    table.classList.add("hl-"+c.col,"compare-table");
     c.levels.map((l,i)=>[l,e.sets[i]]).sort((a,b)=>a[0]-b[0])
-     .forEach(([l,ids])=>appendResultRow(body,x.levels[l][0],ids));
+     .forEach(([l,ids])=>appendResultRow(body,x.levels[l][0],ids,"",true));
     table.appendChild(body);
     const wrap=document.createElement("div");wrap.className="table-wrap";wrap.appendChild(table);
     detail.appendChild(wrap);detail.hidden=false;
