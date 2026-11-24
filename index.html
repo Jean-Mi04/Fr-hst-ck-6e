@@ -125,6 +125,10 @@ button:disabled{opacity:.55;cursor:not-allowed}
 .name-list button{padding:5px 12px;border-radius:999px;font-size:.88rem}
 .name-list button[aria-expanded="true"]{background:#2469b2;border-color:#2469b2;color:#fff}
 .compare-detail{margin-top:8px}
+.hl-4 td:nth-child(4),.hl-5 td:nth-child(5),.hl-6 td:nth-child(6){font-size:1.05rem;font-weight:800}
+.hl-4 td:nth-child(4){background:#fde2e2;box-shadow:inset 0 0 0 3px #e05a5a;color:#9b1c1c}
+.hl-5 td:nth-child(5){background:#d6f0fc;box-shadow:inset 0 0 0 3px #1d9bd7;color:#0b4f78}
+.hl-6 td:nth-child(6){background:#f1e1dc;box-shadow:inset 0 0 0 3px #8b4a3c;color:#5c2a1f}
 #leaderboardStatus{font-size:.9rem;color:#9b2525}
 [hidden]{display:none!important}
 [dir="rtl"] .progress{flex-direction:row-reverse}
@@ -667,10 +671,10 @@ async function loadLeaderboard(){
  }
 }
 const comparisons=[
- {levels:[0,2],key:"cmp1",test:([L1,L3])=>L3.stars>L1.stars},
- {levels:[1,2],key:"cmp2",test:([L2,L3])=>L2.cents<L3.cents},
- {levels:[2,3],key:"cmp3",test:([L3,L4])=>L3.days<L4.days},
- {levels:[1,3,2],key:"cmp4",test:([L2,L4,L3])=>L2.stars<L3.stars&&L4.stars<L3.stars}
+ {levels:[0,2],col:5,key:"cmp1",test:([L1,L3])=>L3.stars>L1.stars},
+ {levels:[1,2],col:4,key:"cmp2",test:([L2,L3])=>L2.cents<L3.cents},
+ {levels:[2,3],col:6,key:"cmp3",test:([L3,L4])=>L3.days<L4.days},
+ {levels:[1,3,2],col:5,key:"cmp4",test:([L2,L4,L3])=>L2.stars<L3.stars&&L4.stars<L3.stars}
 ];
 function levelIds(row,l){
  if(!Array.isArray(row.selections))return null;
@@ -703,6 +707,7 @@ function renderComparisons(rows){
     if(wasOpen)return;
     button.setAttribute("aria-expanded","true");
     const table=createTable(),body=document.createElement("tbody");
+    table.classList.add("hl-"+c.col);
     c.levels.map((l,i)=>[l,e.sets[i]]).sort((a,b)=>a[0]-b[0])
      .forEach(([l,ids])=>appendResultRow(body,x.levels[l][0],ids));
     table.appendChild(body);
