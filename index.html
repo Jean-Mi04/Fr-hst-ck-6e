@@ -697,6 +697,12 @@ async function loadLeaderboard(){
     return selection?{row,selection}:null;
    }).filter(Boolean);
    matches.sort((a,b)=>{
+    const time=new Date(a.row.created_at)-new Date(b.row.created_at);
+    if(entry.level===2){
+     const clean=ids=>Array.isArray(ids)?ids.filter(i=>Number.isInteger(i)&&products[i]):[];
+     const A=total(clean(a.selection.ids)),B=total(clean(b.selection.ids));
+     return B.stars-A.stars||A.cents-B.cents||time;
+    }
     const diff=similarity(b.selection.ids,solution)-similarity(a.selection.ids,solution);
     return Math.abs(diff)>1e-9?diff:new Date(a.row.created_at)-new Date(b.row.created_at);
    });
