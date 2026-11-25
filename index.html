@@ -821,7 +821,11 @@ function renderQuiz(){
  const feedback=$("quizFeedback");feedback.textContent="";feedback.className="";
  const box=$("quizOptions");box.replaceChildren();
  progress("quizProgress");
- x.quizOptions.forEach((text,i)=>{
+ const order=[0,1,2,3];
+ for(let k=order.length-1;k>0;k--){const j=Math.floor(Math.random()*(k+1));[order[k],order[j]]=[order[j],order[k]]}
+ if(order[level]===level){const k=(level+1)%4;[order[level],order[k]]=[order[k],order[level]]}
+ order.forEach(i=>{
+  const text=x.quizOptions[i];
   const button=document.createElement("button");button.type="button";button.textContent=text;
   button.addEventListener("click",()=>{
    if(i===level){
