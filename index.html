@@ -96,20 +96,20 @@ button:disabled{opacity:.55;cursor:not-allowed}
 .final-instruction{
  display:flex;
  align-items:center;
- gap:24px;
- margin:14px 0 22px;
- padding:16px;
+ gap:14px;
+ margin:10px 0 16px;
+ padding:10px 12px;
  border:1px solid #d6e3d1;
  border-radius:12px;
  background:#f5faf1
 }
 .final-instruction-text{flex:1;min-width:0}
-.final-instruction-text p{margin:0;font-size:1.05rem;line-height:1.65;font-weight:600}
-.worksheet-link{flex:0 0 280px;max-width:100%}
+.final-instruction-text p{margin:0;font-size:.95rem;line-height:1.5;font-weight:600}
+.worksheet-link{flex:0 0 150px;max-width:100%}
 .worksheet-preview{
  display:block;
- flex:0 0 280px;
- width:280px;
+ flex:0 0 150px;
+ width:150px;
  max-width:100%;
  height:auto;
  background:#fff;
@@ -180,9 +180,9 @@ button:disabled{opacity:.55;cursor:not-allowed}
  .action-inner button{padding:8px 6px;font-size:.85rem}
  #hintFloat{bottom:76px}
  #hintPopup{bottom:122px}
- .final-instruction{flex-direction:column;align-items:stretch;gap:14px;padding:13px}
- .worksheet-link{flex:none;align-self:center}
- .worksheet-preview{flex:none;width:min(100%,340px)}
+ .final-instruction{gap:10px;padding:9px 10px}
+ .worksheet-link{flex:0 0 110px}
+ .worksheet-preview{flex:none;width:110px}
 }
 </style>
 </head>
@@ -310,14 +310,14 @@ de:{
  productsTitle:"Produkte auswählen",calories:"Kalorien",price:"Preis",stars:"Gesundheitssterne",shelf:"Haltbarkeit",
  start:"Start",clear:"Auswahl löschen",next:"Level abschließen und weiter",finish:"Letztes Level abschließen",
  tips:"Tipps",tip:"Tipp: Achte auf ",
- quizQuestion:"Worauf sollst du in diesem Level achten?",quizOptions:["möglichst lecker","möglichst günstig","möglichst gesund","möglichst lange haltbar"],quizWrong:"Leider falsch. Lies den Auftrag noch einmal und versuche es erneut.",quizRight:"Richtig! Los geht's.",all1:"Bei {n} von {total} Spielern ist das leckerste Essen am ungesündesten.",all2:"Bei {n} von {total} Spielern ist das gesündeste Essen am teuersten.",all3:"Bei {n} von {total} Spielern ist das gesündeste Essen am kürzesten haltbar.",allLevels:"Alle 4 Level vergleichen",fewLevels:"Nur diese Level vergleichen",
+ quizQuestion:"Worauf sollst du in diesem Level achten?",quizOptions:["möglichst lecker","möglichst günstig","möglichst gesund","möglichst lange haltbar"],quizWrong:"Leider falsch. Lies den Auftrag noch einmal und versuche es erneut.",quizRight:"Richtig! Los geht's.",all1:"Bei {n}/{total} Spielern ist das leckerste Essen am ungesündesten.",all2:"Bei {n}/{total} Spielern ist das gesündeste Essen am teuersten.",all3:"Bei {n}/{total} Spielern ist das gesündeste Essen am kürzesten haltbar.",allLevels:"Alle 4 Level vergleichen",fewLevels:"Nur diese Level vergleichen",
  nameHeading:"Fast geschafft! Wie heißt du?",
  nameInstructions:"Gib zuerst deinen Namen ein. Danach werden deine Ergebnisse gespeichert und die Bestenliste angezeigt.",
  nameLabel:"Dein Name (max. 24 Zeichen):",namePlaceholder:"Name eingeben",save:"Name speichern und weiter",
  final:"Deine Ergebnisse",
  finalInstructions:"Übertrage diese Ergebnisse in die Tabelle auf deinem Arbeitsblatt.",
  summary:"Deine Ergebnisse in allen Levels",leaderboard:"Bestenliste",
- compare:"Vergleich aller Spieler",cmp1:"Level 1 und Level 3: Leckeres Essen ist oft ungesünder.",cmp2:"Level 2 und Level 3: Gesundes Essen ist oft teurer.",cmp3:"Level 3 und Level 4: Gesundes Essen ist oft kürzer haltbar.",cmp4:"Level 3 und Level 4: Lange haltbares Essen ist oft ungesünder.",countText:"Bei {n} von {total} Spielern trifft das zu.",noneMatch:"Bei keinem Spieler.",
+ compare:"Vergleich aller Spieler",cmp1:"Level 1 und Level 3: Leckeres Essen ist oft ungesünder.",cmp2:"Level 2 und Level 3: Gesundes Essen ist oft teurer.",cmp3:"Level 3 und Level 4: Gesundes Essen ist oft kürzer haltbar.",cmp4:"Level 3 und Level 4: Lange haltbares Essen ist oft ungesünder.",countText:"Bei {n}/{total} Spielern trifft das zu.",noneMatch:"Bei keinem Spieler.",
  levelCol:"Level / Aufgabe",productCol:"Produkte",calorieCol:"Kalorien",priceCol:"Preis",starsCol:"Gesundheitssterne",shelfCol:"Haltbarkeit",
  solution:"Lösung",you:"Du",top:"Top 5",allPlayers:"Alle Spieler",empty:"Noch keine Ergebnisse.",noProducts:"Keine Produkte ausgewählt.",
  goal:"✓ Kalorienziel erreicht – zwischen 500 und 650 Kalorien.",
@@ -339,13 +339,13 @@ en:{
  productsTitle:"Choose products",calories:"Calories",price:"Price",stars:"Health stars",shelf:"Shelf life",
  start:"Start",clear:"Clear selection",next:"Finish level and continue",finish:"Finish last level",
  tips:"Tips",tip:"Tip: Pay attention to ",
- quizQuestion:"What should you pay attention to in this level?",quizOptions:["as tasty as possible","as cheap as possible","as healthy as possible","as long-lasting as possible"],quizWrong:"Not quite. Read the task again and try once more.",quizRight:"Correct! Let's go.",all1:"For {n} of {total} players, the tastiest meal is the least healthy.",all2:"For {n} of {total} players, the healthiest meal is the most expensive.",all3:"For {n} of {total} players, the healthiest meal has the shortest shelf life.",allLevels:"Compare all 4 levels",fewLevels:"Compare only these levels",
+ quizQuestion:"What should you pay attention to in this level?",quizOptions:["as tasty as possible","as cheap as possible","as healthy as possible","as long-lasting as possible"],quizWrong:"Not quite. Read the task again and try once more.",quizRight:"Correct! Let's go.",all1:"For {n}/{total} players, the tastiest meal is the least healthy.",all2:"For {n}/{total} players, the healthiest meal is the most expensive.",all3:"For {n}/{total} players, the healthiest meal has the shortest shelf life.",allLevels:"Compare all 4 levels",fewLevels:"Compare only these levels",
  nameHeading:"Almost done! What is your name?",
  nameInstructions:"Enter your name first. Your results will then be saved and the leaderboard shown.",
  nameLabel:"Your name (max. 24 characters):",namePlaceholder:"Enter name",save:"Save name and continue",
  final:"Your results",finalInstructions:"Copy these results into the table on your worksheet.",
  summary:"Your results in all levels",leaderboard:"Leaderboard",
- compare:"Comparison of all players",cmp1:"Level 1 and level 3: Tasty food is often less healthy.",cmp2:"Level 2 and level 3: Healthy food is often more expensive.",cmp3:"Level 3 and level 4: Healthy food often doesn't keep as long.",cmp4:"Level 3 and level 4: Long-lasting food is often less healthy.",countText:"This applies to {n} of {total} players.",noneMatch:"No players.",
+ compare:"Comparison of all players",cmp1:"Level 1 and level 3: Tasty food is often less healthy.",cmp2:"Level 2 and level 3: Healthy food is often more expensive.",cmp3:"Level 3 and level 4: Healthy food often doesn't keep as long.",cmp4:"Level 3 and level 4: Long-lasting food is often less healthy.",countText:"This applies to {n}/{total} players.",noneMatch:"No players.",
  levelCol:"Level / task",productCol:"Products",calorieCol:"Calories",priceCol:"Price",starsCol:"Health stars",shelfCol:"Shelf life",
  solution:"Solution",you:"You",top:"Top 5",allPlayers:"All players",empty:"No results yet.",noProducts:"No products selected.",
  goal:"✓ Calorie goal reached – between 500 and 650 calories.",
@@ -366,13 +366,13 @@ ru:{
  productsTitle:"Выберите продукты",calories:"Калории",price:"Цена",stars:"Звёзды здоровья",shelf:"Срок хранения",
  start:"Начать",clear:"Очистить выбор",next:"Завершить уровень и продолжить",finish:"Завершить последний уровень",
  tips:"Советы",tip:"Совет: обратите внимание на ",
- quizQuestion:"На что нужно обращать внимание в этом уровне?",quizOptions:["как можно вкуснее","как можно дешевле","как можно полезнее","как можно дольше хранится"],quizWrong:"Неверно. Прочитайте задание ещё раз и попробуйте снова.",quizRight:"Верно! Начинаем.",all1:"У {n} из {total} игроков самая вкусная еда — наименее полезная.",all2:"У {n} из {total} игроков самая полезная еда — самая дорогая.",all3:"У {n} из {total} игроков самая полезная еда хранится меньше всего.",allLevels:"Сравнить все 4 уровня",fewLevels:"Сравнить только эти уровни",
+ quizQuestion:"На что нужно обращать внимание в этом уровне?",quizOptions:["как можно вкуснее","как можно дешевле","как можно полезнее","как можно дольше хранится"],quizWrong:"Неверно. Прочитайте задание ещё раз и попробуйте снова.",quizRight:"Верно! Начинаем.",all1:"У {n}/{total} игроков самая вкусная еда — наименее полезная.",all2:"У {n}/{total} игроков самая полезная еда — самая дорогая.",all3:"У {n}/{total} игроков самая полезная еда хранится меньше всего.",allLevels:"Сравнить все 4 уровня",fewLevels:"Сравнить только эти уровни",
  nameHeading:"Почти готово! Как вас зовут?",
  nameInstructions:"Сначала введите имя. Затем результаты будут сохранены и появится таблица лидеров.",
  nameLabel:"Ваше имя (не более 24 символов):",namePlaceholder:"Введите имя",save:"Сохранить имя и продолжить",
  final:"Ваши результаты",finalInstructions:"Перенесите эти результаты в таблицу на рабочем листе.",
  summary:"Ваши результаты по всем уровням",leaderboard:"Таблица лидеров",
- compare:"Сравнение всех игроков",cmp1:"Уровень 1 и уровень 3: Вкусная еда часто менее полезна.",cmp2:"Уровень 2 и уровень 3: Полезная еда часто дороже.",cmp3:"Уровень 3 и уровень 4: Полезная еда часто хранится меньше.",cmp4:"Уровень 3 и уровень 4: Долго хранящаяся еда часто менее полезна.",countText:"Это верно для {n} из {total} игроков.",noneMatch:"Таких игроков нет.",
+ compare:"Сравнение всех игроков",cmp1:"Уровень 1 и уровень 3: Вкусная еда часто менее полезна.",cmp2:"Уровень 2 и уровень 3: Полезная еда часто дороже.",cmp3:"Уровень 3 и уровень 4: Полезная еда часто хранится меньше.",cmp4:"Уровень 3 и уровень 4: Долго хранящаяся еда часто менее полезна.",countText:"Это верно для {n}/{total} игроков.",noneMatch:"Таких игроков нет.",
  levelCol:"Уровень / задание",productCol:"Продукты",calorieCol:"Калории",priceCol:"Цена",starsCol:"Звёзды здоровья",shelfCol:"Срок хранения",
  solution:"Решение",you:"Вы",top:"Топ-5",allPlayers:"Все игроки",empty:"Результатов пока нет.",noProducts:"Продукты не выбраны.",
  goal:"✓ Цель достигнута — от 500 до 650 калорий.",
@@ -393,13 +393,13 @@ ar:{
  productsTitle:"اختر المنتجات",calories:"السعرات الحرارية",price:"السعر",stars:"نجوم الصحة",shelf:"مدة الصلاحية",
  start:"ابدأ",clear:"مسح الاختيار",next:"إنهاء المستوى والمتابعة",finish:"إنهاء المستوى الأخير",
  tips:"نصائح",tip:"نصيحة: انتبه إلى ",
- quizQuestion:"ما الذي يجب أن تنتبه إليه في هذا المستوى؟",quizOptions:["ألذ ما يمكن","أرخص ما يمكن","أصح ما يمكن","أطول صلاحية ممكنة"],quizWrong:"إجابة خاطئة. اقرأ المهمة مرة أخرى وحاول من جديد.",quizRight:"صحيح! لنبدأ.",all1:"لدى {n} من أصل {total} لاعبين، الطعام الألذ هو الأقل صحة.",all2:"لدى {n} من أصل {total} لاعبين، الطعام الأكثر صحة هو الأغلى.",all3:"لدى {n} من أصل {total} لاعبين، الطعام الأكثر صحة هو الأقصر صلاحية.",allLevels:"مقارنة المستويات الأربعة كلها",fewLevels:"مقارنة هذه المستويات فقط",
+ quizQuestion:"ما الذي يجب أن تنتبه إليه في هذا المستوى؟",quizOptions:["ألذ ما يمكن","أرخص ما يمكن","أصح ما يمكن","أطول صلاحية ممكنة"],quizWrong:"إجابة خاطئة. اقرأ المهمة مرة أخرى وحاول من جديد.",quizRight:"صحيح! لنبدأ.",all1:"لدى {n}/{total} لاعبين، الطعام الألذ هو الأقل صحة.",all2:"لدى {n}/{total} لاعبين، الطعام الأكثر صحة هو الأغلى.",all3:"لدى {n}/{total} لاعبين، الطعام الأكثر صحة هو الأقصر صلاحية.",allLevels:"مقارنة المستويات الأربعة كلها",fewLevels:"مقارنة هذه المستويات فقط",
  nameHeading:"أوشكت على الانتهاء! ما اسمك؟",
  nameInstructions:"أدخل اسمك أولاً. بعد ذلك ستُحفَظ نتائجك وتظهر قائمة المتصدرين.",
  nameLabel:"اسمك (حتى 24 حرفًا):",namePlaceholder:"أدخل الاسم",save:"حفظ الاسم والمتابعة",
  final:"نتائجك",finalInstructions:"انقل هذه النتائج إلى الجدول في ورقة العمل.",
  summary:"نتائجك في جميع المستويات",leaderboard:"قائمة المتصدرين",
- compare:"مقارنة نتائج جميع اللاعبين",cmp1:"المستوى 1 والمستوى 3: الطعام اللذيذ غالبًا ما يكون أقل صحة.",cmp2:"المستوى 2 والمستوى 3: الطعام الصحي غالبًا ما يكون أغلى.",cmp3:"المستوى 3 والمستوى 4: الطعام الصحي غالبًا ما يفسد أسرع.",cmp4:"المستوى 3 والمستوى 4: الطعام طويل الصلاحية غالبًا ما يكون أقل صحة.",countText:"ينطبق هذا على {n} من أصل {total} لاعبين.",noneMatch:"لا يوجد لاعبون.",
+ compare:"مقارنة نتائج جميع اللاعبين",cmp1:"المستوى 1 والمستوى 3: الطعام اللذيذ غالبًا ما يكون أقل صحة.",cmp2:"المستوى 2 والمستوى 3: الطعام الصحي غالبًا ما يكون أغلى.",cmp3:"المستوى 3 والمستوى 4: الطعام الصحي غالبًا ما يفسد أسرع.",cmp4:"المستوى 3 والمستوى 4: الطعام طويل الصلاحية غالبًا ما يكون أقل صحة.",countText:"ينطبق هذا على {n}/{total} لاعبين.",noneMatch:"لا يوجد لاعبون.",
  levelCol:"المستوى / المهمة",productCol:"المنتجات",calorieCol:"السعرات الحرارية",priceCol:"السعر",starsCol:"نجوم الصحة",shelfCol:"مدة الصلاحية",
  solution:"الحل",you:"أنت",top:"أفضل 5",allPlayers:"جميع اللاعبين",empty:"لا توجد نتائج بعد.",noProducts:"لم يتم اختيار منتجات.",
  goal:"✓ تم تحقيق هدف السعرات الحرارية — بين 500 و650.",
