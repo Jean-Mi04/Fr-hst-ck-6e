@@ -126,6 +126,7 @@ button:disabled{opacity:.55;cursor:not-allowed}
 .compare-count{display:inline-block;margin:4px 0 8px;padding:5px 10px;border-radius:8px;background:#e6f5ec;color:#176747;font-weight:700}
 .name-list{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
 .name-list button{padding:5px 12px;border-radius:999px;font-size:.88rem}
+.name-list button.all-hit{background:#d6ebff;border:2px solid #2469b2;color:#1a4f8b;font-weight:700}
 .name-list button[aria-expanded="true"]{background:#2469b2;border-color:#2469b2;color:#fff}
 .compare-detail{margin-top:8px}
 .compare-table{min-width:640px}
@@ -745,12 +746,12 @@ function renderComparisons(rows){
   const count=document.createElement("p");count.className="compare-count";
   count.textContent=x.countText.replace("{n}",hits.length).replace("{total}",both.length);
   const counts=document.createElement("div");counts.className="count-row";counts.appendChild(count);
-  let allBadge=null;
+  let allBadge=null;const allRows=new Set();
   if(c.allTest){
-   const full=rows.map(row=>[0,1,2,3].map(l=>levelIds(row,l))).filter(sets=>sets.every(Boolean))
-    .map(sets=>sets.map(ids=>total(ids)));
+   const full=rows.filter(row=>[0,1,2,3].every(l=>levelIds(row,l)));
+   full.forEach(row=>{if(c.allTest([0,1,2,3].map(l=>total(levelIds(row,l)))))allRows.add(row)});
    allBadge=document.createElement("p");allBadge.className="compare-count all-count";allBadge.hidden=true;
-   allBadge.textContent=x[c.allKey].replace("{n}",full.filter(c.allTest).length).replace("{total}",full.length);
+   allBadge.textContent=x[c.allKey].replace("{n}",allRows.size).replace("{total}",full.length);
    counts.appendChild(allBadge);
   }
   card.append(heading,counts);
@@ -761,8 +762,22 @@ function renderComparisons(rows){
   const list=document.createElement("div");list.className="name-list";
   const detail=document.createElement("div");detail.className="compare-detail";detail.hidden=true;
   let showAll=false;
-  hits.forEach(e=>{
+  /* Namen aus dem 2-Level-Vergleich plus Spieler, die nur bei "alle 4 Level" zutreffen */
+  const hitRows=new Set(hits.map(e=>e.row));
+  const entries=hits.concat(both.filter(e=>allRows.has(e.row)&&!hitRows.has(e.row)));
+  const applyAll=()=>{
+   if(allBadge)allBadge.hidden=!showAll;
+   list.querySelectorAll("button").forEach(b=>{
+    b.hidden=!b.inHits&&!showAll;
+    b.classList.toggle("all-hit",showAll&&b.inAll);
+    if(b.hidden&&b.getAttribute("aria-expanded")==="true"){
+     b.setAttribute("aria-expanded","false");detail.replaceChildren();detail.hidden=true;
+    }
+   });
+  };
+  entries.forEach(e=>{
    const button=document.createElement("button");button.type="button";
+   button.inHits=hitRows.has(e.row);button.inAll=allRows.has(e.row);button.hidden=!button.inHits;
    button.textContent=e.row.player||"?";button.setAttribute("aria-expanded","false");
    button.addEventListener("click",()=>{
     const wasOpen=button.getAttribute("aria-expanded")==="true";
@@ -781,7 +796,7 @@ function renderComparisons(rows){
      const wrap=document.createElement("div");wrap.className="table-wrap";wrap.appendChild(table);
      const toggle=document.createElement("button");toggle.type="button";toggle.className="all-levels";
      toggle.textContent=all?x.fewLevels:x.allLevels;
-     toggle.addEventListener("click",()=>{showAll=!all;if(allBadge)allBadge.hidden=!showAll;showDetail(showAll)});
+     toggle.addEventListener("click",()=>{showAll=!all;applyAll();if(!detail.hidden)showDetail(showAll)});
      detail.append(wrap,toggle);detail.hidden=false;
     };
     showDetail(showAll);
