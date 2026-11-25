@@ -120,6 +120,9 @@ button:disabled{opacity:.55;cursor:not-allowed}
 #leaderboardHeading{margin-top:26px}
 .compare{margin:12px 0;padding:14px;border:1px solid #dce4ed;border-radius:12px;background:#fff}
 .compare h3{margin:0 0 6px;line-height:1.4}
+.count-row{display:flex;flex-wrap:wrap;gap:8px;margin:4px 0 8px}
+.count-row .compare-count{margin:0}
+.compare-count.all-count{background:#e3f1ff;color:#1a4f8b}
 .compare-count{display:inline-block;margin:4px 0 8px;padding:5px 10px;border-radius:8px;background:#e6f5ec;color:#176747;font-weight:700}
 .name-list{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
 .name-list button{padding:5px 12px;border-radius:999px;font-size:.88rem}
@@ -306,7 +309,7 @@ de:{
  productsTitle:"Produkte auswählen",calories:"Kalorien",price:"Preis",stars:"Gesundheitssterne",shelf:"Haltbarkeit",
  start:"Start",clear:"Auswahl löschen",next:"Level abschließen und weiter",finish:"Letztes Level abschließen",
  tips:"Tipps",tip:"Tipp: Achte auf ",
- quizQuestion:"Worauf sollst du in diesem Level achten?",quizOptions:["möglichst lecker","möglichst günstig","möglichst gesund","möglichst lange haltbar"],quizWrong:"Leider falsch. Lies den Auftrag noch einmal und versuche es erneut.",quizRight:"Richtig! Los geht's.",allLevels:"Alle 4 Level vergleichen",fewLevels:"Nur diese Level vergleichen",
+ quizQuestion:"Worauf sollst du in diesem Level achten?",quizOptions:["möglichst lecker","möglichst günstig","möglichst gesund","möglichst lange haltbar"],quizWrong:"Leider falsch. Lies den Auftrag noch einmal und versuche es erneut.",quizRight:"Richtig! Los geht's.",all1:"Bei {n} von {total} Spielern ist das leckerste Essen am ungesündesten.",all2:"Bei {n} von {total} Spielern ist das gesündeste Essen am teuersten.",all3:"Bei {n} von {total} Spielern ist das gesündeste Essen am kürzesten haltbar.",allLevels:"Alle 4 Level vergleichen",fewLevels:"Nur diese Level vergleichen",
  nameHeading:"Fast geschafft! Wie heißt du?",
  nameInstructions:"Gib zuerst deinen Namen ein. Danach werden deine Ergebnisse gespeichert und die Bestenliste angezeigt.",
  nameLabel:"Dein Name (max. 24 Zeichen):",namePlaceholder:"Name eingeben",save:"Name speichern und weiter",
@@ -335,7 +338,7 @@ en:{
  productsTitle:"Choose products",calories:"Calories",price:"Price",stars:"Health stars",shelf:"Shelf life",
  start:"Start",clear:"Clear selection",next:"Finish level and continue",finish:"Finish last level",
  tips:"Tips",tip:"Tip: Pay attention to ",
- quizQuestion:"What should you pay attention to in this level?",quizOptions:["as tasty as possible","as cheap as possible","as healthy as possible","as long-lasting as possible"],quizWrong:"Not quite. Read the task again and try once more.",quizRight:"Correct! Let's go.",allLevels:"Compare all 4 levels",fewLevels:"Compare only these levels",
+ quizQuestion:"What should you pay attention to in this level?",quizOptions:["as tasty as possible","as cheap as possible","as healthy as possible","as long-lasting as possible"],quizWrong:"Not quite. Read the task again and try once more.",quizRight:"Correct! Let's go.",all1:"For {n} of {total} players, the tastiest meal is the least healthy.",all2:"For {n} of {total} players, the healthiest meal is the most expensive.",all3:"For {n} of {total} players, the healthiest meal has the shortest shelf life.",allLevels:"Compare all 4 levels",fewLevels:"Compare only these levels",
  nameHeading:"Almost done! What is your name?",
  nameInstructions:"Enter your name first. Your results will then be saved and the leaderboard shown.",
  nameLabel:"Your name (max. 24 characters):",namePlaceholder:"Enter name",save:"Save name and continue",
@@ -362,7 +365,7 @@ ru:{
  productsTitle:"Выберите продукты",calories:"Калории",price:"Цена",stars:"Звёзды здоровья",shelf:"Срок хранения",
  start:"Начать",clear:"Очистить выбор",next:"Завершить уровень и продолжить",finish:"Завершить последний уровень",
  tips:"Советы",tip:"Совет: обратите внимание на ",
- quizQuestion:"На что нужно обращать внимание в этом уровне?",quizOptions:["как можно вкуснее","как можно дешевле","как можно полезнее","как можно дольше хранится"],quizWrong:"Неверно. Прочитайте задание ещё раз и попробуйте снова.",quizRight:"Верно! Начинаем.",allLevels:"Сравнить все 4 уровня",fewLevels:"Сравнить только эти уровни",
+ quizQuestion:"На что нужно обращать внимание в этом уровне?",quizOptions:["как можно вкуснее","как можно дешевле","как можно полезнее","как можно дольше хранится"],quizWrong:"Неверно. Прочитайте задание ещё раз и попробуйте снова.",quizRight:"Верно! Начинаем.",all1:"У {n} из {total} игроков самая вкусная еда — наименее полезная.",all2:"У {n} из {total} игроков самая полезная еда — самая дорогая.",all3:"У {n} из {total} игроков самая полезная еда хранится меньше всего.",allLevels:"Сравнить все 4 уровня",fewLevels:"Сравнить только эти уровни",
  nameHeading:"Почти готово! Как вас зовут?",
  nameInstructions:"Сначала введите имя. Затем результаты будут сохранены и появится таблица лидеров.",
  nameLabel:"Ваше имя (не более 24 символов):",namePlaceholder:"Введите имя",save:"Сохранить имя и продолжить",
@@ -389,7 +392,7 @@ ar:{
  productsTitle:"اختر المنتجات",calories:"السعرات الحرارية",price:"السعر",stars:"نجوم الصحة",shelf:"مدة الصلاحية",
  start:"ابدأ",clear:"مسح الاختيار",next:"إنهاء المستوى والمتابعة",finish:"إنهاء المستوى الأخير",
  tips:"نصائح",tip:"نصيحة: انتبه إلى ",
- quizQuestion:"ما الذي يجب أن تنتبه إليه في هذا المستوى؟",quizOptions:["ألذ ما يمكن","أرخص ما يمكن","أصح ما يمكن","أطول صلاحية ممكنة"],quizWrong:"إجابة خاطئة. اقرأ المهمة مرة أخرى وحاول من جديد.",quizRight:"صحيح! لنبدأ.",allLevels:"مقارنة المستويات الأربعة كلها",fewLevels:"مقارنة هذه المستويات فقط",
+ quizQuestion:"ما الذي يجب أن تنتبه إليه في هذا المستوى؟",quizOptions:["ألذ ما يمكن","أرخص ما يمكن","أصح ما يمكن","أطول صلاحية ممكنة"],quizWrong:"إجابة خاطئة. اقرأ المهمة مرة أخرى وحاول من جديد.",quizRight:"صحيح! لنبدأ.",all1:"لدى {n} من أصل {total} لاعبين، الطعام الألذ هو الأقل صحة.",all2:"لدى {n} من أصل {total} لاعبين، الطعام الأكثر صحة هو الأغلى.",all3:"لدى {n} من أصل {total} لاعبين، الطعام الأكثر صحة هو الأقصر صلاحية.",allLevels:"مقارنة المستويات الأربعة كلها",fewLevels:"مقارنة هذه المستويات فقط",
  nameHeading:"أوشكت على الانتهاء! ما اسمك؟",
  nameInstructions:"أدخل اسمك أولاً. بعد ذلك ستُحفَظ نتائجك وتظهر قائمة المتصدرين.",
  nameLabel:"اسمك (حتى 24 حرفًا):",namePlaceholder:"أدخل الاسم",save:"حفظ الاسم والمتابعة",
@@ -722,9 +725,9 @@ async function loadLeaderboard(){
  }
 }
 const comparisons=[
- {levels:[0,2],col:5,key:"cmp1",test:([L1,L3])=>L3.stars>L1.stars},
- {levels:[1,2],col:4,key:"cmp2",test:([L2,L3])=>L2.cents<L3.cents},
- {levels:[2,3],col:6,key:"cmp3",test:([L3,L4])=>L3.days<L4.days},
+ {levels:[0,2],col:5,key:"cmp1",allKey:"all1",allTest:T=>T[0].stars<=Math.min(...T.map(r=>r.stars)),test:([L1,L3])=>L3.stars>L1.stars},
+ {levels:[1,2],col:4,key:"cmp2",allKey:"all2",allTest:T=>T[2].cents>=Math.max(...T.map(r=>r.cents)),test:([L2,L3])=>L2.cents<L3.cents},
+ {levels:[2,3],col:6,key:"cmp3",allKey:"all3",allTest:T=>T[2].days<=Math.min(...T.map(r=>r.days)),test:([L3,L4])=>L3.days<L4.days},
  {levels:[2,3],col:5,key:"cmp4",test:([L3,L4])=>L4.stars<L3.stars}
 ];
 function levelIds(row,l){
@@ -741,7 +744,16 @@ function renderComparisons(rows){
   const heading=document.createElement("h3");heading.textContent=x[c.key];
   const count=document.createElement("p");count.className="compare-count";
   count.textContent=x.countText.replace("{n}",hits.length).replace("{total}",both.length);
-  card.append(heading,count);
+  const counts=document.createElement("div");counts.className="count-row";counts.appendChild(count);
+  let allBadge=null;
+  if(c.allTest){
+   const full=rows.map(row=>[0,1,2,3].map(l=>levelIds(row,l))).filter(sets=>sets.every(Boolean))
+    .map(sets=>sets.map(ids=>total(ids)));
+   allBadge=document.createElement("p");allBadge.className="compare-count all-count";allBadge.hidden=true;
+   allBadge.textContent=x[c.allKey].replace("{n}",full.filter(c.allTest).length).replace("{total}",full.length);
+   counts.appendChild(allBadge);
+  }
+  card.append(heading,counts);
   if(!hits.length){
    const none=document.createElement("p");none.textContent=x.noneMatch;
    card.appendChild(none);box.appendChild(card);return;
@@ -769,7 +781,7 @@ function renderComparisons(rows){
      const wrap=document.createElement("div");wrap.className="table-wrap";wrap.appendChild(table);
      const toggle=document.createElement("button");toggle.type="button";toggle.className="all-levels";
      toggle.textContent=all?x.fewLevels:x.allLevels;
-     toggle.addEventListener("click",()=>{showAll=!all;showDetail(showAll)});
+     toggle.addEventListener("click",()=>{showAll=!all;if(allBadge)allBadge.hidden=!showAll;showDetail(showAll)});
      detail.append(wrap,toggle);detail.hidden=false;
     };
     showDetail(showAll);
