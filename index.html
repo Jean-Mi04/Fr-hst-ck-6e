@@ -748,6 +748,7 @@ function renderComparisons(rows){
   }
   const list=document.createElement("div");list.className="name-list";
   const detail=document.createElement("div");detail.className="compare-detail";detail.hidden=true;
+  let showAll=false;
   hits.forEach(e=>{
    const button=document.createElement("button");button.type="button";
    button.textContent=e.row.player||"?";button.setAttribute("aria-expanded","false");
@@ -768,10 +769,10 @@ function renderComparisons(rows){
      const wrap=document.createElement("div");wrap.className="table-wrap";wrap.appendChild(table);
      const toggle=document.createElement("button");toggle.type="button";toggle.className="all-levels";
      toggle.textContent=all?x.fewLevels:x.allLevels;
-     toggle.addEventListener("click",()=>showDetail(!all));
+     toggle.addEventListener("click",()=>{showAll=!all;showDetail(showAll)});
      detail.append(wrap,toggle);detail.hidden=false;
     };
-    showDetail(false);
+    showDetail(showAll);
    });
    list.appendChild(button);
   });
