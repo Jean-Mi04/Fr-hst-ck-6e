@@ -139,6 +139,15 @@ button:disabled{opacity:.55;cursor:not-allowed}
 .hl-4 td:nth-child(4){background:#fde2e2;box-shadow:inset 0 0 0 3px #e05a5a;color:#9b1c1c}
 .hl-5 td:nth-child(5){background:#d6f0fc;box-shadow:inset 0 0 0 3px #1d9bd7;color:#0b4f78}
 .hl-6 td:nth-child(6){background:#f1e1dc;box-shadow:inset 0 0 0 3px #8b4a3c;color:#5c2a1f}
+.quiz-question{margin:16px 0 10px}
+.quiz-options{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:8px}
+.quiz-options button{padding:12px 14px;font-weight:700;font-size:1rem;text-align:center}
+.quiz-options button.wrong{background:#ffe4e4;border-color:#c83232;color:#781c1c}
+.quiz-options button.right{background:#e6f5ec;border-color:#2e8b57;color:#176747}
+#quizFeedback{min-height:1.5em;margin:12px 0 0;font-weight:700}
+#quizFeedback.wrong{color:#a12626}
+#quizFeedback.right{color:#176747}
+.all-levels{margin-top:8px;font-size:.88rem}
 #leaderboardStatus{font-size:.9rem;color:#9b2525}
 [hidden]{display:none!important}
 [dir="rtl"] .progress{flex-direction:row-reverse}
@@ -196,6 +205,15 @@ button:disabled{opacity:.55;cursor:not-allowed}
   <h2 id="levelTitle"></h2>
   <p class="task" id="task"></p>
   <button class="primary" id="startButton" type="button"></button>
+</section>
+
+<section class="panel" id="quizScreen" hidden>
+  <div class="progress" id="quizProgress"></div>
+  <h2 id="quizLevelTitle"></h2>
+  <p class="task" id="quizTask"></p>
+  <h3 class="quiz-question" id="quizQuestion"></h3>
+  <div class="quiz-options" id="quizOptions"></div>
+  <p id="quizFeedback" role="status" aria-live="polite"></p>
 </section>
 
 <div id="game" hidden>
@@ -288,6 +306,7 @@ de:{
  productsTitle:"Produkte auswählen",calories:"Kalorien",price:"Preis",stars:"Gesundheitssterne",shelf:"Haltbarkeit",
  start:"Start",clear:"Auswahl löschen",next:"Level abschließen und weiter",finish:"Letztes Level abschließen",
  tips:"Tipps",tip:"Tipp: Achte auf ",
+ quizQuestion:"Worauf sollst du in diesem Level achten?",quizOptions:["möglichst lecker","möglichst günstig","möglichst gesund","möglichst lange haltbar"],quizWrong:"Leider falsch. Lies den Auftrag noch einmal und versuche es erneut.",quizRight:"Richtig! Los geht's.",allLevels:"Alle 4 Level vergleichen",fewLevels:"Nur diese Level vergleichen",
  nameHeading:"Fast geschafft! Wie heißt du?",
  nameInstructions:"Gib zuerst deinen Namen ein. Danach werden deine Ergebnisse gespeichert und die Bestenliste angezeigt.",
  nameLabel:"Dein Name (max. 24 Zeichen):",namePlaceholder:"Name eingeben",save:"Name speichern und weiter",
@@ -316,6 +335,7 @@ en:{
  productsTitle:"Choose products",calories:"Calories",price:"Price",stars:"Health stars",shelf:"Shelf life",
  start:"Start",clear:"Clear selection",next:"Finish level and continue",finish:"Finish last level",
  tips:"Tips",tip:"Tip: Pay attention to ",
+ quizQuestion:"What should you pay attention to in this level?",quizOptions:["as tasty as possible","as cheap as possible","as healthy as possible","as long-lasting as possible"],quizWrong:"Not quite. Read the task again and try once more.",quizRight:"Correct! Let's go.",allLevels:"Compare all 4 levels",fewLevels:"Compare only these levels",
  nameHeading:"Almost done! What is your name?",
  nameInstructions:"Enter your name first. Your results will then be saved and the leaderboard shown.",
  nameLabel:"Your name (max. 24 characters):",namePlaceholder:"Enter name",save:"Save name and continue",
@@ -342,6 +362,7 @@ ru:{
  productsTitle:"Выберите продукты",calories:"Калории",price:"Цена",stars:"Звёзды здоровья",shelf:"Срок хранения",
  start:"Начать",clear:"Очистить выбор",next:"Завершить уровень и продолжить",finish:"Завершить последний уровень",
  tips:"Советы",tip:"Совет: обратите внимание на ",
+ quizQuestion:"На что нужно обращать внимание в этом уровне?",quizOptions:["как можно вкуснее","как можно дешевле","как можно полезнее","как можно дольше хранится"],quizWrong:"Неверно. Прочитайте задание ещё раз и попробуйте снова.",quizRight:"Верно! Начинаем.",allLevels:"Сравнить все 4 уровня",fewLevels:"Сравнить только эти уровни",
  nameHeading:"Почти готово! Как вас зовут?",
  nameInstructions:"Сначала введите имя. Затем результаты будут сохранены и появится таблица лидеров.",
  nameLabel:"Ваше имя (не более 24 символов):",namePlaceholder:"Введите имя",save:"Сохранить имя и продолжить",
@@ -368,6 +389,7 @@ ar:{
  productsTitle:"اختر المنتجات",calories:"السعرات الحرارية",price:"السعر",stars:"نجوم الصحة",shelf:"مدة الصلاحية",
  start:"ابدأ",clear:"مسح الاختيار",next:"إنهاء المستوى والمتابعة",finish:"إنهاء المستوى الأخير",
  tips:"نصائح",tip:"نصيحة: انتبه إلى ",
+ quizQuestion:"ما الذي يجب أن تنتبه إليه في هذا المستوى؟",quizOptions:["ألذ ما يمكن","أرخص ما يمكن","أصح ما يمكن","أطول صلاحية ممكنة"],quizWrong:"إجابة خاطئة. اقرأ المهمة مرة أخرى وحاول من جديد.",quizRight:"صحيح! لنبدأ.",allLevels:"مقارنة المستويات الأربعة كلها",fewLevels:"مقارنة هذه المستويات فقط",
  nameHeading:"أوشكت على الانتهاء! ما اسمك؟",
  nameInstructions:"أدخل اسمك أولاً. بعد ذلك ستُحفَظ نتائجك وتظهر قائمة المتصدرين.",
  nameLabel:"اسمك (حتى 24 حرفًا):",namePlaceholder:"أدخل الاسم",save:"حفظ الاسم والمتابعة",
@@ -478,12 +500,13 @@ function applyLanguage(){
   b.setAttribute("aria-pressed",String(active));
  });
  if(!$("startScreen").hidden)renderStart();
+ if(!$("quizScreen").hidden)renderQuiz();
  if(!$("game").hidden)renderGame();
  if(!$("finalScreen").hidden){renderOwnSummary();renderFinalMenus();loadLeaderboard()}
 }
 function renderStart(){
  $("startScreen").hidden=false;
- ["game","actionBar","hintFloat","hintPopup","nameGate","finalScreen"].forEach(id=>$(id).hidden=true);
+ ["quizScreen","game","actionBar","hintFloat","hintPopup","nameGate","finalScreen"].forEach(id=>$(id).hidden=true);
  $("levelTitle").textContent=t().levels[level][0];
  $("task").textContent="❗ "+t().levels[level][1];
  progress("startProgress");
@@ -728,13 +751,21 @@ function renderComparisons(rows){
     detail.replaceChildren();detail.hidden=true;
     if(wasOpen)return;
     button.setAttribute("aria-expanded","true");
-    const table=createTable(),body=document.createElement("tbody");
-    table.classList.add("hl-"+c.col,"compare-table");
-    c.levels.map((l,i)=>[l,e.sets[i]]).sort((a,b)=>a[0]-b[0])
-     .forEach(([l,ids])=>appendResultRow(body,x.levels[l][0],ids,"",true));
-    table.appendChild(body);
-    const wrap=document.createElement("div");wrap.className="table-wrap";wrap.appendChild(table);
-    detail.appendChild(wrap);detail.hidden=false;
+    const showDetail=all=>{
+     detail.replaceChildren();
+     const table=createTable(),body=document.createElement("tbody");
+     table.classList.add("hl-"+c.col,"compare-table");
+     const shown=all?[0,1,2,3].map(l=>[l,levelIds(e.row,l)]).filter(([,ids])=>ids)
+      :c.levels.map((l,i)=>[l,e.sets[i]]).sort((a,b)=>a[0]-b[0]);
+     shown.forEach(([l,ids])=>appendResultRow(body,x.levels[l][0],ids,"",true));
+     table.appendChild(body);
+     const wrap=document.createElement("div");wrap.className="table-wrap";wrap.appendChild(table);
+     const toggle=document.createElement("button");toggle.type="button";toggle.className="all-levels";
+     toggle.textContent=all?x.fewLevels:x.allLevels;
+     toggle.addEventListener("click",()=>showDetail(!all));
+     detail.append(wrap,toggle);detail.hidden=false;
+    };
+    showDetail(false);
    });
    list.appendChild(button);
   });
@@ -781,9 +812,35 @@ function finishLevel(){
 document.querySelectorAll(".language-buttons button").forEach(button=>
  button.addEventListener("click",()=>{lang=button.dataset.language;applyLanguage()})
 );
-$("startButton").addEventListener("click",()=>{
- $("startScreen").hidden=true;$("game").hidden=false;$("actionBar").hidden=false;renderGame();
-});
+function renderQuiz(){
+ const x=t();
+ $("startScreen").hidden=true;$("quizScreen").hidden=false;
+ $("quizLevelTitle").textContent=x.levels[level][0];
+ $("quizTask").textContent="❗ "+x.levels[level][1];
+ $("quizQuestion").textContent=x.quizQuestion;
+ const feedback=$("quizFeedback");feedback.textContent="";feedback.className="";
+ const box=$("quizOptions");box.replaceChildren();
+ progress("quizProgress");
+ x.quizOptions.forEach((text,i)=>{
+  const button=document.createElement("button");button.type="button";button.textContent=text;
+  button.addEventListener("click",()=>{
+   if(i===level){
+    button.className="right";feedback.className="right";feedback.textContent=t().quizRight;
+    box.querySelectorAll("button").forEach(b=>b.disabled=true);
+    setTimeout(startGame,900);
+   }else{
+    box.querySelectorAll("button.wrong").forEach(b=>b.classList.remove("wrong"));
+    button.className="wrong";feedback.className="wrong";feedback.textContent=t().quizWrong;
+   }
+  });
+  box.appendChild(button);
+ });
+}
+function startGame(){
+ if($("quizScreen").hidden)return;
+ $("quizScreen").hidden=true;$("game").hidden=false;$("actionBar").hidden=false;renderGame();
+}
+$("startButton").addEventListener("click",renderQuiz);
 $("hintFloat").addEventListener("click",()=>{
  const popup=$("hintPopup");
  if(!popup.hidden){popup.hidden=true;$("hintFloat").setAttribute("aria-expanded","false");return}
